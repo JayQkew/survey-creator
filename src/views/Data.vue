@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <h1>Respondent Survey</h1>
+    <h1>Survey Data View</h1>
 </template>
 
 <style>
