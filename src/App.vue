@@ -1,5 +1,10 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import About from './views/About.vue'
+import Home from './views/Home.vue'
+import NewSurvey from './views/NewSurvey.vue'
+import Survey from './views/Survey.vue'
+import Surveys from './views/Surveys.vue'
 </script>
 
 <template>

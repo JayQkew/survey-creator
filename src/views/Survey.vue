@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <h1>Surveyor Home Page</h1>
+    <h1>Respondent Survey</h1>
 </template>
 
 <style>
