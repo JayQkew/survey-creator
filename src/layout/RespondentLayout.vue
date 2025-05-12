@@ -1,10 +1,10 @@
 <script setup>
-import Footer from '../components/Footer.vue'
+import FooterArea from '../components/Footer.vue'
 </script>
 
 <template>
     <div>
         <router-view />
-        <Footer />
+        <FooterArea />
     </div>
 </template>
