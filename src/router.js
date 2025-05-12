@@ -10,7 +10,8 @@ import ResSurvey from './views/ResSurvey.vue'
 import Error from './views/Error.vue'
 import Landing from './views/Landing.vue'
 
-import SurveyorLayout from './views/SurveyorLayout.vue'
+import SurveyorLayout from './layout/SurveyorLayout.vue'
+import RespondentLayout from './layout/RespondentLayout.vue'
 
 const routes = [
     {
@@ -58,6 +59,7 @@ const routes = [
     },
     {
         path: '/respondent/:id',
+        component: RespondentLayout,
         children: [
             {
                 path: 'survey/:surveyId',

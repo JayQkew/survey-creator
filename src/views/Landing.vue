@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <h1>Welcome to Survey</h1>
+    <h1>Welcome to SurveySurfer</h1>
 </template>
 
 <style>
