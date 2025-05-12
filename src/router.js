@@ -1,4 +1,4 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
+import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
 
 import Home from './views/Home.vue'
 import About from './views/About.vue'
@@ -7,21 +7,80 @@ import Surveys from './views/Surveys.vue'
 import OwnSurvey from './views/OwnSurvey.vue'
 import Data from './views/Data.vue'
 import ResSurvey from './views/ResSurvey.vue'
-
-import Navbar from './components/Navbar.vue'
+import Error from './views/Error.vue'
+import Landing from './views/Landing.vue'
 
 const routes = [
-    { path: '/surveyor/home', component: Home},
-    { path: '/surveyor/about', component: About},
-    { path: '/surveyor/all-surveys', component: Surveys},
-    { path: '/surveyor/survey', component: OwnSurvey},
-    { path: '/surveyor/survey/data', component: Data},
-    { path: '/surveyor/new-survey', component: NewSurvey},
-    { path: '/respondant/survey', component: ResSurvey},
+    {
+        path: '/surveyor/:id',
+        children : [
+            {
+                path: 'home',
+                name: 'surveyor-home',
+                component: Home
+            },
+            {
+                path: 'about',
+                name: 'surveyor-about',
+                component: About
+            },
+            {
+                path: 'surveys',
+                name: 'all-surveys',
+                component: Surveys
+            },
+            {
+                path: 'survey/:surveyId',
+                name: 'survey-details',
+                component: OwnSurvey,
+                children: [
+                    {
+                        path: 'data',
+                        name: 'survey-data',
+                        component: Data,
+                    }
+                ]
+            },
+            {
+                path: 'new-survey',
+                name: 'create-survey',
+                component: NewSurvey
+            },
+            {
+                path: '',
+                redirect: { name: 'surveyor-home'}
+            }
+        ]
+    },
+    {
+        path: '/respondent/:id',
+        children: [
+            {
+                path: 'survey/:surveyId',
+                name: 'respond-to-survey',
+                component: ResSurvey,
+                props: true
+            },
+            {
+                path: '',
+                redirect: { name: 'respond-to-survey' }
+            }
+        ]
+    },
+    {
+        path: '/',
+        name: 'landing-page',
+        component: Landing
+    },
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'not-found',
+        component: Error
+    }
 ]
 
 const router = createRouter({
-    history: createMemoryHistory(),
+    history: createWebHistory(),
     routes,
 })
 
