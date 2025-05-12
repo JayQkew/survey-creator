@@ -3,11 +3,8 @@ import FooterArea from '../components/Footer.vue'
 </script>
 
 <template>
-    <div class="top-bar">
-        <button class="cta-btn">Create Now</button>
-    </div>
     <header>
-        <h1>Welcome to SurveySurfer</h1>
+        <h1>Welcome to <span>SurveySage</span></h1>
         <p>quick and easy surveys for your convenience</p>
     </header>
     <main>
@@ -28,6 +25,36 @@ import FooterArea from '../components/Footer.vue'
 </template>
 
 <style scoped>
+header{
+    display: flex;
+    place-content: center;
+    flex-direction: column;
+    height: 50vh;
+}
+
+header p{
+    font-family: 'Erode-Medium', sans-serif;
+    font-size: 2.5rem;
+}
+
+h1{
+    font-family: 'Erode-Bold', sans-serif;
+    font-size: 7.5rem;
+}
+
+h1 span{
+    text-decoration: underline;
+}
+
+h2{
+    font-family: 'Erode-Semibold', sans-serif;
+    font-size: 4rem;
+}
+
+p{
+    font-size: 1.5rem;
+}
+
 .top-bar{
     display: flex;
     justify-content: flex-end;

@@ -1,8 +1,15 @@
 :root {
+  --dark: #242424;
+  --tan: #ECE4D5;
+  --blue: #3358FF;
+  --red: #FF571F;
+  --yellow: #FFD333;
+  --green: #15AF8D;
+
   font-family: 'Erode-Regular',Helvetica, Arial, sans-serif;
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--dark);
+  background-color: var(--tan);
 }
 
 a {
@@ -25,17 +32,4 @@ body {
 #app {
   width: 100vw;
   padding: 1rem;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
