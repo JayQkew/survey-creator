@@ -10,9 +10,12 @@ import ResSurvey from './views/ResSurvey.vue'
 import Error from './views/Error.vue'
 import Landing from './views/Landing.vue'
 
+import SurveyorLayout from './views/SurveyorLayout.vue'
+
 const routes = [
     {
         path: '/surveyor/:id',
+        component: SurveyorLayout,
         children : [
             {
                 path: 'home',
@@ -33,6 +36,7 @@ const routes = [
                 path: 'survey/:surveyId',
                 name: 'survey-details',
                 component: OwnSurvey,
+                props: true,
                 children: [
                     {
                         path: 'data',
