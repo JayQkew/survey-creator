@@ -1,10 +1,9 @@
 :root {
   --dark: #242424;
-  --tan: #ECE4D5;
-  --blue: #3358FF;
+  --tan: #faf6ef;
   --red: #FF571F;
-  --yellow: #FFD333;
-  --green: #15AF8D;
+  --blue: #3358FF;
+  --yellow: #FFDC5F;
 
   font-family: 'Erode-Regular',Helvetica, Arial, sans-serif;
   color-scheme: light dark;
@@ -21,7 +20,7 @@ a:hover {
 }
 
 body {
-  width: 100vw;
+  width: 100%;
   margin: 0;
   display: flex;
   justify-content: center;

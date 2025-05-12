@@ -5,19 +5,19 @@ import FooterArea from '../components/Footer.vue'
 <template>
     <header>
         <h1>Welcome to <span>SurveySage</span></h1>
-        <p>quick and easy surveys for your convenience</p>
+        <p>Surveys at your convenience</p>
     </header>
     <main>
         <section>
-            <h2>Make Surveys</h2>
+            <h2><span class="blue-font">Make</span> Surveys</h2>
             <p>a quick, easy, and simple</p>
         </section>
         <section>
-            <h2>Easy Distribution</h2>
+            <h2>Easyily <span class="red-font">Distribute</span></h2>
             <p>we provide a link to your survey for easy distribution</p>
         </section>
         <section>
-            <h2>Review Data</h2>
+            <h2><span class="yellow-font">Review</span> Data</h2>
             <p>see all the results desplayed on graphs for better visual understanding</p>
         </section>
     </main>
@@ -29,21 +29,25 @@ header{
     display: flex;
     place-content: center;
     flex-direction: column;
-    height: 50vh;
+    height: 50rem;
+    width: 100%;
 }
 
 header p{
     font-family: 'Erode-Medium', sans-serif;
     font-size: 2.5rem;
+    margin: 1rem;
 }
 
 h1{
     font-family: 'Erode-Bold', sans-serif;
     font-size: 7.5rem;
+    margin: 0.5rem;
 }
 
 h1 span{
-    text-decoration: underline;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.15rem;
 }
 
 h2{
@@ -52,21 +56,30 @@ h2{
 }
 
 p{
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
-.top-bar{
+section{
+    border: 3px solid var(--dark);
+    border-radius: 1rem;
+}
+
+main{
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-.cta-btn{
-    font-size: 1.5rem;
-    font-weight: 600;
-    background-color: white;
-    color: #242424;
-    border-radius: 100vw;
-    padding: 0.5rem;
+.red-font{
+    color: var(--red);
 }
+
+.blue-font{
+    color: var(--blue);
+}
+
+.yellow-font{
+    color: var(--yellow);
+}
+
 </style>
