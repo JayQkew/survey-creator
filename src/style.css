@@ -28,6 +28,25 @@ a:hover {
     font-size: 1.5rem;
 }
 
+.style-btn{
+    font-family: 'Ubuntu Bold', monospace;
+    background-color: var(--tan);
+    color: var(--dark);
+    border: 3px solid var(--dark);
+    cursor: pointer;
+    transition: all 200ms;
+}
+
+.style-btn:hover{
+    transform: translateY(-0.5rem);
+    box-shadow: 0 0.5rem 0 var(--dark);
+}
+
+.style-btn:active{
+    transform: translateY(0);
+    box-shadow: 0 0 0;
+}
+
 body {
   width: 100%;
   margin: 0;

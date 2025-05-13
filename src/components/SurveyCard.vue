@@ -1,5 +1,5 @@
 <script setup>
-import Button from './Button.vue';
+import copySvg from '../assets/copy-svgrepo-com.svg?raw';
 const props = defineProps({
     survey: Object
 })
@@ -20,7 +20,7 @@ function copyLink(){
                 <label for="active">active</label>
                 <input type="checkbox" id="active" :checked="survey.active">
             </div>
-            <Button txt="Share" @click="copyLink" />
+            <button class="style-btn" @click="copyLink"><div class="svg" v-html="copySvg"></div></button>
         </section>
     </li>
 </template>
@@ -32,7 +32,7 @@ section{
     align-items: flex-start;
     flex-direction: column;
     border: 3px solid var(--dark);
-    border-radius: 1rem;
+    border-radius: 1.5rem;
     padding: 0.5rem;
 }
 
@@ -42,5 +42,16 @@ h2{
 
 p{
     margin: 0.25rem 0px;
+}
+
+.style-btn{
+    font-size: 1rem;
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+.svg{
+    width: 2rem;
+    height: 2rem;
 }
 </style>
