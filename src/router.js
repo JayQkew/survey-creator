@@ -3,7 +3,6 @@ import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
 import NewSurvey from './views/NewSurvey.vue'
-import Surveys from './views/AllSurveys.vue'
 import OwnSurvey from './views/OwnSurvey.vue'
 import Data from './views/Data.vue'
 import ResSurvey from './views/ResSurvey.vue'
@@ -27,11 +26,6 @@ const routes = [
                 path: 'about',
                 name: 'surveyor-about',
                 component: About
-            },
-            {
-                path: 'surveys',
-                name: 'all-surveys',
-                component: Surveys
             },
             {
                 path: 'survey/:surveyId',

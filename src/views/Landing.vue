@@ -5,7 +5,7 @@ import LandingBtn from '../components/LandingBtn.vue'
 
 <template>
     <header>
-        <h1>Welcome to <span>SurveySage</span></h1>
+        <h1>Welcome to <span>EasySurvey</span></h1>
         <p>Surveys at your convenience</p>
         <LandingBtn txt="Try Now"/>
     </header>
