@@ -15,7 +15,7 @@ import LandingBtn from '../components/LandingBtn.vue'
             <p>Quick, easy, and simple</p>
         </section>
         <section>
-            <h2>Easyily Distribute</h2>
+            <h2>Easy Distribution</h2>
             <p>We provide a link to your survey for easy distribution</p>
         </section>
         <section>

@@ -6,17 +6,11 @@ const props = defineProps({
 
 const router = useRouter()
 
-function goto(){
-    router.push({
-        name: 'surveyor-home',
-        params: {id: '123'} //this is a temporary id
-    })
-}
 </script>
 
 <template>
-    <button @click="goto">
-        {{ txt || 'Create Now' }}
+    <button>
+        {{ txt || 'Button' }}
     </button>
 </template>
 
@@ -28,7 +22,6 @@ button{
     color: var(--dark);
     width: fit-content;
     padding: 0.5rem 1rem;
-    margin: 3rem;
     border: 3px solid var(--dark);
     border-radius: 100vw;
     cursor: pointer;

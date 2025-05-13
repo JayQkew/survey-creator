@@ -1,7 +1,12 @@
 <script setup>
+import Button from './Button.vue';
 const props = defineProps({
     survey: Object
 })
+
+function copyLink(){
+    navigator.clipboard.writeText(props.survey.link)
+}
 </script>
 
 <template>
@@ -14,6 +19,7 @@ const props = defineProps({
             <label for="active">active</label>
             <input type="checkbox" id="active" :checked="survey.active">
         </div>
+        <Button txt="Share" @click="copyLink" />
     </section>
 </template>
 

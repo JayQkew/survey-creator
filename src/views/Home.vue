@@ -6,13 +6,16 @@ const surveyDetail = ref({
     respondents: 10,
     questions: 5,
     date: "5 Jan 2025",
-    active: true
+    active: true,
+    link: "hello, world!"
 }) 
 </script>
 
 <template>
-    <h1>Surveyor Home Page</h1>
-    <p>this shows all the surveys that the surveyor has previously made</p>
+    <header>
+        <h1 class="page-heading">Home</h1>
+        <p class="subheading">All your surveys on one page</p>
+    </header>
     <div>
         <SurveyCard :survey="surveyDetail" />
         <SurveyCard :survey="surveyDetail" />
@@ -21,4 +24,12 @@ const surveyDetail = ref({
 </template>
 
 <style>
+.page-heading{
+    font-size: 4rem;
+    margin: 1rem;
+}
+
+.subheading{
+    font-size: 1.5rem;
+}
 </style>
