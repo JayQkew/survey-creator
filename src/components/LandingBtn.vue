@@ -1,11 +1,23 @@
 <script setup>
-    const props = defineProps({
-        txt: String
+import { useRouter } from 'vue-router';
+const props = defineProps({
+    txt: String
+})
+
+const router = useRouter()
+
+function goto(){
+    router.push({
+        name: 'surveyor-home',
+        params: {id: '123'} //this is a temporary id
     })
+}
 </script>
 
 <template>
-    <button type="button">{{ txt || 'Create Now' }}</button>
+    <button @click="goto">
+        {{ txt || 'Create Now' }}
+    </button>
 </template>
 
 <style scoped>
@@ -19,6 +31,7 @@ button{
     margin: 3rem;
     border: 3px solid var(--dark);
     border-radius: 100vw;
+    cursor: pointer;
     transition: all 200ms;
 }
 
