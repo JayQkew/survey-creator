@@ -5,10 +5,10 @@
     <nav>
         <ul>
             <li>
-                <router-link :to="{name: 'surveyor-home'}">Home</router-link>
+                <router-link :to="{name: 'all-surveys'}">Home</router-link>
             </li>
             <li>
-                <router-link :to="{name: 'all-surveys'}">Surveys</router-link>
+                <router-link :to="{name: 'new-survey'}">Create</router-link>
             </li>
             <li>
                 <router-link :to="{name: 'surveyor-about'}">About</router-link>
