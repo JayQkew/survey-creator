@@ -10,17 +10,19 @@ function copyLink(){
 </script>
 
 <template>
-    <section>
-        <h2>{{ survey.title }}</h2>
-        <p>respondents: {{ survey.respondents }}</p>
-        <p>questions: {{ survey.questions }}</p>
-        <p>date: {{ survey.date }}</p>
-        <div>
-            <label for="active">active</label>
-            <input type="checkbox" id="active" :checked="survey.active">
-        </div>
-        <Button txt="Share" @click="copyLink" />
-    </section>
+    <li>
+        <section>
+            <h2>{{ survey.title }}</h2>
+            <p>respondents: {{ survey.respondents }}</p>
+            <p>questions: {{ survey.questions }}</p>
+            <p>date: {{ survey.date }}</p>
+            <div>
+                <label for="active">active</label>
+                <input type="checkbox" id="active" :checked="survey.active">
+            </div>
+            <Button txt="Share" @click="copyLink" />
+        </section>
+    </li>
 </template>
 
 <style scoped>
