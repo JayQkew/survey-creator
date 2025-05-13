@@ -12,20 +12,33 @@ function copyLink(){
 <template>
     <li>
         <section>
-            <h2>{{ survey.title }}</h2>
-            <p>respondents: {{ survey.respondents }}</p>
-            <p>questions: {{ survey.questions }}</p>
-            <p>date: {{ survey.date }}</p>
-            <div>
-                <label for="active">active</label>
-                <input type="checkbox" id="active" :checked="survey.active">
-            </div>
-            <button class="style-btn" @click="copyLink"><div class="svg" v-html="copySvg"></div></button>
+            <header>
+                <h2>{{ survey.title }}</h2>
+                <button class="style-btn" @click="copyLink"><div class="svg" v-html="copySvg"></div></button>
+            </header>
+            <section class="container">
+                <p>respondents: {{ survey.respondents }}</p>
+                <p>questions: {{ survey.questions }}</p>
+                <p>date: {{ survey.date }}</p>
+                <div>
+                    <label for="active">active</label>
+                    <input type="checkbox" id="active" :checked="survey.active">
+                </div>
+            </section>
         </section>
     </li>
 </template>
 
 <style scoped>
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem
+}
+
 section{
     display: flex;
     justify-content: flex-start;
@@ -34,10 +47,20 @@ section{
     border: 3px solid var(--dark);
     border-radius: 1.5rem;
     padding: 0.5rem;
+    gap: 0.5rem;
 }
 
 h2{
+    display: flex;
+    width: 100%;
+    height: 3rem;
+    justify-content: flex-start;
+    align-items: center;
     margin: 0px;
+    padding-left: 0.5rem;
+    flex-grow: 2;
+    border: 3px solid var(--dark);
+    border-radius: 1rem;
 }
 
 p{
@@ -53,5 +76,12 @@ p{
 .svg{
     width: 2rem;
     height: 2rem;
+}
+
+.container{
+    display: flex;
+    border: 3px solid var(--dark);
+    border-radius: 1rem;
+    flex-grow: 2;
 }
 </style>
