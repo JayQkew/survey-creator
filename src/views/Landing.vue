@@ -1,25 +1,30 @@
 <script setup>
 import FooterArea from '../components/Footer.vue'
+import LandingBtn from '../components/LandingBtn.vue'
 </script>
 
 <template>
     <header>
         <h1>Welcome to <span>SurveySage</span></h1>
         <p>Surveys at your convenience</p>
+        <LandingBtn txt="Try Now"/>
     </header>
     <main>
         <section>
-            <h2><span class="blue-font">Make</span> Surveys</h2>
-            <p>a quick, easy, and simple</p>
+            <h2>Make Surveys</h2>
+            <p>Quick, easy, and simple</p>
         </section>
         <section>
-            <h2>Easyily <span class="red-font">Distribute</span></h2>
-            <p>we provide a link to your survey for easy distribution</p>
+            <h2>Easyily Distribute</h2>
+            <p>We provide a link to your survey for easy distribution</p>
         </section>
         <section>
-            <h2><span class="yellow-font">Review</span> Data</h2>
-            <p>see all the results desplayed on graphs for better visual understanding</p>
+            <h2>Review Data</h2>
+            <p>See all the results desplayed on graphs for better visual understanding</p>
         </section>
+        <div>
+            <LandingBtn/>
+        </div>
     </main>
     <FooterArea />
 </template>
@@ -27,20 +32,21 @@ import FooterArea from '../components/Footer.vue'
 <style scoped>
 header{
     display: flex;
-    place-content: center;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     height: 50rem;
     width: 100%;
 }
 
 header p{
-    font-family: 'Erode-Medium', sans-serif;
+    font-family: 'Ubuntu', monospace;
     font-size: 2.5rem;
     margin: 1rem;
 }
 
 h1{
-    font-family: 'Erode-Bold', sans-serif;
+    font-family: 'Ubuntu Bold', monospace;
     font-size: 7.5rem;
     margin: 0.5rem;
 }
@@ -51,7 +57,7 @@ h1 span{
 }
 
 h2{
-    font-family: 'Erode-Semibold', sans-serif;
+    font-family: 'Ubuntu Bold', monospace;
     font-size: 4rem;
 }
 
@@ -69,17 +75,4 @@ main{
     flex-direction: column;
     gap: 1rem;
 }
-
-.red-font{
-    color: var(--red);
-}
-
-.blue-font{
-    color: var(--blue);
-}
-
-.yellow-font{
-    color: var(--yellow);
-}
-
 </style>

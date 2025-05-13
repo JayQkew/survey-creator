@@ -5,7 +5,7 @@
   --blue: #3358FF;
   --yellow: #FFDC5F;
 
-  font-family: 'Erode-Regular',Helvetica, Arial, sans-serif;
+  font-family: 'Ubuntu Bold', monospace;
   color-scheme: light dark;
   color: var(--dark);
   background-color: var(--tan);
