@@ -1,12 +1,4 @@
 <script>
-import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
-const route = useRoute();
-// const surveyId = ref(null);
-
-// onMounted(() =>{
-//     surveyId.value = route.params.surveyId
-// })
 </script>
 
 <template>
