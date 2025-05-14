@@ -55,6 +55,7 @@ const surveyDetails = [
         <div class="survey-card-container">
             <ul>
                 <SurveyCard v-for="s in surveyDetails" :survey="s" />
+                <button class="style-btn"> + </button>
             </ul>
         </div>
     </main>
@@ -68,5 +69,10 @@ ul{
     list-style: none;
     margin: 0 4rem;
     padding: 0;
+}
+
+.style-btn{
+  border-radius: 1.5rem;
+  font-size: 5rem;
 }
 </style>

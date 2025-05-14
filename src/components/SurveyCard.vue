@@ -11,7 +11,7 @@ function copyLink(){
 
 <template>
     <li>
-        <section>
+        <section class="card">
             <header>
                 <h2>{{ survey.title }}</h2>
                 <button class="style-btn" @click="copyLink"><div class="svg" v-html="copySvg"></div></button>
@@ -20,7 +20,7 @@ function copyLink(){
                 <p>respondents: {{ survey.respondents }}</p>
                 <p>questions: {{ survey.questions }}</p>
                 <p>date: {{ survey.date }}</p>
-                <div>
+                <div class="checkbox-container">
                     <label for="active">active</label>
                     <input type="checkbox" id="active" :checked="survey.active">
                 </div>
@@ -33,7 +33,7 @@ function copyLink(){
 header{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     gap: 0.5rem
@@ -42,7 +42,7 @@ header{
 section{
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: stretch;
     flex-direction: column;
     border: 3px solid var(--dark);
     border-radius: 1.5rem;
@@ -52,25 +52,33 @@ section{
 
 h2{
     display: flex;
+    align-items: center;
     width: 100%;
     height: 3rem;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0px;
+    margin: 0;
     padding-left: 0.5rem;
-    flex-grow: 2;
+    flex-grow: 1;
     border: 3px solid var(--dark);
     border-radius: 1rem;
 }
 
 p{
-    margin: 0.25rem 0px;
+    font-size: 1.25rem;
+    margin: 0.25rem 0;
+}
+
+label{
+    font-size: 1.25rem;
+    margin: 0.25rem 0;
 }
 
 .style-btn{
+    display: flex;
+    align-items: center;
     font-size: 1rem;
     border-radius: 1rem;
     padding: 0.5rem;
+    height: 100%;
 }
 
 .svg{
@@ -80,8 +88,26 @@ p{
 
 .container{
     display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
     border: 3px solid var(--dark);
     border-radius: 1rem;
-    flex-grow: 2;
+}
+
+.card{
+    cursor: pointer;
+    transform: translateY(0);
+    box-shadow: 0 0 0;
+    transition: all 200ms;
+}
+
+.card:hover{
+    transform: translateY(-0.5rem);
+    box-shadow: 0 0.5rem 0 var(--dark);
+}
+
+.card:active{
+    transform: translateY(0);
+    box-shadow: 0 0 0;
 }
 </style>
