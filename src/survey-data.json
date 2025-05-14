@@ -12,23 +12,23 @@
             "id": "0000",
             "question": "how would you rate the food",
             "type": "scale",
-            "type-detail": 10,
+            "typeDetail": 10,
             "responses": [],
-            "public-responses": false
+            "publicResponses": false
         },
         {
             "id": "0001",
             "question": "the staff were friendly",
             "type": "scale",
-            "type-detail": "agreeableness",
+            "typeDetail": "agreeableness",
             "responses": [],
-            "public-responses": false
+            "publicResponses": false
         },
         {
             "id": "0002",
             "question": "please select your favorite dishes",
             "type": "matrix",
-            "type-detail": [
+            "typeDetail": [
                 {
                     "id": "000",
                     "option": "Pizza",
@@ -46,7 +46,7 @@
                 }
             ],
             "responses": [],
-            "public-responses": false
+            "publicResponses": false
         }
     ]
   } 
