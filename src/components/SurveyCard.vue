@@ -32,10 +32,8 @@ function goToSurvey(){
                 <p>respondents: {{ survey.respondents }}</p>
                 <p>questions: {{ survey.questions }}</p>
                 <p>date: {{ survey.date }}</p>
-                <div class="checkbox-container">
-                    <label for="active">active</label>
-                    <input type="checkbox" id="active" :checked="survey.active">
-                </div>
+                <p v-if="survey.active">active</p>
+                <p v-else="survey.active">unactive</p>
             </section>
         </section>
     </li>
