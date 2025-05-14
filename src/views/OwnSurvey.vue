@@ -22,19 +22,13 @@ onMounted(() => {
 
 <template>
   <header>
-    <h1>Owner Survey: {{ $route.params.surveyId }}</h1>
-    <p>Where the Owner views data, adds questions, & edits the survey</p>
+    <h1 v-if="loading">Loading...</h1>
+    <h1 v-else-if="error">Error: {{ error }}</h1>
+    <h1 v-else-if="survey">{{ survey.title }}</h1>
+    <h1 v-else>No Data</h1>
+    <!-- <p>Where the Owner views data, adds questions, & edits the survey</p> -->
   </header>
   <main>
-    <div v-if="loading">Loading data...</div>
-    <div v-else-if="error">Error: {{ error }}</div>
-    <div v-else-if="survey">
-        <h2 v-if="survey">{{ survey.title }}</h2>
-        <p>Data: {{ survey.title }}</p>
-    </div>
-    <div v-else>
-        No data available
-    </div>
   </main>
 </template>
 
