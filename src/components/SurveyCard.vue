@@ -1,5 +1,8 @@
 <script setup>
+import { useRouter } from 'vue-router';
 import copySvg from '../assets/copy-svgrepo-com.svg?raw';
+
+const router = useRouter();
 const props = defineProps({
     survey: Object
 })
@@ -7,14 +10,23 @@ const props = defineProps({
 function copyLink(){
     navigator.clipboard.writeText(props.survey.link)
 }
+
+function goToSurvey(){
+    router.push({
+        name:"survey-details", 
+        params: {
+            surveyId: props.survey.id
+        }
+    })
+}
 </script>
 
 <template>
     <li>
-        <section class="card">
+        <section class="card" @click="goToSurvey">
             <header>
                 <h2>{{ survey.title }}</h2>
-                <button class="style-btn" @click="copyLink"><div class="svg" v-html="copySvg"></div></button>
+                <button class="style-btn" @click.stop="copyLink"><div class="svg" v-html="copySvg"></div></button>
             </header>
             <section class="container">
                 <p>respondents: {{ survey.respondents }}</p>

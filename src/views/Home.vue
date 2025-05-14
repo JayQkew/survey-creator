@@ -1,8 +1,10 @@
 <script setup>
 import SurveyCard from '../components/SurveyCard.vue'
 import {ref} from 'vue'
+import { useRouter } from 'vue-router';
 const surveyDetails = [
   {
+    id: '000',
     title: "Survey Title 1",
     respondents: 10,
     questions: 5,
@@ -11,6 +13,7 @@ const surveyDetails = [
     link: "link1.com",
   },
   {
+    id: '001',
     title: "Survey Title 2",
     respondents: 25,
     questions: 10,
@@ -19,6 +22,7 @@ const surveyDetails = [
     link: "link2.com",
   },
   {
+    id: '002',
     title: "Survey Title 3",
     respondents: 15,
     questions: 7,
@@ -26,7 +30,8 @@ const surveyDetails = [
     active: true,
     link: "link3.com",
   },
-    {
+  {
+    id: '003',
     title: "Survey Title 4",
     respondents: 30,
     questions: 12,
@@ -35,6 +40,7 @@ const surveyDetails = [
     link: "link4.com",
   },
   {
+    id: '004',
     title: "Survey Title 5",
     respondents: 20,
     questions: 8,
@@ -43,6 +49,10 @@ const surveyDetails = [
     link: "link5.com",
   }
 ];
+const router = useRouter()
+function handleClick(){
+    router.push({ name: 'create-survey' })
+}
 </script>
 
 <template>
@@ -55,7 +65,7 @@ const surveyDetails = [
         <div class="survey-card-container">
             <ul>
                 <SurveyCard v-for="s in surveyDetails" :survey="s" />
-                <button class="style-btn"> + </button>
+                <button class="style-btn" @click="handleClick"> + </button>
             </ul>
         </div>
     </main>
