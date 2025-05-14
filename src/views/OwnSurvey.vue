@@ -4,11 +4,9 @@ import { useRoute } from 'vue-router'
 import surveyData from '../survey-data.json'
 const route = useRoute();
 
-const data = ref(null)
+const survey = ref(null)
 const loading = ref(true)
 const error = ref(null)
-
-const survey = ref(null)
 
 onMounted(() => {
   try {
@@ -30,7 +28,7 @@ onMounted(() => {
   <main>
     <div v-if="loading">Loading data...</div>
     <div v-else-if="error">Error: {{ error }}</div>
-    <div v-else-if="data">
+    <div v-else-if="survey">
         <h2 v-if="survey">{{ survey.title }}</h2>
         <p>Data: {{ survey.title }}</p>
     </div>
