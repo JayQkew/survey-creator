@@ -1,7 +1,10 @@
 <script setup>
 import SurveyCard from '../components/SurveyCard.vue'
-import {ref} from 'vue'
+import {onMounted, ref} from 'vue'
 import { useRouter } from 'vue-router';
+import surveyData from '../survey-data.json'
+const router = useRouter()
+
 const surveyDetails = [
   {
     id: '000',
@@ -49,10 +52,24 @@ const surveyDetails = [
     link: "link5.com",
   }
 ];
-const router = useRouter()
-function handleClick(){
+
+const surveys = ref(null)
+const loading = ref(true)
+const error = ref(null)
+
+function goToNewSurvey(){
     router.push({ name: 'create-survey' })
 }
+
+onMounted(() => {
+  try{
+    surveys.value = surveyData
+  } catch (err){
+    error.value = `Failed to load data: ${err.message}`
+  } finally{
+    loading.value = false
+  }
+})
 </script>
 
 <template>
@@ -61,11 +78,10 @@ function handleClick(){
         <p class="subheading">All your surveys on one page</p>
     </header>
     <main>
-
         <div class="survey-card-container">
             <ul>
-                <SurveyCard v-for="s in surveyDetails" :survey="s" />
-                <button class="style-btn" @click="handleClick"> + </button>
+                <SurveyCard v-for="s in surveys" :survey="s" />
+                <button class="style-btn" @click="goToNewSurvey"> + </button>
             </ul>
         </div>
     </main>
