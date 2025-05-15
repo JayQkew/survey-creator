@@ -26,9 +26,18 @@ onMounted(() => {
     <h1 v-else-if="error">Error: {{ error }}</h1>
     <h1 v-else-if="survey">{{ survey.title }}</h1>
     <h1 v-else>No Data</h1>
+    <div v-if="survey">
+      <p>{{ survey.date }}</p>
+      <p>{{ survey.link }}</p>
+      <p v-if="survey.active">active</p>
+      <p v-else>unactive</p>
+      <p>{{ survey.description }}</p>
+      <p>respondents: {{ survey.respondents }}</p>
+    </div>
     <!-- <p>Where the Owner views data, adds questions, & edits the survey</p> -->
   </header>
   <main>
+
   </main>
 </template>
 
