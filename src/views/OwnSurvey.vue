@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import surveyData from '../survey-data.json'
+import SurveyQuestions from '../components/SurveyQuestion.vue'
 const route = useRoute();
 
 const survey = ref(null)
@@ -37,7 +38,9 @@ onMounted(() => {
     <!-- <p>Where the Owner views data, adds questions, & edits the survey</p> -->
   </header>
   <main>
-
+    <ul v-if="survey">
+      <SurveyQuestions v-for="(i, index) in survey.questions" :key="index" :question="i"/>
+    </ul>
   </main>
 </template>
 
