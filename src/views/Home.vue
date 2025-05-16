@@ -1,4 +1,4 @@
-""<script setup>
+<script setup>
 import SurveyCard from '../components/SurveyCard.vue'
 import {onMounted, ref} from 'vue'
 import { useRouter } from 'vue-router';
