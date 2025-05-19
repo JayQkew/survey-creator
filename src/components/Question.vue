@@ -33,6 +33,7 @@ li{
 
 section{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     border: 3px solid var(--dark);

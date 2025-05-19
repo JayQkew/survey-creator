@@ -29,14 +29,15 @@ onMounted(() => {
     <h1 v-else-if="survey">{{ survey.title }}</h1>
     <h1 v-else>No Data</h1>
     <div v-if="survey">
-      <p>{{ survey.date }}</p>
-      <p>{{ survey.link }}</p>
-      <p v-if="survey.active">active</p>
-      <p v-else>unactive</p>
+      <div class="detail-container">
+        <p>{{ survey.date }}</p>
+        <p>respondents: {{ survey.respondents }}</p>
+        <p>{{ survey.link }}</p>
+        <p v-if="survey.active">active</p>
+        <p v-else>unactive</p>
+      </div>
       <p>{{ survey.description }}</p>
-      <p>respondents: {{ survey.respondents }}</p>
     </div>
-    <!-- <p>Where the Owner views data, adds questions, & edits the survey</p> -->
   </header>
   <main>
     <ul v-if="survey">
@@ -57,5 +58,12 @@ ul{
   padding: 0.5rem;
   gap: 0.5rem;
   margin: 0;
+}
+
+.detail-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 </style>
