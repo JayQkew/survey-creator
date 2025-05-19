@@ -12,7 +12,7 @@
         "id": "0000",
         "question": "how would you rate the food",
         "type": "scale",
-        "typeDetail": 10,
+        "typeDetail": [10],
         "responses": [],
         "publicResponses": false
       },
@@ -20,7 +20,7 @@
         "id": "0001",
         "question": "the staff were friendly",
         "type": "scale",
-        "typeDetail": "agreeableness",
+        "typeDetail": ["agreeableness"],
         "responses": [],
         "publicResponses": false
       },
@@ -51,7 +51,7 @@
         "id": "0010",
         "question": "how organized was the event?",
         "type": "scale",
-        "typeDetail": 5,
+        "typeDetail": [5],
         "responses": [],
         "publicResponses": false
       },
@@ -59,7 +59,7 @@
         "id": "0011",
         "question": "rate the quality of the guest speakers",
         "type": "scale",
-        "typeDetail": 5,
+        "typeDetail": [5],
         "responses": [],
         "publicResponses": true
       },
@@ -67,7 +67,7 @@
         "id": "0012",
         "question": "what did you enjoy most?",
         "type": "text",
-        "typeDetail": null,
+        "typeDetail": [],
         "responses": [],
         "publicResponses": true
       }
@@ -99,7 +99,7 @@
         "id": "0021",
         "question": "what features would you like to see?",
         "type": "text",
-        "typeDetail": null,
+        "typeDetail": [],
         "responses": [],
         "publicResponses": true
       }
@@ -118,7 +118,7 @@
         "id": "0030",
         "question": "was the website easy to navigate?",
         "type": "scale",
-        "typeDetail": 7,
+        "typeDetail": [7],
         "responses": [],
         "publicResponses": false
       },
@@ -126,7 +126,7 @@
         "id": "0031",
         "question": "did you encounter any bugs or errors?",
         "type": "yesno",
-        "typeDetail": null,
+        "typeDetail": [],
         "responses": [],
         "publicResponses": false
       },
@@ -134,7 +134,7 @@
         "id": "0032",
         "question": "please describe any issues you had",
         "type": "text",
-        "typeDetail": null,
+        "typeDetail": [],
         "responses": [],
         "publicResponses": false
       }
@@ -165,7 +165,7 @@
         "id": "0041",
         "question": "why did you choose this feature?",
         "type": "text",
-        "typeDetail": null,
+        "typeDetail": [],
         "responses": [],
         "publicResponses": true
       }

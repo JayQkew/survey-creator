@@ -8,16 +8,18 @@ import YesNo from '../components/QuestionTypes/YesNo.vue'
 const props = defineProps({
     q: Object
 })
+
+const q = props.q;
 </script>
 
 <template>
     <li>
         <section>
-            <h2>{{ props.q.question }}</h2>
-            <Scale v-if="props.q.type === 'scale'"/>
-            <Matrix v-else-if="props.q.type === 'matrix'"/>
-            <Text v-else-if="props.q.type === 'text'"/>
-            <MultipleChoice v-else-if="props.q.type === 'multipleChoice'"/>
+            <h2>{{ q.question }}</h2>
+            <Scale v-if="q.type === 'scale'" :details="q.typeDetail"/>
+            <Matrix v-else-if="q.type === 'matrix'"/>
+            <Text v-else-if="q.type === 'text'"/>
+            <MultipleChoice v-else-if="q.type === 'multipleChoice'"/>
             <YesNo v-else />
         </section>
     </li>
