@@ -1,6 +1,7 @@
 <script setup>
 const props = defineProps({
-    data: Object
+    data: Object,
+    id: String
 })
 
 const d = props.data
@@ -8,8 +9,8 @@ const d = props.data
 
 <template>
     <div>
-        <input type="checkbox" :id="String(d.value)" :name="d.id" :value="d.value">
-        <label :for="String(d.value)">{{ String(d.value) }}</label>
+        <input type="checkbox" :id="d.id" :name="props.id" :value="d.option">
+        <label :for="d.id">{{ d.option }}</label>
     </div>
 </template>
 

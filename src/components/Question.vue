@@ -17,7 +17,7 @@ const q = props.q;
         <section>
             <h2>{{ q.question }}</h2>
             <Scale v-if="q.type === 'scale'" :details="q.typeDetail" :id="q.id"/>
-            <Matrix v-else-if="q.type === 'matrix'"/>
+            <Matrix v-else-if="q.type === 'matrix'" :details="q.typeDetail" :id="q.id"/>
             <Text v-else-if="q.type === 'text'"/>
             <MultipleChoice v-else-if="q.type === 'multipleChoice'"/>
             <YesNo v-else />
