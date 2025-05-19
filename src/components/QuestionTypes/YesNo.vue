@@ -1,7 +1,9 @@
 <script>
 </script>
 
-<template></template>
+<template>
+   <p>This is a Yes No Question</p>
+</template>
 
 <style>
 </style>

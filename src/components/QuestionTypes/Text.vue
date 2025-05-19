@@ -1,7 +1,9 @@
 <script>
 </script>
 
-<template></template>
+<template>
+    <p>This is a text question (let the respondent type)</p>
+</template>
 
 <style>
 </style>
