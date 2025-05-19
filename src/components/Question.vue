@@ -20,7 +20,7 @@ const q = props.q;
             <Matrix v-else-if="q.type === 'matrix'" :details="q.typeDetail" :id="q.id"/>
             <Text v-else-if="q.type === 'text'"/>
             <MultipleChoice v-else-if="q.type === 'multipleChoice'"/>
-            <YesNo v-else />
+            <YesNo v-else :details="q.typeDetail" :id="q.id"/>
         </section>
     </li>
 </template>
