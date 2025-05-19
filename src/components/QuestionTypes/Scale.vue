@@ -1,25 +1,35 @@
 <script setup>
+import RadioBtn from './RadioBtn.vue'
 const props = defineProps({
-    details: Array
+    details: Array,
+    id: String
 })
 
 const scaleDetail = props.details[0]
-let display = ""
+let scaleBtns = []
 
 if (scaleDetail === 'agreeableness'){
-    //print a scale of agreeableness
-    display = "This is a scale of agreeableness"
-
+    scaleBtns = [
+        { value: "Strongly Agree", id: props.id },
+        { value: "Agree", id: props.id },
+        { value: "Neutral", id: props.id },
+        { value: "Disagree", id: props.id },
+        { value: "Strongly Disagree", id: props.id }
+    ]
 } else {
-    display = "On a scale from 1 to " + scaleDetail
+    for(let i = 0; i < scaleDetail; i++){
+        scaleBtns.push(
+            { value: i+1, id: props.id }
+        )
+    }
 }
 </script>
 
 <template>
     <p>This is a scale question (let the users choose from a given scale)</p>
-    <p>
-        {{ display }}
-    </p>
+    <div>
+        <RadioBtn v-for="btn in scaleBtns" :data="btn"/>
+    </div>
 </template>
 
 <style>
