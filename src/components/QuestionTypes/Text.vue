@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <p>This is a text question (let the respondent type)</p>
+    <input type="text">
 </template>
 
 <style>

@@ -1,8 +1,18 @@
-<script>
+<script setup>
+import RadioBtn from './RadioBtn.vue';
+const props = defineProps({
+    details: Array,
+    id: String
+})
+const choices = props.details.map(p => {
+    return {value: p, id: props.id}
+})
 </script>
 
 <template>
-    <p>This is a multiple choice question (choose one of the options)</p>
+    <div>
+        <RadioBtn v-for="c in choices" :data="c"/>
+    </div>
 </template>
 
 <style>
