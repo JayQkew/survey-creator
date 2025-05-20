@@ -1,5 +1,5 @@
-<script>
-import { ref, watch } from 'vue';
+<script setup>
+import { ref, watch } from 'vue'
 const typeValue = ref('scale')
 
 watch( typeValue, (newValue) => {
@@ -23,5 +23,6 @@ watch( typeValue, (newValue) => {
     <p v-else-if="typeValue === 'text'">This is a text question</p>
     <p v-else-if="typeValue === 'multipleChoice'">This is a multiple choice question</p>
     <p v-else-if="typeValue === 'yesNo'">This is a Yes No question</p>
+    <p v-else>HAIBO</p>
 
 </template>
