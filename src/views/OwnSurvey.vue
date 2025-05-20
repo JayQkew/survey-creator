@@ -58,7 +58,10 @@ onMounted(() => {
     <ul v-if="survey">
       <Question v-for="question in survey.questions" :key="question.id" :q="question"/>
     </ul>
-    <button type="button" class="style-btn" @click="handleClick">+</button>
+    <div class="btn-container">
+      <button type="button" class="style-btn add-btn" @click="handleClick">+</button>
+      <button type="button" class="style-btn save-btn">Save</button>
+    </div>
   </main>
 </template>
 
@@ -73,7 +76,7 @@ ul{
   margin: 0;
 }
 
-button{
+.add-btn{
   font-family: 'Ubuntu Bold';
   font-size: 1.5rem;
   margin-top: 0.5rem;
@@ -82,6 +85,24 @@ button{
   border-radius: 100%;
   padding: 0;
   text-align: center;
+}
+
+.save-btn{
+  font-family: 'Ubuntu Bold';
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+  height: 2.5rem;
+  border-radius: 100vw;
+  padding-inline: 1rem;
+  text-align: center;
+}
+
+.btn-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .detail-container{
