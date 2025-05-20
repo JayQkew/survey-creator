@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import ScaleDetails from './QuestionTypes/ScaleDetails.vue';
 import MatrixDetails from './QuestionTypes/MatrixDetails.vue';
+import MultipleChoiceDetails from './QuestionTypes/MultipleChoiceDetails.vue';
 
 const typeValue = ref('scale')
 </script>
@@ -16,11 +17,9 @@ const typeValue = ref('scale')
         <option value="yesNo">Yes No</option>
     </select>
 
-    <!-- render based on value of the question-type -->
-    <!-- <p v-if="typeValue === 'scale'">This is a scale question</p> -->
     <ScaleDetails v-if="typeValue == 'scale'"/>
     <MatrixDetails v-else-if="typeValue === 'matrix'"/>
-    <p v-else-if="typeValue === 'multipleChoice'">This is a multiple choice question</p>
+    <MultipleChoiceDetails v-else-if="typeValue === 'multipleChoice'"/>
     <p v-else>HAIBO</p>
 
 </template>
