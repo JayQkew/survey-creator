@@ -21,8 +21,17 @@ function handleClick(){
       responses: [],
       publicResponses: false
   })
+}
 
-  console.log(newId);
+function handleQuestionName(data){
+  const question = survey.value.questions.find(q => q.id === data.questionId)
+  if (question) {
+    question.question = data.value
+  }
+}
+
+function saveSurvey(){
+  console.log(survey.value['questions'])
 }
 
 onMounted(() => {
@@ -56,11 +65,15 @@ onMounted(() => {
   </header>
   <main>
     <ul v-if="survey">
-      <Question v-for="question in survey.questions" :key="question.id" :q="question"/>
+      <Question 
+        v-for="question in survey.questions" 
+        :key="question.id" 
+        :q="question"
+        @quesitonName="handleQuestionName"/>
     </ul>
     <div class="btn-container">
       <button type="button" class="style-btn add-btn" @click="handleClick">+</button>
-      <button type="button" class="style-btn save-btn">Save</button>
+      <button type="button" class="style-btn save-btn" @click="saveSurvey">Save</button>
     </div>
   </main>
 </template>
