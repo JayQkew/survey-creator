@@ -19,7 +19,7 @@ function add(){
    <ul>
     <li v-for="i in items" :key="i">
         {{ i }}
-        <button @click="remove(item)">x</button>
+        <button @click="remove(i)">x</button>
     </li>
    </ul>
    <input type="text" v-model="itemName">

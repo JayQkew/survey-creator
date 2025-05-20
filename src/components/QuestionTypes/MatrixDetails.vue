@@ -6,7 +6,10 @@ const itemName = ref('')
 
 function remove(item){
     const i = items.value.indexOf(item)
-    if(i > -1) items.value.splice(i,1)
+    console.log(i)
+    if(i > -1) {
+        items.value.splice(i,1)
+    }
 }
 
 function add(){
@@ -19,7 +22,7 @@ function add(){
    <ul>
     <li v-for="i in items" :key="i">
         {{ i }}
-        <button @click="remove(item)">x</button>
+        <button @click="remove(i)">x</button>
     </li>
    </ul>
    <input type="text" v-model="itemName">
