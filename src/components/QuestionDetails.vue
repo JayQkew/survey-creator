@@ -1,10 +1,7 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
+import ScaleDetails from './QuestionTypes/ScaleDetails.vue';
 const typeValue = ref('scale')
-
-watch( typeValue, (newValue) => {
-    console.log(newValue);
-})
 </script>
 
 <template>
@@ -18,7 +15,8 @@ watch( typeValue, (newValue) => {
     </select>
 
     <!-- render based on value of the question-type -->
-    <p v-if="typeValue === 'scale'">This is a scale question</p>
+    <!-- <p v-if="typeValue === 'scale'">This is a scale question</p> -->
+    <ScaleDetails v-if="typeValue == 'scale'"/>
     <p v-else-if="typeValue === 'matrix'">This is a matrix question</p>
     <p v-else-if="typeValue === 'text'">This is a text question</p>
     <p v-else-if="typeValue === 'multipleChoice'">This is a multiple choice question</p>
