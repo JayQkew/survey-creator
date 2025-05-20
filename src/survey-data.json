@@ -125,7 +125,7 @@
       {
         "id": "0031",
         "question": "did you encounter any bugs or errors?",
-        "type": "yesno",
+        "type": "yesNo",
         "typeDetail": [],
         "responses": [],
         "publicResponses": false

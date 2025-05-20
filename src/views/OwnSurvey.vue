@@ -10,6 +10,21 @@ const survey = ref(null)
 const loading = ref(true)
 const error = ref(null)
 
+function handleClick(){
+  // generate new id 
+  const newId = survey.value['questions'].length.toString().padStart(3, '0')
+  survey.value['questions'].push({
+      id: newId,
+      question: "",
+      type: "",
+      typeDetail: [],
+      responses: [],
+      publicResponses: false
+  })
+
+  console.log(newId);
+}
+
 onMounted(() => {
   try {
     survey.value = surveyData.find(x => x.id === route.params.surveyId)
@@ -43,6 +58,7 @@ onMounted(() => {
     <ul v-if="survey">
       <Question v-for="question in survey.questions" :key="question.id" :q="question"/>
     </ul>
+    <button type="button" class="style-btn" @click="handleClick">+</button>
   </main>
 </template>
 
@@ -53,11 +69,19 @@ ul{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 3px solid var(--dark);
-  border-radius: 1.5rem;
-  padding: 0.5rem;
   gap: 0.5rem;
   margin: 0;
+}
+
+button{
+  font-family: 'Ubuntu Bold';
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 100%;
+  padding: 0;
+  text-align: center;
 }
 
 .detail-container{
