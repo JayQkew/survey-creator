@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, provide, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import surveyData from '../survey-data.json'
 import Question from '../components/Question.vue'
@@ -44,6 +44,10 @@ onMounted(() => {
     loading.value = false
   }
 })
+
+provide('survey', {
+  survey
+})
 </script>
 
 <template>
@@ -69,6 +73,7 @@ onMounted(() => {
         v-for="question in survey.questions" 
         :key="question.id" 
         :q="question"
+        :qID="question.id"
         @quesiton="handleQuestionName"/>
     </ul>
     <div class="btn-container">

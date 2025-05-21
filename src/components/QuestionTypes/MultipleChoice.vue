@@ -17,7 +17,6 @@ const choices = props.details.map(p => {
 <template>
     <div>
         <RadioBtn v-if="isRespondent" v-for="c in choices" :data="c"/>
-        
     </div>
 </template>
 

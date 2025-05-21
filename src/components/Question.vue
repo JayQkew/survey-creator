@@ -5,21 +5,24 @@ import Text from '../components/QuestionTypes/Text.vue'
 import MultipleChoice from '../components/QuestionTypes/MultipleChoice.vue'
 import YesNo from '../components/QuestionTypes/YesNo.vue'
 import QuestionDetail from '../components/QuestionDetails.vue'
-import { ref, computed } from 'vue'
+import { ref, computed, inject } from 'vue'
 import { useRoute } from 'vue-router'
 
-const props = defineProps({
-    q: Object
-})
 const route = useRoute()
-
 const isRespondent = computed(() => route.path.includes('respondent'))
-
+const props = defineProps({
+    q: Object,
+    qID: String
+})
 defineEmits(['question'])
+
+const { survey } = inject('survey')
 
 const name = ref(props.q.question)
 
-const q = props.q;
+const q = survey.value.questions.find((q) => q.id === props.qID)
+const qIndex = survey.value.questions.indexOf(q)
+console.log(qIndex)
 
 function onInput(e) {
     name.value = e.target.value
