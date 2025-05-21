@@ -1,5 +1,10 @@
 <script setup>
 import RadioBtn from './RadioBtn.vue';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+const route = useRoute()
+const isRespondent = computed(() => route.path.includes('respondent'))
+
 const props = defineProps({
     details: Array,
     id: String
@@ -11,7 +16,8 @@ const choices = props.details.map(p => {
 
 <template>
     <div>
-        <RadioBtn v-for="c in choices" :data="c"/>
+        <RadioBtn v-if="isRespondent" v-for="c in choices" :data="c"/>
+        
     </div>
 </template>
 

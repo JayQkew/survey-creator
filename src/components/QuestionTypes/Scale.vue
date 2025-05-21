@@ -1,6 +1,7 @@
 <script setup>
 import RadioBtn from './RadioBtn.vue'
-import { computed } from 'vue';
+import ScaleDetails from './ScaleDetails.vue';
+import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 const route = useRoute()
 const isRespondent = computed(() => route.path.includes('respondent'))
@@ -10,7 +11,7 @@ const props = defineProps({
     id: String
 })
 
-const scaleDetail = props.details[0]
+const scaleDetail = ref(props.details[0])
 let scaleBtns = []
 
 if (scaleDetail === 'agreeableness'){
@@ -31,9 +32,11 @@ if (scaleDetail === 'agreeableness'){
 </script>
 
 <template>
-    <div >
-        <RadioBtn v-if="isRespondent" v-for="btn in scaleBtns" :data="btn"/>
-        <p v-else v-for="btn in scaleBtns">{{ btn.value }}</p>
+    <div v-if="isRespondent">
+        <RadioBtn  v-for="btn in scaleBtns" :data="btn"/>
+    </div>
+    <div v-else>
+        <ScaleDetails :detail="scaleDetail"/>
     </div>
 </template>
 
