@@ -5,11 +5,15 @@ import Text from '../components/QuestionTypes/Text.vue'
 import MultipleChoice from '../components/QuestionTypes/MultipleChoice.vue'
 import YesNo from '../components/QuestionTypes/YesNo.vue'
 import QuestionDetail from '../components/QuestionDetails.vue'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
 
 const props = defineProps({
     q: Object
 })
+const route = useRoute()
+
+const isRespondent = computed(() => route.path.includes('respondent'))
 
 defineEmits(['question'])
 
@@ -52,7 +56,6 @@ function handleType(data){
                 @input="onInput"
                 @blur="updateQuestion"
                 @keydown="onKeyDown">
-
             <Scale 
                 v-if="q.type === 'scale'" 
                 :details="q.typeDetail" 
