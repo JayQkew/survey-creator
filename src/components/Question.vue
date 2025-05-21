@@ -11,7 +11,7 @@ const props = defineProps({
     q: Object
 })
 
-defineEmits(['questionName'])
+defineEmits(['question'])
 
 const name = ref(props.q.question)
 
@@ -23,7 +23,7 @@ function onInput(e) {
 
 function updateQuestion() {
     props.q.question = name.value
-    emit('questionName', { questionId: props.q.id, value: name.value })
+    emit('question', { questionId: props.q.id, value: name.value })
 }
 
 function onKeyDown(e) {
@@ -31,6 +31,10 @@ function onKeyDown(e) {
         updateQuestion()
         e.target.blur()
     }
+}
+
+function handleType(data){
+    props.q.type = data.type
 }
 
 </script>
@@ -49,12 +53,27 @@ function onKeyDown(e) {
                 @blur="updateQuestion"
                 @keydown="onKeyDown">
 
-            <Scale v-if="q.type === 'scale'" :details="q.typeDetail" :id="q.id"/>
-            <Matrix v-else-if="q.type === 'matrix'" :details="q.typeDetail" :id="q.id"/>
-            <Text v-else-if="q.type === 'text'" :details="q.typeDetail" :id="q.id"/>
-            <MultipleChoice v-else-if="q.type === 'multipleChoice'" :details="q.typeDetail" :id="q.id"/>
-            <YesNo v-else-if="q.type === 'yesNo'" :details="q.typeDetail" :id="q.id"/>
-            <QuestionDetail v-else/>
+            <Scale 
+                v-if="q.type === 'scale'" 
+                :details="q.typeDetail" 
+                :id="q.id"/>
+            <Matrix 
+                v-else-if="q.type === 'matrix'" 
+                :details="q.typeDetail" 
+                :id="q.id"/>
+            <Text 
+                v-else-if="q.type === 'text'" 
+                :details="q.typeDetail" 
+                :id="q.id"/>
+            <MultipleChoice 
+                v-else-if="q.type === 'multipleChoice'" 
+                :details="q.typeDetail" 
+                :id="q.id"/>
+            <YesNo 
+                v-else-if="q.type === 'yesNo'" 
+                :details="q.typeDetail" 
+                :id="q.id"/>
+            <QuestionDetail v-else @type="handleType"/>
         </section>
     </li>
 </template>

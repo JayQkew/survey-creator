@@ -69,7 +69,7 @@ onMounted(() => {
         v-for="question in survey.questions" 
         :key="question.id" 
         :q="question"
-        @quesitonName="handleQuestionName"/>
+        @quesiton="handleQuestionName"/>
     </ul>
     <div class="btn-container">
       <button type="button" class="style-btn add-btn" @click="handleClick">+</button>
