@@ -14,23 +14,14 @@ const props = defineProps({
     q: Object,
     qID: String
 })
-defineEmits(['question'])
 
 const { survey } = inject('survey')
-
-const name = ref(props.q.question)
-
 const q = survey.value.questions.find((q) => q.id === props.qID)
-const qIndex = survey.value.questions.indexOf(q)
-console.log(qIndex)
 
-function onInput(e) {
-    name.value = e.target.value
-}
+const name = ref(q.question)
 
 function updateQuestion() {
-    props.q.question = name.value
-    emit('question', { questionId: props.q.id, value: name.value })
+    q.question = name.value
 }
 
 function onKeyDown(e) {
@@ -41,7 +32,7 @@ function onKeyDown(e) {
 }
 
 function handleType(data){
-    props.q.type = data.type
+    q.type = data.type
 }
 
 </script>
@@ -54,9 +45,8 @@ function handleType(data){
                 v-else 
                 type="text" 
                 name="quesiton-name" 
-                id="question-name" 
-                :value="name" 
-                @input="onInput"
+                id="question-name"
+                v-model="name" 
                 @blur="updateQuestion"
                 @keydown="onKeyDown">
             <Scale 

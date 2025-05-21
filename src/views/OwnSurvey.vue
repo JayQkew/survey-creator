@@ -10,7 +10,7 @@ const survey = ref(null)
 const loading = ref(true)
 const error = ref(null)
 
-function handleClick(){
+function addQuestion(){
   // generate new id 
   const newId = survey.value['questions'].length.toString().padStart(3, '0')
   survey.value['questions'].push({
@@ -21,13 +21,6 @@ function handleClick(){
       responses: [],
       publicResponses: false
   })
-}
-
-function handleQuestionName(data){
-  const question = survey.value.questions.find(q => q.id === data.questionId)
-  if (question) {
-    question.question = data.value
-  }
 }
 
 function saveSurvey(){
@@ -72,12 +65,10 @@ provide('survey', {
       <Question 
         v-for="question in survey.questions" 
         :key="question.id" 
-        :q="question"
-        :qID="question.id"
-        @quesiton="handleQuestionName"/>
+        :qID="question.id"/>
     </ul>
     <div class="btn-container">
-      <button type="button" class="style-btn add-btn" @click="handleClick">+</button>
+      <button type="button" class="style-btn add-btn" @click="addQuestion">+</button>
       <button type="button" class="style-btn save-btn" @click="saveSurvey">Save</button>
     </div>
   </main>
