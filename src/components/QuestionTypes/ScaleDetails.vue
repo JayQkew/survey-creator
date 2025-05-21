@@ -1,5 +1,7 @@
 <script setup>
-import { ref } from 'vue'
+import { inject, ref } from 'vue'
+
+const { survey } = inject('survey')
 const props = defineProps({
     detail: Array
 })

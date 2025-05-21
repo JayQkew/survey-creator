@@ -11,7 +11,6 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 const isRespondent = computed(() => route.path.includes('respondent'))
 const props = defineProps({
-    q: Object,
     qID: String
 })
 
@@ -51,8 +50,7 @@ function handleType(data){
                 @keydown="onKeyDown">
             <Scale 
                 v-if="q.type === 'scale'" 
-                :details="q.typeDetail" 
-                :id="q.id"/>
+                :q="q"/>
             <Matrix 
                 v-else-if="q.type === 'matrix'" 
                 :details="q.typeDetail" 
@@ -67,8 +65,7 @@ function handleType(data){
                 :id="q.id"/>
             <YesNo 
                 v-else-if="q.type === 'yesNo'" 
-                :details="q.typeDetail" 
-                :id="q.id"/>
+                :q="q"/>
             <QuestionDetail v-else @type="handleType"/>
         </section>
     </li>
