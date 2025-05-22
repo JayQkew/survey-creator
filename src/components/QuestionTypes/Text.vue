@@ -1,9 +1,4 @@
 <script>
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
-const route = useRoute()
-const isRespondent = computed(() => route.path.includes('respondent'))
-
 </script>
 
 <template>

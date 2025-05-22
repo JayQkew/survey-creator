@@ -1,27 +1,33 @@
 <script setup>
 import { ref } from 'vue';
 
-const items = ref([])
+const props = defineProps({
+    q: Object
+})
+
 const itemName = ref('')
 
+console.log(props.q.typeDetail)
+
 function remove(item){
-    const i = items.value.indexOf(item)
-    console.log(i)
-    if(i > -1) {
-        items.value.splice(i,1)
-    }
+    const i = props.q.typeDetail.indexOf(item)
+    if(i > -1) props.q.typeDetail.splice(i,1)
 }
 
 function add(){
-    if(itemName.value != '') items.value.push(itemName.value)
+    if(itemName.value != '') props.q.typeDetail.push({
+        id: '',
+        option: itemName.value,
+        checked: false
+    })
     itemName.value = ''
 }
 </script>
 
 <template>
    <ul>
-    <li v-for="i in items" :key="i">
-        {{ i }}
+    <li v-for="i in props.q.typeDetail" :key="i.id">
+        {{ i.option }}
         <button @click="remove(i)">x</button>
     </li>
    </ul>

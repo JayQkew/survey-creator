@@ -52,8 +52,7 @@ function onKeyDown(e) {
                 :q="q"/>
             <Matrix 
                 v-else-if="q.type === 'matrix'" 
-                :details="q.typeDetail" 
-                :id="q.id"/>
+                :q="q"/>
             <Text 
                 v-else-if="q.type === 'text'" 
                 :details="q.typeDetail" 
