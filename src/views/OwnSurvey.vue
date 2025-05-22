@@ -12,8 +12,7 @@ const error = ref(null)
 
 function addQuestion(){
   // generate new id 
-  const newId = survey.value['questions'].length.toString().padStart(3, '0')
-  console.log(Date.now())
+  const newId = 'q_' + Date.now()
   survey.value['questions'].push({
       id: newId,
       question: "",

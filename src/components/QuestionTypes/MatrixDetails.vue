@@ -15,8 +15,9 @@ function remove(item){
 }
 
 function add(){
+    const newId = 'opt_' + Date.now()
     if(itemName.value != '') props.q.typeDetail.push({
-        id: '',
+        id: newId,
         option: itemName.value,
         checked: false
     })
