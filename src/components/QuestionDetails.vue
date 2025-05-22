@@ -29,9 +29,9 @@ watch(typeValue, () =>{
         <option value="yesNo">Yes No</option>
     </select>
 
-    <ScaleDetails v-if="typeValue == 'scale'"/>
+    <!-- <ScaleDetails v-if="typeValue == 'scale'"/>
     <MatrixDetails v-else-if="typeValue === 'matrix'"/>
     <MultipleChoiceDetails v-else-if="typeValue === 'multipleChoice'"/>
-    <p v-else>HAIBO</p>
+    <p v-else>HAIBO</p> -->
 
 </template>

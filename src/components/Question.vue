@@ -48,6 +48,7 @@ function handleType(data){
                 v-model="name" 
                 @blur="updateQuestion"
                 @keydown="onKeyDown">
+            <QuestionDetail v-if="!isRespondent" @type="handleType"/>
             <Scale 
                 v-if="q.type === 'scale'" 
                 :q="q"/>
@@ -66,7 +67,6 @@ function handleType(data){
             <YesNo 
                 v-else-if="q.type === 'yesNo'" 
                 :q="q"/>
-            <QuestionDetail v-else @type="handleType"/>
         </section>
     </li>
 </template>
