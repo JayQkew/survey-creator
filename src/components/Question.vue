@@ -48,7 +48,9 @@ function handleType(data){
                 v-model="name" 
                 @blur="updateQuestion"
                 @keydown="onKeyDown">
-            <QuestionDetail v-if="!isRespondent" @type="handleType"/>
+            <QuestionDetail 
+                v-if="!isRespondent" 
+                :q="q"/>
             <Scale 
                 v-if="q.type === 'scale'" 
                 :q="q"/>

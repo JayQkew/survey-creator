@@ -10,7 +10,7 @@ const scaleValue = ref(props.detail)
 </script>
 
 <template>
-    <label for="scale-type">Choose question type:</label>
+    <label for="scale-type">Scale type:</label>
     <select name="scale-type" id="scale-type" v-model="scaleType">
         <option value="number">Number</option>
         <option value="agreeableness">Agreeableness</option>

@@ -4,7 +4,6 @@ import ScaleDetails from './ScaleDetails.vue';
 import { computed, inject, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
-const { survey } = inject('survey')
 const route = useRoute()
 const isRespondent = computed(() => route.path.includes('respondent'))
 

@@ -4,11 +4,14 @@ import ScaleDetails from './QuestionTypes/ScaleDetails.vue';
 import MatrixDetails from './QuestionTypes/MatrixDetails.vue';
 import MultipleChoiceDetails from './QuestionTypes/MultipleChoiceDetails.vue';
 
-const typeValue = ref('scale')
-const emit = defineEmits(['type'])
+const props = defineProps({
+    q: Object
+})
+
+const typeValue = ref(props.q.type)
 
 function handleChange(){
-    emit('type', { type: typeValue.value})
+    props.q.type = typeValue.value
 }
 
 watch(typeValue, () =>{
@@ -17,7 +20,7 @@ watch(typeValue, () =>{
 </script>
 
 <template>
-    <label for="question-type">Choose question type:</label>
+    <label for="question-type">Question type:</label>
     <select 
         name="question-type" 
         id="question-type" 
