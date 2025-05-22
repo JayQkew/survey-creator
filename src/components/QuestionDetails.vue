@@ -36,5 +36,4 @@ watch(typeValue, () =>{
     <MatrixDetails v-else-if="typeValue === 'matrix'"/>
     <MultipleChoiceDetails v-else-if="typeValue === 'multipleChoice'"/>
     <p v-else>HAIBO</p> -->
-
 </template>

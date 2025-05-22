@@ -30,10 +30,6 @@ function onKeyDown(e) {
     }
 }
 
-function handleType(data){
-    q.type = data.type
-}
-
 </script>
 
 <template>
@@ -64,8 +60,7 @@ function handleType(data){
                 :id="q.id"/>
             <MultipleChoice 
                 v-else-if="q.type === 'multipleChoice'" 
-                :details="q.typeDetail" 
-                :id="q.id"/>
+                :q="q"/>
             <YesNo 
                 v-else-if="q.type === 'yesNo'" 
                 :q="q"/>
