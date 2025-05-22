@@ -44,25 +44,13 @@ function onKeyDown(e) {
                 v-model="name" 
                 @blur="updateQuestion"
                 @keydown="onKeyDown">
-            <QuestionDetail 
-                v-if="!isRespondent" 
-                :q="q"/>
-            <Scale 
-                v-if="q.type === 'scale'" 
-                :q="q"/>
-            <Matrix 
-                v-else-if="q.type === 'matrix'" 
-                :q="q"/>
-            <Text 
-                v-else-if="q.type === 'text'" 
-                :details="q.typeDetail" 
-                :id="q.id"/>
-            <MultipleChoice 
-                v-else-if="q.type === 'multipleChoice'" 
-                :q="q"/>
-            <YesNo 
-                v-else-if="q.type === 'yesNo'" 
-                :q="q"/>
+            <QuestionDetail v-if="!isRespondent" :q="q"/>
+            
+            <Scale v-if="q.type === 'scale'" :q="q"/>
+            <Matrix v-else-if="q.type === 'matrix'" :q="q"/>
+            <MultipleChoice v-else-if="q.type === 'multipleChoice'" :q="q"/>
+            <YesNo v-else-if="q.type === 'yesNo'" :q="q"/>
+            <Text v-else-if="q.type === 'text'"/>
         </section>
     </li>
 </template>
