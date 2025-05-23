@@ -3,7 +3,7 @@ const cors = require('cors')
 const fs = require('fs')
 const path = require('path')
 
-app = express()
+const app = express()
 const PORT = 3000
 
 app.use(cors())
@@ -13,7 +13,7 @@ app.get('/', () =>{
     console.log('Hello, World!')
 })
 
-app.get('/get', (req, res) => {
+app.get('/api/get', (req, res) => {
     const filePath = path.join(__dirname, 'survey-data.json')
 
     fs.readFile(filePath, 'utf-8', (err, data) => {

@@ -2,56 +2,7 @@
 import SurveyCard from '../components/SurveyCard.vue'
 import {onMounted, ref} from 'vue'
 import { useRouter } from 'vue-router';
-import surveyData from '../survey-data.json'
 const router = useRouter()
-
-const surveyDetails = [
-  {
-    id: '000',
-    title: "Survey Title 1",
-    respondents: 10,
-    questions: 5,
-    date: "5 Jan 2025",
-    active: true,
-    link: "link1.com",
-  },
-  {
-    id: '001',
-    title: "Survey Title 2",
-    respondents: 25,
-    questions: 10,
-    date: "10 Feb 2025",
-    active: false,
-    link: "link2.com",
-  },
-  {
-    id: '002',
-    title: "Survey Title 3",
-    respondents: 15,
-    questions: 7,
-    date: "15 Mar 2025",
-    active: true,
-    link: "link3.com",
-  },
-  {
-    id: '003',
-    title: "Survey Title 4",
-    respondents: 30,
-    questions: 12,
-    date: "20 Apr 2025",
-    active: false,
-    link: "link4.com",
-  },
-  {
-    id: '004',
-    title: "Survey Title 5",
-    respondents: 20,
-    questions: 8,
-    date: "25 May 2025",
-    active: true,
-    link: "link5.com",
-  }
-];
 
 const surveys = ref(null)
 const loading = ref(true)
@@ -61,15 +12,23 @@ function goToNewSurvey(){
     router.push({ name: 'create-survey' })
 }
 
-onMounted(() => {
+async function fetchData(){
+  loading.value = true
+  error.value = null
   try{
-    surveys.value = surveyData
-  } catch (err){
-    error.value = `Failed to load data: ${err.message}`
+    const response = await fetch('http://localhost:3000/api/get')
+    if(!response.ok){
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    surveys.value = await response.json()
+  } catch (e){
+    error.value = e
   } finally{
     loading.value = false
   }
-})
+}
+
+onMounted(fetchData)
 </script>
 
 <template>

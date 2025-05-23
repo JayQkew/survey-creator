@@ -1,7 +1,6 @@
 <script setup>
 import { onMounted, provide, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import surveyData from '../survey-data.json'
 import Question from '../components/Question.vue'
 
 const route = useRoute();
@@ -9,6 +8,7 @@ const route = useRoute();
 const survey = ref(null)
 const loading = ref(true)
 const error = ref(null)
+const surveyData = ref(null)
 
 function addQuestion(){
   const newId = 'q_' + Date.now()
@@ -26,15 +26,25 @@ function saveSurvey(){
   console.log(survey.value['questions'])
 }
 
-onMounted(() => {
-  try {
-    survey.value = surveyData.find(x => x.id === route.params.surveyId)
-  } catch (err) {
-    error.value = `Failed to load data: ${err.message}`
-    console.error('Error loading survey data:', err)
-  } finally {
+async function fetchData(){
+  loading.value = true
+  error.value = null
+  try{
+    const response = await fetch('http://localhost:3000/api/get')
+    if(!response.ok){
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    surveyData.value = await response.json()
+    survey.value = surveyData.value.find(x => x.id === route.params.surveyId)
+  } catch (e){
+    error.value = e
+  } finally{
     loading.value = false
   }
+}
+
+onMounted(() => {
+  fetchData()
 })
 
 provide('survey', {
