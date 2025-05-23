@@ -23,7 +23,7 @@ function addQuestion(){
 }
 
 function saveSurvey(){
-  console.log(survey.value['questions'])
+  postData();
 }
 
 async function fetchData(){
@@ -43,9 +43,31 @@ async function fetchData(){
   }
 }
 
+async function postData(){
+  loading.value = true
+  try{
+    const response = await fetch('http://localhost:3000/api/update-survey', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(survey.value)
+    })
+
+    if(!response.ok){
+      throw new Error(`HTTP error, status: ${response.status}`)
+    }
+  } catch (error){
+    error.value = error
+  } finally {
+    loading.value= false
+  }
+
+  fetchData()
+}
+
 onMounted(() => {
   fetchData()
-  
 })
 
 provide('survey', {

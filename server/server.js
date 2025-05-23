@@ -30,6 +30,7 @@ app.post('/api/update-survey', (req, res) => {
     const filePath = path.join(__dirname, 'survey-data.json')
     fs.readFile(filePath, 'utf-8', (err, data) => {
         if(err) return res.status(500).json({ error: 'Could not read file' })
+        console.log(data)
     })
     res.status(201).json({message: 'data received successfully', data: requestData})
 })
