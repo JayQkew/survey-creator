@@ -24,6 +24,16 @@ app.get('/api/get', (req, res) => {
     })
 })
 
+app.post('/api/update-survey', (req, res) => {
+    const requestData = req.body;
+
+    const filePath = path.join(__dirname, 'survey-data.json')
+    fs.readFile(filePath, 'utf-8', (err, data) => {
+        if(err) return res.status(500).json({ error: 'Could not read file' })
+    })
+    res.status(201).json({message: 'data received successfully', data: requestData})
+})
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`)
 })

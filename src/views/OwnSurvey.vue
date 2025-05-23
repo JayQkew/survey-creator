@@ -45,6 +45,7 @@ async function fetchData(){
 
 onMounted(() => {
   fetchData()
+  
 })
 
 provide('survey', {
