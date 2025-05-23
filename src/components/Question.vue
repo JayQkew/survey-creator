@@ -35,7 +35,7 @@ function onKeyDown(e) {
 <template>
     <li>
         <section>
-            <h2 v-if="q.question != ''">{{ q.question }}</h2>
+            <h2 v-if="isRespondent">{{ q.question }}</h2>
             <input 
                 v-else 
                 type="text" 
