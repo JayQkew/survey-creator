@@ -30,6 +30,13 @@ function onKeyDown(e) {
     }
 }
 
+function deleteQuestion(){
+    const index = survey.value.questions.findIndex((question) => question.id === props.qID)
+    if (index !== -1) {
+        survey.value.questions.splice(index, 1)
+    }
+}
+
 </script>
 
 <template>
@@ -44,6 +51,7 @@ function onKeyDown(e) {
                 v-model="name" 
                 @blur="updateQuestion"
                 @keydown="onKeyDown">
+            <button @click="deleteQuestion">Delete Question</button>
             <QuestionDetail v-if="!isRespondent" :q="q"/>
             
             <Scale v-if="q.type === 'scale'" :q="q"/>

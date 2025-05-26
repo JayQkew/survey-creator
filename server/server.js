@@ -20,11 +20,6 @@ app.get('/api/get', (req, res) => {
 
 app.post('/api/update-survey', (req, res) => {
     const requestData = req.body;
-    // const filePath = path.join(__dirname, 'survey-data.json')
-    // fs.readFile(filePath, 'utf-8', (err, data) => {
-    //     if(err) return res.status(500).json({ error: 'Could not read file' })
-    //     console.log(data)
-    // })
 
     const i = surveyData.findIndex(x => x.id === requestData.id)
     if (i !== -1) {
