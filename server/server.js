@@ -20,16 +20,22 @@ app.get('/api/get', (req, res) => {
 
 app.post('/api/update-survey', (req, res) => {
     const requestData = req.body;
-
     // const filePath = path.join(__dirname, 'survey-data.json')
     // fs.readFile(filePath, 'utf-8', (err, data) => {
     //     if(err) return res.status(500).json({ error: 'Could not read file' })
     //     console.log(data)
     // })
 
-    surveyData.find(x => x.id === requestData.id) = requestData
-    fs.writeFileSync('./survey-data.json', JSON.stringify(surveyData, null, 2))
-    res.status(201).json({message: 'data received successfully', data: requestData})
+    const i = surveyData.findIndex(x => x.id === requestData.id)
+    if (i !== -1) {
+        surveyData[i] = requestData
+        fs.writeFileSync('./survey-data.json', JSON.stringify(surveyData, null, 2))
+        res.status(201).json({message: 'data received successfully', data: requestData})
+        console.log(surveyData[i])
+    } else{
+        return res.status(404).json({ error: 'Survey not found' })
+    }
+
 })
 
 app.listen(PORT, () => {

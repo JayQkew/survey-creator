@@ -12,7 +12,9 @@
         "id": "q_1716368012341",
         "question": "how would you rate the food",
         "type": "scale",
-        "typeDetail": [10],
+        "typeDetail": [
+          10
+        ],
         "responses": [],
         "publicResponses": false
       },
@@ -20,7 +22,9 @@
         "id": "q_1716368012342",
         "question": "the staff were friendly",
         "type": "scale",
-        "typeDetail": ["agreeableness"],
+        "typeDetail": [
+          "agreeableness"
+        ],
         "responses": [],
         "publicResponses": false
       },
@@ -29,9 +33,21 @@
         "question": "please select your favorite dishes",
         "type": "matrix",
         "typeDetail": [
-          { "id": "opt_1716368012344", "option": "Pizza", "checked": false },
-          { "id": "opt_1716368012345", "option": "Pasta", "checked": false },
-          { "id": "opt_1716368012346", "option": "Sushi", "checked": false }
+          {
+            "id": "opt_1716368012344",
+            "option": "Pizza",
+            "checked": false
+          },
+          {
+            "id": "opt_1716368012345",
+            "option": "Pasta",
+            "checked": false
+          },
+          {
+            "id": "opt_1716368012346",
+            "option": "Sushi",
+            "checked": false
+          }
         ],
         "responses": [],
         "publicResponses": false
@@ -51,7 +67,9 @@
         "id": "q_1716368012348",
         "question": "how organized was the event?",
         "type": "scale",
-        "typeDetail": [5],
+        "typeDetail": [
+          5
+        ],
         "responses": [],
         "publicResponses": false
       },
@@ -59,7 +77,9 @@
         "id": "q_1716368012349",
         "question": "rate the quality of the guest speakers",
         "type": "scale",
-        "typeDetail": [5],
+        "typeDetail": [
+          5
+        ],
         "responses": [],
         "publicResponses": true
       },
@@ -70,6 +90,14 @@
         "typeDetail": [],
         "responses": [],
         "publicResponses": true
+      },
+      {
+        "id": "q_1748242597055",
+        "question": "Hello, World!",
+        "type": "",
+        "typeDetail": [],
+        "responses": [],
+        "publicResponses": false
       }
     ]
   },
@@ -118,7 +146,9 @@
         "id": "q_1716368012355",
         "question": "was the website easy to navigate?",
         "type": "scale",
-        "typeDetail": [7],
+        "typeDetail": [
+          7
+        ],
         "responses": [],
         "publicResponses": false
       },
@@ -154,9 +184,21 @@
         "question": "which of these features do you want most?",
         "type": "matrix",
         "typeDetail": [
-          { "id": "opt_1716368012360", "option": "Dark Mode", "checked": false },
-          { "id": "opt_1716368012361", "option": "Offline Access", "checked": false },
-          { "id": "opt_1716368012362", "option": "Live Chat Support", "checked": false }
+          {
+            "id": "opt_1716368012360",
+            "option": "Dark Mode",
+            "checked": false
+          },
+          {
+            "id": "opt_1716368012361",
+            "option": "Offline Access",
+            "checked": false
+          },
+          {
+            "id": "opt_1716368012362",
+            "option": "Live Chat Support",
+            "checked": false
+          }
         ],
         "responses": [],
         "publicResponses": true
