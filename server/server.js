@@ -2,10 +2,24 @@ const express = require('express')
 const cors = require('cors')
 const fs = require('fs')
 const path = require('path')
+const mysql = require('mysql')
 const surveyData = require('./survey-data.json')
 
 const app = express()
 const PORT = 3000
+const database = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'root'
+})
+
+database.connect((err) => {
+    if (err) {
+        console.error('Error connecting to the database:', err)
+        return
+    }
+    console.log('Connected to the database')
+})
 
 app.use(cors())
 app.use(express.json())
