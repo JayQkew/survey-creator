@@ -169,48 +169,5 @@
         "publicResponses": false
       }
     ]
-  },
-  {
-    "id": "survey_1716368012358",
-    "title": "New Feature Poll",
-    "description": "Vote for which feature you'd like us to prioritize next!",
-    "date": "14 May 2025",
-    "link": "featurepoll.com",
-    "active": true,
-    "respondents": 58,
-    "questions": [
-      {
-        "id": "q_1716368012359",
-        "question": "which of these features do you want most?",
-        "type": "matrix",
-        "typeDetail": [
-          {
-            "id": "opt_1716368012360",
-            "option": "Dark Mode",
-            "checked": false
-          },
-          {
-            "id": "opt_1716368012361",
-            "option": "Offline Access",
-            "checked": false
-          },
-          {
-            "id": "opt_1716368012362",
-            "option": "Live Chat Support",
-            "checked": false
-          }
-        ],
-        "responses": [],
-        "publicResponses": true
-      },
-      {
-        "id": "q_1716368012363",
-        "question": "why did you choose this feature?",
-        "type": "text",
-        "typeDetail": [],
-        "responses": [],
-        "publicResponses": true
-      }
-    ]
   }
 ]

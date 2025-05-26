@@ -71,7 +71,7 @@ async function deleteQuestion(){
 
   loading.value = true
   try{
-    const response = await fetch('http://localhose:3000/api/delete-survey', {
+    const response = await fetch('http://localhost:3000/api/delete-survey', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ id: survey.value.id })
@@ -81,7 +81,7 @@ async function deleteQuestion(){
       throw new Error('HTTP error! status: ' + response.status)
     }
 
-    router.push('/')
+    router.push('/surveyor/123/home')
   } catch (err){
     error.value = err
   } finally {

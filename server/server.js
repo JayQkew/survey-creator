@@ -32,6 +32,23 @@ app.post('/api/update-survey', (req, res) => {
     }
 })
 
+app.post('/api/delete-survey', (req, res) => {
+    const survey = req.body
+    const i = surveyData.findIndex(s => s.id === survey.id)
+
+    if (i === -1){
+        return res.status(404).json({ error: 'Survey not found'})
+    }
+
+    surveyData.splice(i, 1)
+        try {
+        fs.writeFileSync(path.join('./survey-data.json'), JSON.stringify(surveyData, null, 2))
+        res.status(200).json({ message: 'Survey deleted successfully' })
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to write to file' })
+    }
+})
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`)
 })
