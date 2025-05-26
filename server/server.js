@@ -30,7 +30,6 @@ app.post('/api/update-survey', (req, res) => {
     } else{
         return res.status(404).json({ error: 'Survey not found' })
     }
-
 })
 
 app.listen(PORT, () => {

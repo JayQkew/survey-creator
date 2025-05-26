@@ -1,9 +1,10 @@
 <script setup>
 import { onMounted, provide, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import Question from '../components/Question.vue'
 
 const route = useRoute();
+const router = useRouter();
 
 const survey = ref(null)
 const loading = ref(true)
@@ -60,10 +61,32 @@ async function postData(){
   } catch (error){
     error.value = error
   } finally {
-    loading.value= false
+    loading.value = false
+    fetchData()
   }
+}
 
-  fetchData()
+async function deleteQuestion(){
+  if(!confirm('Confirm you want to delete this survey?')) return
+
+  loading.value = true
+  try{
+    const response = await fetch('http://localhose:3000/api/delete-survey', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ id: survey.value.id })
+    })
+
+    if(!response.ok){
+      throw new Error('HTTP error! status: ' + response.status)
+    }
+
+    router.push('/')
+  } catch (err){
+    error.value = err
+  } finally {
+    loading.value = false
+  }
 }
 
 onMounted(() => {
@@ -90,6 +113,7 @@ provide('survey', {
         <p v-else>unactive</p>
       </div>
       <p>{{ survey.description }}</p>
+      <button @click="deleteQuestion">Delete</button>
     </div>
   </header>
   <main>
