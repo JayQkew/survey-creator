@@ -31,13 +31,13 @@ app.get('/', () =>{
 
 app.post('/api/user-surverys', (req, res) => {
     const user = req.body.user
-    res.json(surveyData)
     let allSurveys;
     database.query(`SELECT * FROM surveys  WHERE surveyor_id = ${user.id}`, function(err, result, fields){
         if (err) throw err
         allSurveys = result
         console.log(result)
         console.log(user)
+        res.json(result)
     })
 })
 

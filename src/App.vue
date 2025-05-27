@@ -1,6 +1,6 @@
 <script setup>
 import { provide, ref } from 'vue';
-const user = ref({id: 2})
+const user = ref({id: 1})
 
 provide('user', user)
 </script>

@@ -29,10 +29,10 @@ function goToSurvey(){
                 <button class="style-btn" @click.stop="copyLink"><div class="svg" v-html="copySvg"></div></button>
             </header>
             <section class="container">
-                <p>respondents: {{ survey.respondents }}</p>
-                <p>questions: {{ survey.questions.length }}</p>
+                <!-- <p>respondents: {{ survey.respondents }}</p> -->
+                <!-- <p>questions: {{ survey.questions.length }}</p> -->
                 <p>date: {{ survey.date }}</p>
-                <p v-if="survey.active">active</p>
+                <p v-if="survey.active == 1">active</p>
                 <p v-else="survey.active">unactive</p>
             </section>
         </section>
