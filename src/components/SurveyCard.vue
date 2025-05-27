@@ -30,7 +30,7 @@ function goToSurvey(){
             </header>
             <section class="container">
                 <!-- <p>respondents: {{ survey.respondents }}</p> -->
-                <!-- <p>questions: {{ survey.questions.length }}</p> -->
+                <p>questions: {{ survey.questions.length }}</p>
                 <p>date: {{ survey.date }}</p>
                 <p v-if="survey.active == 1">active</p>
                 <p v-else="survey.active">unactive</p>

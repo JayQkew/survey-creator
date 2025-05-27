@@ -30,20 +30,36 @@ app.get('/', () =>{
 })
 
 app.post('/api/user-surverys', (req, res) => {
-    const user = req.body.user
-    let allSurveys;
-    db.query(`SELECT * FROM surveys WHERE surveyor_id = ${user.id}`, function(err, result, fields){
-        if (err) throw err
-        allSurveys = result
-        const questions = result.map(s => {
-            db.query(`SELECT * FROM questions WHERE survey_id = ${s.id}`, function(err, result, fields){
-                console.log(result)
-            })
-        })
-        console.log(user)
-        res.json(result)
-    })
-})
+    const user = req.body.user;
+    db.query(
+        'SELECT * FROM surveys WHERE surveyor_id = ?',
+        [user.id],
+        async (err, surveys) => {
+            if (err) return res.status(500).json({ error: err.message });
+
+            try {
+                const surveysWithQuestions = await Promise.all(
+                    surveys.map(survey =>
+                        new Promise((resolve, reject) => {
+                            db.query(
+                                'SELECT * FROM questions WHERE survey_id = ?',
+                                [survey.id],
+                                (err, questions) => {
+                                    if (err) return reject(err);
+                                    survey.questions = questions;
+                                    resolve(survey);
+                                }
+                            );
+                        })
+                    )
+                );
+                res.json(surveysWithQuestions);
+            } catch (error) {
+                res.status(500).json({ error: error.message });
+            }
+        }
+    );
+});
 
 app.post('/api/update-survey', (req, res) => {
     const requestData = req.body;
