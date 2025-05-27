@@ -6,7 +6,7 @@ const props = defineProps({
 })
 
 const itemName = ref('')
-const items = ref(JSON.parse(props.q.type_detail))
+const items = ref(JSON.parse(props.q.type_detail).options)
 
 console.log(items.value)
 

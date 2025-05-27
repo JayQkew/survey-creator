@@ -6,21 +6,22 @@ const props = defineProps({
 })
 
 const itemName = ref('')
+const items = ref(JSON.parse(props.q.type_detail).options)
 
 function remove(item){
-    const i = props.q.type_detail.indexOf(item)
-    if(i > -1) props.q.type_detail.splice(i, 1)
+    const i = items.value.indexOf(item)
+    if(i > -1) items.value.splice(i, 1)
 }
 
 function add(){
-    if(itemName.value != '') props.q.type_detail.push(itemName.value)
+    if(itemName.value != '') items.value.push(itemName.value)
     itemName.value = ''
 }
 </script>
 
 <template>
    <ul>
-    <li v-for="i in props.q.type_detail" :key="i">
+    <li v-for="i in items" :key="i">
         {{ i }}
         <button @click="remove(i)">x</button>
     </li>
