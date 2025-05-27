@@ -28,15 +28,24 @@ function saveSurvey(){
 }
 
 async function fetchData(){
+  const data = route.params.surveyId;
+
   loading.value = true
   error.value = null
   try{
-    const response = await fetch('http://localhost:3000/api/get')
+    const response = await fetch('http://localhost:3000/api/get-survey', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({id: data})
+    })
     if(!response.ok){
       throw new Error(`HTTP error! status: ${response.status}`)
     }
-    surveyData.value = await response.json()
-    survey.value = surveyData.value.find(x => x.id === route.params.surveyId)
+    survey.value = await response.json()
+    console.log(survey.value)
+    // survey.value = surveyData.value.find(x => x.id === route.params.surveyId)
   } catch (e){
     error.value = e
   } finally{

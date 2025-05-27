@@ -63,13 +63,13 @@ app.post('/api/user-surverys', (req, res) => {
 
 app.post('/api/get-survey', (req, res) => {
     const surveyId = req.body.id;
-    const survey = surveyData.find(s => s.id === surveyId);
-
-    if (!survey) {
-        return res.status(404).json({ error: 'Survey not found' });
-    }
-
-    res.json(survey);
+    db.query('SELECT * FROM surveys WHERE id = ?', [surveyId], (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        if (!results || results.length === 0) {
+            return res.status(404).json({ error: 'Survey not found' });
+        }
+        res.json(results[0]);
+    });
 })
 
 app.post('/api/update-survey', (req, res) => {
