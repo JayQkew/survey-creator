@@ -68,7 +68,14 @@ app.post('/api/get-survey', (req, res) => {
         if (!results || results.length === 0) {
             return res.status(404).json({ error: 'Survey not found' });
         }
-        res.json(results[0]);
+        const survey = results[0];
+
+        db.query('SELECT * FROM questions WHERE survey_id = ?', [surveyId], (err, questions) => {
+            if (err) return res.status(500).json({ error: err.message });
+
+            survey.questions = questions; // add questions array to the survey object
+            res.json(survey);
+        });
     });
 })
 

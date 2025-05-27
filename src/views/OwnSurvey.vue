@@ -115,7 +115,7 @@ provide('survey', {
     <h1 v-else>No Data</h1>
     <div v-if="survey">
       <div class="detail-container">
-        <p>{{ survey.date }}</p>
+        <p>{{ survey.date.split('T')[0] }}</p>
         <p>respondents: {{ survey.respondents }}</p>
         <p>{{ survey.link }}</p>
         <p v-if="survey.active">active</p>
