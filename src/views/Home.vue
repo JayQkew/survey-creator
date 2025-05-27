@@ -27,6 +27,7 @@ async function fetchData(){
       throw new Error(`HTTP error! status: ${response.status}`)
     }
     surveys.value = await response.json()
+    console.log(surveys.value)
   } catch (e){
     error.value = e
   } finally{

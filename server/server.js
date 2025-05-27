@@ -61,6 +61,17 @@ app.post('/api/user-surverys', (req, res) => {
     );
 });
 
+app.post('/api/get-survey', (req, res) => {
+    const surveyId = req.body.id;
+    const survey = surveyData.find(s => s.id === surveyId);
+
+    if (!survey) {
+        return res.status(404).json({ error: 'Survey not found' });
+    }
+
+    res.json(survey);
+})
+
 app.post('/api/update-survey', (req, res) => {
     const requestData = req.body;
 
