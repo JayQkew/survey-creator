@@ -1,8 +1,10 @@
 <script setup>
 import SurveyCard from '../components/SurveyCard.vue'
-import {onMounted, ref} from 'vue'
+import {inject, onMounted, ref} from 'vue'
 import { useRouter } from 'vue-router';
 const router = useRouter()
+
+const user = inject('user')
 
 const surveys = ref(null)
 const loading = ref(true)
@@ -16,7 +18,11 @@ async function fetchData(){
   loading.value = true
   error.value = null
   try{
-    const response = await fetch('http://localhost:3000/api/get')
+    const response = await fetch(`http://localhost:3000/api/user-surverys`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ user: user.value })
+    })
     if(!response.ok){
       throw new Error(`HTTP error! status: ${response.status}`)
     }

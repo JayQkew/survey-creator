@@ -1,5 +1,8 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import { provide, ref } from 'vue';
+const user = ref({id: 2})
+
+provide('user', user)
 </script>
 
 <template>

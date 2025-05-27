@@ -1,4 +1,5 @@
 <script setup>
+import { inject, provide, ref } from 'vue';
 import { useRouter } from 'vue-router';
 const props = defineProps({
     txt: String
@@ -6,10 +7,12 @@ const props = defineProps({
 
 const router = useRouter()
 
+const user = inject('user')
+
 function goto(){
     router.push({
         name: 'surveyor-home',
-        params: {id: '123'} //this is a temporary id
+        params: {id: user.value.id} //this is a temporary id
     })
 }
 </script>

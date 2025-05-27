@@ -10,7 +10,8 @@ const PORT = 3000
 const database = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root'
+    password: 'root',
+    database: 'mojo_surveys'
 })
 
 database.connect((err) => {
@@ -18,7 +19,7 @@ database.connect((err) => {
         console.error('Error connecting to the database:', err)
         return
     }
-    console.log('Connected to the database')
+    console.log('Connected to the database: ' + database.config.database)
 })
 
 app.use(cors())
@@ -28,8 +29,16 @@ app.get('/', () =>{
     console.log('Hello, World!')
 })
 
-app.get('/api/get', (req, res) => {
+app.post('/api/user-surverys', (req, res) => {
+    const user = req.body.user
     res.json(surveyData)
+    let allSurveys;
+    database.query(`SELECT * FROM surveys  WHERE surveyor_id = ${user.id}`, function(err, result, fields){
+        if (err) throw err
+        allSurveys = result
+        console.log(result)
+        console.log(user)
+    })
 })
 
 app.post('/api/update-survey', (req, res) => {
@@ -55,9 +64,10 @@ app.post('/api/delete-survey', (req, res) => {
     }
 
     surveyData.splice(i, 1)
-        try {
-        fs.writeFileSync(path.join('./survey-data.json'), JSON.stringify(surveyData, null, 2))
-        res.status(200).json({ message: 'Survey deleted successfully' })
+
+    try {
+    fs.writeFileSync(path.join('./survey-data.json'), JSON.stringify(surveyData, null, 2))
+    res.status(200).json({ message: 'Survey deleted successfully' })
     } catch (error) {
         res.status(500).json({ error: 'Failed to write to file' })
     }
