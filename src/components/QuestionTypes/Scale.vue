@@ -12,7 +12,6 @@ const props = defineProps({
 })
 
 const scaleDetail = ref(props.q.type_detail)
-console.log(props.q.type_detail)
 let scaleBtns = []
 
 if (scaleDetail === 'agreeableness'){

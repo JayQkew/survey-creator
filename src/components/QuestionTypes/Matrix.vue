@@ -20,7 +20,7 @@ const props = defineProps({
     <p>This is a matrix question (let the user choose multiple of the options)</p>
     <div v-if="isRespondent">
         <Checkbox 
-            v-for="choice in props.q.typeDetail" 
+            v-for="choice in props.q.type_detail" 
             :data="choice" 
             :id="props.q.id"/>
     </div>
