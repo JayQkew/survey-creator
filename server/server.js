@@ -7,19 +7,19 @@ const surveyData = require('./survey-data.json')
 
 const app = express()
 const PORT = 3000
-const database = mysql.createConnection({
+const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'root',
     database: 'mojo_surveys'
 })
 
-database.connect((err) => {
+db.connect((err) => {
     if (err) {
         console.error('Error connecting to the database:', err)
         return
     }
-    console.log('Connected to the database: ' + database.config.database)
+    console.log('Connected to the database: ' + db.config.database)
 })
 
 app.use(cors())
@@ -32,10 +32,14 @@ app.get('/', () =>{
 app.post('/api/user-surverys', (req, res) => {
     const user = req.body.user
     let allSurveys;
-    database.query(`SELECT * FROM surveys  WHERE surveyor_id = ${user.id}`, function(err, result, fields){
+    db.query(`SELECT * FROM surveys WHERE surveyor_id = ${user.id}`, function(err, result, fields){
         if (err) throw err
         allSurveys = result
-        console.log(result)
+        const questions = result.map(s => {
+            db.query(`SELECT * FROM questions WHERE survey_id = ${s.id}`, function(err, result, fields){
+                console.log(result)
+            })
+        })
         console.log(user)
         res.json(result)
     })
