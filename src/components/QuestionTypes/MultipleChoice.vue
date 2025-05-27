@@ -9,7 +9,10 @@ const isRespondent = computed(() => route.path.includes('respondent'))
 const props = defineProps({
     q: Object
 })
-const choices = props.q.typeDetail.map(choice => {
+
+console.log(props.q.type_detail)
+const choices = JSON.parse(props.q.type_detail).options.map(choice => {
+    console.log(choice)
     return {value: choice, id: props.q.id}
 })
 </script>

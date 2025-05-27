@@ -17,7 +17,7 @@ const props = defineProps({
 const { survey } = inject('survey')
 const q = survey.value.questions.find((q) => q.id === props.qID)
 
-const name = ref(q.question)
+const name = ref(q.question_text)
 
 function updateQuestion() {
     q.question = name.value
