@@ -4,7 +4,6 @@ const fs = require('fs')
 const path = require('path')
 const mysql = require('mysql')
 const surveyData = require('./survey-data.json')
-const { request } = require('http')
 
 const app = express()
 const PORT = 3000
@@ -80,23 +79,114 @@ app.post('/api/get-survey', (req, res) => {
     });
 })
 
-app.post('/api/update-survey', (req, res) => {
+app.post('/api/update-survey', async (req, res) => {
     const requestData = req.body;
-    console.log(requestData)
+    const surveyId = requestData.id;
 
-    const i = surveyData.findIndex(x => x.id === requestData.id)
-    if (i !== -1) {
-        surveyData[i] = requestData
-        fs.writeFileSync('./survey-data.json', JSON.stringify(surveyData, null, 2))
-        res.status(201).json({message: 'data received successfully', data: requestData})
-        console.log(surveyData[i])
-    } else{
-        return res.status(404).json({ error: 'Survey not found' })
+    try {
+        // Get existing questions from database
+        const existingQuestions = await new Promise((resolve, reject) => {
+            db.query('SELECT * FROM questions WHERE survey_id = ?', [surveyId], (err, result) => {
+                if (err) reject(err);
+                else resolve(result);
+            });
+        });
+
+        // Process each question in the request
+        for (const question of requestData.questions) {
+            if (question.id && typeof question.id === 'number' && question.id < 1000000000000) {
+                // Existing question - update it
+                const updateQuestionQuery = `
+                    UPDATE questions 
+                    SET question_text = ?, type = ?, type_detail = ?, public_responses = ?
+                    WHERE id = ? AND survey_id = ?
+                `;
+                
+                // Handle the different property naming conventions
+                const questionText = question.question_text || question.question;
+                const typeDetail = question.type_detail || JSON.stringify(question.typeDetail || {});
+                const publicResponses = question.public_responses !== undefined ? 
+                    question.public_responses : (question.publicResponses ? 1 : 0);
+
+                await new Promise((resolve, reject) => {
+                    db.query(updateQuestionQuery, [
+                        questionText,
+                        question.type,
+                        typeDetail,
+                        publicResponses,
+                        question.id,
+                        surveyId
+                    ], (err, result) => {
+                        if (err) reject(err);
+                        else resolve(result);
+                    });
+                });
+            } else {
+                // New question - insert it
+                const insertQuestionQuery = `
+                    INSERT INTO questions (survey_id, question_text, type, type_detail, public_responses)
+                    VALUES (?, ?, ?, ?, ?)
+                `;
+                
+                const questionText = question.question_text || question.question;
+                const typeDetail = question.type_detail || JSON.stringify(question.typeDetail || {});
+                const publicResponses = question.public_responses !== undefined ? 
+                    question.public_responses : (question.publicResponses ? 1 : 0);
+
+                await new Promise((resolve, reject) => {
+                    db.query(insertQuestionQuery, [
+                        surveyId,
+                        questionText,
+                        question.type,
+                        typeDetail,
+                        publicResponses
+                    ], (err, result) => {
+                        if (err) reject(err);
+                        else resolve(result);
+                    });
+                });
+            }
+        }
+
+        // Find questions that were deleted (exist in DB but not in request)
+        const requestQuestionIds = requestData.questions
+            .filter(q => q.id && typeof q.id === 'number' && q.id < 1000000000000)
+            .map(q => q.id);
+        
+        const questionsToDelete = existingQuestions.filter(
+            dbQuestion => !requestQuestionIds.includes(dbQuestion.id)
+        );
+
+        // Delete removed questions
+        for (const questionToDelete of questionsToDelete) {
+            await new Promise((resolve, reject) => {
+                db.query('DELETE FROM questions WHERE id = ? AND survey_id = ?', 
+                    [questionToDelete.id, surveyId], (err, result) => {
+                    if (err) reject(err);
+                    else resolve(result);
+                });
+            });
+        }
+
+        // Update the JSON file (if you still need this)
+        const i = surveyData.findIndex(x => x.id === requestData.id);
+        if (i !== -1) {
+            surveyData[i] = requestData;
+            fs.writeFileSync('./survey-data.json', JSON.stringify(surveyData, null, 2));
+        }
+
+        console.log('Survey successfully updated id: ' + surveyId);
+        res.status(200).json({ message: 'Survey updated successfully', data: requestData });
+
+    } catch (error) {
+        console.error('Error updating survey:', error);
+        res.status(500).json({ error: 'Failed to update survey: ' + error.message });
     }
-})
+});
 
 app.post('/api/delete-survey', (req, res) => {
     const survey = req.body
+    
     const i = surveyData.findIndex(s => s.id === survey.id)
 
     if (i === -1){
@@ -106,8 +196,8 @@ app.post('/api/delete-survey', (req, res) => {
     surveyData.splice(i, 1)
 
     try {
-    fs.writeFileSync(path.join('./survey-data.json'), JSON.stringify(surveyData, null, 2))
-    res.status(200).json({ message: 'Survey deleted successfully' })
+        fs.writeFileSync(path.join('./survey-data.json'), JSON.stringify(surveyData, null, 2))
+        res.status(200).json({ message: 'Survey deleted successfully' })
     } catch (error) {
         res.status(500).json({ error: 'Failed to write to file' })
     }
