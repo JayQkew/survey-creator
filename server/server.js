@@ -4,6 +4,7 @@ const fs = require('fs')
 const path = require('path')
 const mysql = require('mysql')
 const surveyData = require('./survey-data.json')
+const { request } = require('http')
 
 const app = express()
 const PORT = 3000
@@ -81,6 +82,7 @@ app.post('/api/get-survey', (req, res) => {
 
 app.post('/api/update-survey', (req, res) => {
     const requestData = req.body;
+    console.log(requestData)
 
     const i = surveyData.findIndex(x => x.id === requestData.id)
     if (i !== -1) {

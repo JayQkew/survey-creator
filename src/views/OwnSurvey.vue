@@ -12,7 +12,7 @@ const error = ref(null)
 const surveyData = ref(null)
 
 function addQuestion(){
-  const newId = 'q_' + Date.now()
+  const newId = Date.now()
   survey.value['questions'].push({
       id: newId,
       question: "",
