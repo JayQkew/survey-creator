@@ -11,23 +11,35 @@ const loading = ref(true)
 const error = ref(null)
 const surveyData = ref(null)
 
-function addQuestion(){
-  const newId = Date.now().toString()
-  survey.value['questions'].push({
-      id: newId,
-      question: "",
-      type: "",
-      typeDetail: [],
-      responses: [],
-      publicResponses: false
-  })
+async function addQuestion(){
+  const surveyId = survey.value.id
+  loading.value = true
+  error.value = null
+  try{
+    const response = await fetch('http://localhost:3000/api/add-question', {
+      method: 'POST',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify({id: surveyId})
+    })
+
+    if(!response.ok){
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+  } catch (err) {
+    error.value = err
+  } finally {
+    loading.value = false
+  }
 }
 
 function saveSurvey(){
   postData();
 }
 
-async function fetchData(){
+async function fetchSurveyData(){
   const data = route.params.surveyId;
 
   loading.value = true
@@ -71,7 +83,7 @@ async function postData(){
     error.value = error
   } finally {
     loading.value = false
-    fetchData()
+    fetchSurveyData()
   }
 }
 
@@ -99,7 +111,7 @@ async function deleteQuestion(){
 }
 
 onMounted(() => {
-  fetchData()
+  fetchSurveyData()
 })
 
 provide('survey', {

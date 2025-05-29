@@ -191,6 +191,8 @@ app.post('/api/add-question', (req, res) => {
         if (err) throw err
         res.status(201).json({message: 'Question added with id'})
     })
+
+    res.json({message: 'question added'})
 })
 
 app.post('/api/delete-survey', (req, res) => {
