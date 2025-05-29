@@ -54,7 +54,8 @@ function deleteQuestion(){
             <button @click="deleteQuestion">Delete Question</button>
             <QuestionDetail v-if="!isRespondent" :q="q"/>
             
-            <Scale v-if="q.type === 'scale'" :q="q"/>
+            <QuestionDetail v-if="!q.type" :q="q"/>
+            <Scale v-else-if="q.type === 'scale'" :q="q"/>
             <Matrix v-else-if="q.type === 'matrix'" :q="q"/>
             <MultipleChoice v-else-if="q.type === 'multipleChoice'" :q="q"/>
             <YesNo v-else-if="q.type === 'yesNo'" :q="q"/>

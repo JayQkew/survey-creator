@@ -5,8 +5,15 @@ const { survey } = inject('survey')
 const props = defineProps({
     detail: Array
 })
-const scaleType = ref(JSON.parse(props.detail).scale === 'agreeableness' ? 'agreeableness' : 'number')
-const scaleValue = ref(JSON.parse(props.detail).scale)
+console.log(props.detail)
+let questionDetail = {}
+try {
+  questionDetail = props.detail ? JSON.parse(props.detail) : {}
+} catch (e) {
+  questionDetail = {}
+}
+const scaleType = ref(questionDetail.scale === 'agreeableness' ? 'agreeableness' : 'number')
+const scaleValue = ref(questionDetail.scale)
 </script>
 
 <template>

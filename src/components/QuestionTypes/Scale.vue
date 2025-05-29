@@ -10,8 +10,12 @@ const isRespondent = computed(() => route.path.includes('respondent'))
 const props = defineProps({
     q: Object
 })
+console.log('scale q: ' + props.q.type_detail)
 
-const scaleDetail = ref(props.q.type_detail)
+const scaleDetail = ref('')
+scaleDetail.value = props.q.type_detail
+
+console.log(scaleDetail.value)
 let scaleBtns = []
 
 if (scaleDetail === 'agreeableness'){
