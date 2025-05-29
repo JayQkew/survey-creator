@@ -52,14 +52,15 @@ function deleteQuestion(){
                 @blur="updateQuestion"
                 @keydown="onKeyDown">
             <button @click="deleteQuestion">Delete Question</button>
-            <QuestionDetail v-if="!isRespondent" :q="q"/>
-            
-            <QuestionDetail v-if="!q.type" :q="q"/>
-            <Scale v-else-if="q.type === 'scale'" :q="q"/>
-            <Matrix v-else-if="q.type === 'matrix'" :q="q"/>
-            <MultipleChoice v-else-if="q.type === 'multipleChoice'" :q="q"/>
-            <YesNo v-else-if="q.type === 'yesNo'" :q="q"/>
-            <Text v-else-if="q.type === 'text'"/>
+            <template v-if="!isRespondent">
+                <QuestionDetail :q="q"/>
+                <template v-if="!q-type"></template>
+                <Scale v-else-if="q.type === 'scale'" :q="q"/>
+                <Matrix v-else-if="q.type === 'matrix'" :q="q"/>
+                <MultipleChoice v-else-if="q.type === 'multipleChoice'" :q="q"/>
+                <YesNo v-else-if="q.type === 'yesNo'" :q="q"/>
+                <Text v-else-if="q.type === 'text'"/>
+            </template>
         </section>
     </li>
 </template>
