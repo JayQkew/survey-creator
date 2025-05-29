@@ -195,6 +195,21 @@ app.post('/api/add-question', (req, res) => {
     res.json({message: 'question added'})
 })
 
+app.post('/api/update-question-name', (req, res) => {
+    const { id, question_text } = req.body;
+    if (!id || !question_text) {
+        return res.status(400).json({ error: 'Missing id or question_text' });
+    }
+    db.query(
+        'UPDATE questions SET question_text = ? WHERE id = ?',
+        [question_text, id],
+        (err, result) => {
+            if (err) return res.status(500).json({ error: err.message });
+            res.status(200).json({ message: 'Question name updated successfully' });
+        }
+    );
+});
+
 app.post('/api/delete-survey', (req, res) => {
     const survey = req.body
     

@@ -19,8 +19,31 @@ const q = survey.value.questions.find((q) => q.id === props.qID)
 
 const name = ref(q.question_text)
 
-function updateQuestion() {
-    q.question = name.value
+const loading = ref(false)
+const error = ref(null)
+
+async function updateQuestion() {
+    q.question_text = name.value;
+    loading.value = true;
+    error.value = null;
+    try {
+        const response = await fetch('http://localhost:3000/api/update-question-name', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                id: q.id,
+                question_text: name.value
+            })
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        // Optionally handle response
+    } catch (err) {
+        error.value = err;
+    } finally {
+        loading.value = false;
+    }
 }
 
 function onKeyDown(e) {
@@ -34,6 +57,35 @@ function deleteQuestion(){
     const index = survey.value.questions.findIndex((question) => question.id === props.qID)
     if (index !== -1) {
         survey.value.questions.splice(index, 1)
+    }
+}
+
+function postUpdate(){
+    loading.value = true
+    error.value = null
+
+    try{
+        const response = fetch('http://localhost:3000/api/delete-survey', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: props.qID,
+                target: 'question_text',
+                value: name.value
+            })
+        })
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`)
+        }
+
+        console.log('Question updated successfully')
+    } catch (err) {
+        error.value = err
+    } finally {
+        loading.value = false
     }
 }
 
