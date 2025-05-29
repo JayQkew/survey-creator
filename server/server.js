@@ -184,6 +184,15 @@ app.post('/api/update-survey', async (req, res) => {
     }
 });
 
+app.post('/api/add-question', (req, res) => {
+    const surveyId = req.body.id
+
+    db.query(`INSERT INTO questions (survey_id) VALUES (?)`, [surveyId], (err, result) => {
+        if (err) throw err
+        res.status(201).json({message: 'Question added with id'})
+    })
+})
+
 app.post('/api/delete-survey', (req, res) => {
     const survey = req.body
     
