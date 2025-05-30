@@ -7,6 +7,8 @@ const props = defineProps({
 
 const newItemName = ref('')
 const items = ref(JSON.parse(props.q.type_detail).options)
+const loading = ref(false)
+const error = ref(null)
 
 console.log(items.value)
 
@@ -15,13 +17,32 @@ function remove(item){
     if(i > -1) items.value.splice(i,1)
 }
 
-function add(){
+async function add(){
     const newId = 'opt_' + Date.now()
+    loading.value = true
+    error.value = null
+
     if(newItemName.value != '') items.value.push({
         id: newId,
         value: newItemName.value
     })
     newItemName.value = ''
+
+    try{
+        const response = await fetch('http://localhost:3000/api/add-to-list', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({id: newId, value: newItemName.value})
+        })
+        if(!response.ok){
+            throw new Error('HTTP error! status: ' + response.status)
+        }
+        console.log(response)
+    } catch (err) {
+        error.value = err
+    } finally {
+        loading.value = false
+    }
 }
 </script>
 
