@@ -6,6 +6,7 @@ import MultipleChoice from '../components/QuestionTypes/MultipleChoice.vue'
 import YesNo from '../components/QuestionTypes/YesNo.vue'
 import QuestionDetail from '../components/QuestionDetails.vue'
 import MultipleOption from './QuestionTypes/MultipleOption.vue'
+import SingleOption from './QuestionTypes/SingleOption.vue'
 import { ref, computed, inject } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -86,8 +87,8 @@ function deleteQuestion(){
                 <MultipleChoice v-else-if="q.type === 'multipleChoice'" :q="q"/>
                 <YesNo v-else-if="q.type === 'yesNo'" :q="q"/>
                 <Text v-else-if="q.type === 'text'"/>
-                <div v-else-if="q-type === 'single'">Single Option</div>
-                <div v-else-if="q-type === 'multiple'">Multiple Option</div>
+                <SingleOption v-else-if="q-type === 'single'">Single Option</SingleOption>
+                <MultipleOption v-else-if="q-type === 'multiple'" :q="q">Multiple Option</MultipleOption>
             </template>
         </section>
     </li>
