@@ -60,35 +60,6 @@ function deleteQuestion(){
     }
 }
 
-function postUpdate(){
-    loading.value = true
-    error.value = null
-
-    try{
-        const response = fetch('http://localhost:3000/api/delete-survey', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id: props.qID,
-                target: 'question_text',
-                value: name.value
-            })
-        })
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`)
-        }
-
-        console.log('Question updated successfully')
-    } catch (err) {
-        error.value = err
-    } finally {
-        loading.value = false
-    }
-}
-
 </script>
 
 <template>

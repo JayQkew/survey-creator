@@ -1,8 +1,5 @@
 <script setup>
 import { ref, watch } from 'vue'
-import ScaleDetails from './QuestionTypes/ScaleDetails.vue';
-import MatrixDetails from './QuestionTypes/MatrixDetails.vue';
-import MultipleChoiceDetails from './QuestionTypes/MultipleChoiceDetails.vue';
 
 const props = defineProps({
     q: Object

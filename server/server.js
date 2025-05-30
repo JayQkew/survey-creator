@@ -210,6 +210,10 @@ app.post('/api/update-question-name', (req, res) => {
     );
 });
 
+app.post('/api/update-question-type', (req, res) => {
+    
+})
+
 app.post('/api/delete-survey', (req, res) => {
     const survey = req.body
     
