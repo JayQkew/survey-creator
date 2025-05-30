@@ -1,9 +1,5 @@
 <script setup>
-import Scale from '../components/QuestionTypes/Scale.vue'
-import Matrix from '../components/QuestionTypes/Matrix.vue'
 import Text from '../components/QuestionTypes/Text.vue'
-import MultipleChoice from '../components/QuestionTypes/MultipleChoice.vue'
-import YesNo from '../components/QuestionTypes/YesNo.vue'
 import QuestionDetail from '../components/QuestionDetails.vue'
 import MultipleOption from './QuestionTypes/MultipleOption.vue'
 import SingleOption from './QuestionTypes/SingleOption.vue'
@@ -81,14 +77,10 @@ function deleteQuestion(){
             </div>                                
             <template v-if="!isRespondent">
                 <QuestionDetail :q="q"/>
-                <template v-if="!q-type"></template>
-                <Scale v-else-if="q.type === 'scale'" :q="q"/>
-                <Matrix v-else-if="q.type === 'matrix'" :q="q"/>
-                <MultipleChoice v-else-if="q.type === 'multipleChoice'" :q="q"/>
-                <YesNo v-else-if="q.type === 'yesNo'" :q="q"/>
-                <Text v-else-if="q.type === 'text'"/>
-                <SingleOption v-else-if="q-type === 'single'">Single Option</SingleOption>
-                <MultipleOption v-else-if="q-type === 'multiple'" :q="q">Multiple Option</MultipleOption>
+                <!-- <template v-if="!q.type"></template> -->
+                <Text v-if="q.type === 'text'"/>
+                <SingleOption v-else-if="q.type === 'single'" :q="q">Single Option</SingleOption>
+                <MultipleOption v-else-if="q.type === 'multiple'" :q="q">Multiple Option</MultipleOption>
             </template>
         </section>
     </li>
