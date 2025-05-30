@@ -185,14 +185,15 @@ app.post('/api/update-survey', async (req, res) => {
 });
 
 app.post('/api/add-question', (req, res) => {
-    const {id} = req.body.id
+    const { id } = req.body
 
-    db.query(`INSERT INTO questions (survey_id, type) VALUES (?, ?)`, [id, 'single'], (err, result) => {
-        if (err) throw err
-        res.status(201).json({message: 'Question added with id'})
+    db.query(
+        'INSERT INTO questions (survey_id, type, type_detail) VALUES (?, ?, ?)',
+        [id, 'single', JSON.stringify({options: []})],
+        (err, result) => {
+            if (err) return res.status(500).json({ error: err.message })
+            res.status(201).json({message: 'Question added with id'})
     })
-
-    res.json({message: 'question added'})
 })
 
 app.post('/api/update-question-name', (req, res) => {

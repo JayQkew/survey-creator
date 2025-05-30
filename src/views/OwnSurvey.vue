@@ -31,11 +31,8 @@ async function addQuestion(){
     error.value = err
   } finally {
     loading.value = false
+    await fetchSurveyData()
   }
-}
-
-function saveSurvey(){
-  postData();
 }
 
 async function fetchSurveyData(){
@@ -61,28 +58,6 @@ async function fetchSurveyData(){
     error.value = e
   } finally{
     loading.value = false
-  }
-}
-
-async function postData(){
-  loading.value = true
-  try{
-    const response = await fetch('http://localhost:3000/api/update-survey', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(survey.value)
-    })
-
-    if(!response.ok){
-      throw new Error(`HTTP error, status: ${response.status}`)
-    }
-  } catch (error){
-    error.value = error
-  } finally {
-    loading.value = false
-    fetchSurveyData()
   }
 }
 
@@ -145,7 +120,6 @@ provide('survey', {
     </ul>
     <div class="btn-container">
       <button type="button" class="style-btn add-btn" @click="addQuestion">+</button>
-      <button type="button" class="style-btn save-btn" @click="saveSurvey">Save</button>
     </div>
   </main>
 </template>
