@@ -1,6 +1,6 @@
 <script setup>
 import Checkbox from './Checkbox.vue';
-import MatrixDetails from './ListItems.vue';
+import ListItems from './ListItems.vue';
 import { useRoute } from 'vue-router';
 import { computed } from 'vue';
 
@@ -11,13 +11,10 @@ const props = defineProps({
     id: String,
     q: Object
 })
-
-// const allChoices = props.details
-// const allChoices = props.details
 </script>
 
 <template>
-    <p>This is a matrix question (let the user choose multiple of the options)</p>
+    <p>let the user choose multiple options</p>
     <div v-if="isRespondent">
         <Checkbox 
             v-for="choice in props.q.type_detail" 
@@ -25,9 +22,8 @@ const props = defineProps({
             :id="props.q.id"/>
     </div>
     <div v-else>
-        <MatrixDetails :q="props.q"/>
+        <ListItems :q="props.q"/>
     </div>
 </template>
 
-<style>
-</style>
+<style></style>

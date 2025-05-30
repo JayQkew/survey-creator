@@ -5,6 +5,7 @@ import Text from '../components/QuestionTypes/Text.vue'
 import MultipleChoice from '../components/QuestionTypes/MultipleChoice.vue'
 import YesNo from '../components/QuestionTypes/YesNo.vue'
 import QuestionDetail from '../components/QuestionDetails.vue'
+import MultipleOption from './QuestionTypes/MultipleOption.vue'
 import { ref, computed, inject } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -65,16 +66,18 @@ function deleteQuestion(){
 <template>
     <li>
         <section>
-            <h2 v-if="isRespondent">{{ q.question }}</h2>
-            <input 
-                v-else 
-                type="text" 
-                name="quesiton-name" 
-                id="question-name"
-                v-model="name" 
-                @blur="updateQuestion"
-                @keydown="onKeyDown">
-            <button @click="deleteQuestion">Delete Question</button>
+            <div>
+                <h2 v-if="isRespondent">{{ q.question }}</h2>
+                <input 
+                    v-else 
+                    type="text" 
+                    name="quesiton-name" 
+                    id="question-name"
+                    v-model="name" 
+                    @blur="updateQuestion"
+                    @keydown="onKeyDown"/>
+                <button @click="deleteQuestion">Delete Question</button>
+            </div>                                
             <template v-if="!isRespondent">
                 <QuestionDetail :q="q"/>
                 <template v-if="!q-type"></template>
