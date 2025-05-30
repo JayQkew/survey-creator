@@ -5,7 +5,7 @@ const props = defineProps({
     q: Object
 })
 
-const itemName = ref('')
+const newItemName = ref('')
 const items = ref(JSON.parse(props.q.type_detail).options)
 
 console.log(items.value)
@@ -17,12 +17,11 @@ function remove(item){
 
 function add(){
     const newId = 'opt_' + Date.now()
-    if(itemName.value != '') items.value.push({
+    if(newItemName.value != '') items.value.push({
         id: newId,
-        value: itemName.value,
-        checked: false
+        value: newItemName.value
     })
-    itemName.value = ''
+    newItemName.value = ''
 }
 </script>
 
@@ -33,7 +32,7 @@ function add(){
         <button @click="remove(i)">x</button>
     </li>
    </ul>
-   <input type="text" v-model="itemName">
+   <input type="text" v-model="newItemName">
    <button @click="add">Add</button>
 </template>
 
