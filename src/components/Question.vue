@@ -83,6 +83,8 @@ function deleteQuestion(){
                 <MultipleChoice v-else-if="q.type === 'multipleChoice'" :q="q"/>
                 <YesNo v-else-if="q.type === 'yesNo'" :q="q"/>
                 <Text v-else-if="q.type === 'text'"/>
+                <div v-else-if="q-type === 'single'">Single Option</div>
+                <div v-else-if="q-type === 'multiple'">Multiple Option</div>
             </template>
         </section>
     </li>
