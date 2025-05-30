@@ -77,7 +77,7 @@ function deleteQuestion(){
             </div>                                
             <template v-if="!isRespondent">
                 <QuestionDetail :q="q"/>
-                <!-- <template v-if="!q.type"></template> -->
+                <template v-if="!q.type"/>
                 <Text v-if="q.type === 'text'"/>
                 <SingleOption v-else-if="q.type === 'single'" :q="q">Single Option</SingleOption>
                 <MultipleOption v-else-if="q.type === 'multiple'" :q="q">Multiple Option</MultipleOption>

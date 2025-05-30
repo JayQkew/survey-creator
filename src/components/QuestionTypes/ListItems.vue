@@ -19,7 +19,7 @@ function add(){
     const newId = 'opt_' + Date.now()
     if(itemName.value != '') items.value.push({
         id: newId,
-        option: itemName.value,
+        value: itemName.value,
         checked: false
     })
     itemName.value = ''
@@ -29,7 +29,7 @@ function add(){
 <template>
    <ul>
     <li v-for="i in items" :key="i.id">
-        {{ i.option }}
+        {{ i.value }}
         <button @click="remove(i)">x</button>
     </li>
    </ul>
