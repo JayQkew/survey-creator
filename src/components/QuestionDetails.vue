@@ -9,7 +9,7 @@ const typeValue = ref(props.q.type)
 const loading = ref(false)
 const error = ref(null)
 
-function handleChange(){
+async function handleChange(){
     props.q.type = typeValue.value
     loading.value = true
     error.value = null

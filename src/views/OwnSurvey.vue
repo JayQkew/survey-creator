@@ -15,12 +15,11 @@ async function addQuestion(){
   const surveyId = survey.value.id
   loading.value = true
   error.value = null
+  console.log(surveyId)
   try{
     const response = await fetch('http://localhost:3000/api/add-question', {
       method: 'POST',
-      headers: {
-        'Content-Type' : 'application/json'
-      },
+      headers: { 'Content-Type' : 'application/json' },
       body: JSON.stringify({id: surveyId})
     })
 
@@ -87,7 +86,7 @@ async function postData(){
   }
 }
 
-async function deleteQuestion(){
+async function deleteSurvey(){
   if(!confirm('Confirm you want to delete this survey?')) return
 
   loading.value = true
@@ -134,7 +133,7 @@ provide('survey', {
         <p v-else>unactive</p>
       </div>
       <p>{{ survey.description }}</p>
-      <button @click="deleteQuestion">Delete</button>
+      <button @click="deleteSurvey">Delete</button>
     </div>
   </header>
   <main>

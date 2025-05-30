@@ -185,9 +185,9 @@ app.post('/api/update-survey', async (req, res) => {
 });
 
 app.post('/api/add-question', (req, res) => {
-    const surveyId = req.body.id
+    const {id} = req.body.id
 
-    db.query(`INSERT INTO questions (survey_id, type) VALUES (?, ?)`, [surveyId, 'single'], (err, result) => {
+    db.query(`INSERT INTO questions (survey_id, type) VALUES (?, ?)`, [id, 'single'], (err, result) => {
         if (err) throw err
         res.status(201).json({message: 'Question added with id'})
     })
@@ -213,7 +213,7 @@ app.post('/api/update-question-name', (req, res) => {
 app.post('/api/update-question-type', (req, res) => {
     const { id, question_type } = req.body
     
-    if(!id || !question_type_){
+    if(!id || !question_type){
         return res.status(400).json({ error: 'Missing id or quesiton_type' })
     }
     db.query(
@@ -222,6 +222,18 @@ app.post('/api/update-question-type', (req, res) => {
         (err, result) => {
             if (err) return res.status(500).json({ error: err.message })
             res.status(200).json({ message: 'Question type updated successfully'})
+        }
+    )
+})
+
+app.post('/api/delete-question', (req, res) => {
+    const { id } = req.body
+    db.query(
+        'DELETE FROM questions WHERE id = ?',
+        [id],
+        (err, result) => {
+            if (err) return res.status(500).json({ error: err.message })
+            res.status(200).json({ message: 'Question Deleted'})
         }
     )
 })

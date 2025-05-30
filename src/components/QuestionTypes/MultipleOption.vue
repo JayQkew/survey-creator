@@ -14,7 +14,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <p>let the user choose multiple options</p>
+    <p>Let the user choose multiple options</p>
     <div v-if="isRespondent">
         <Checkbox 
             v-for="choice in props.q.type_detail" 
