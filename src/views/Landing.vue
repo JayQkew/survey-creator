@@ -14,6 +14,7 @@ function closeSignIn() {
 </script>
 
 <template>
+    <SignIn v-if="showSignIn" @close="closeSignIn" @submit="handleSignIn"/>
     <header>
         <h1>Welcome to <span>EasySurvey</span></h1>
         <p>Surveys at your convenience</p>
@@ -36,7 +37,6 @@ function closeSignIn() {
             <LandingBtn/>
         </div>
     </main>
-    <SignIn v-if="showSignIn" @close="closeSignIn" @submit="handleSignIn"/>
     <FooterArea />
 </template>
 
