@@ -18,7 +18,7 @@ async function remove(item){
     error.value = null
 
     try{
-        const response = await fetch('http://localhost:3000/api/delete-from-list', { // Fixed: http instead of https
+        const response = await fetch('http://localhost:3000/api/delete-from-list', { 
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({qId: props.q.id, id: item.id})
@@ -32,8 +32,7 @@ async function remove(item){
         const result = await response.json() // Fixed: await the response.json()
         console.log('Delete response:', result)
         
-        // Only remove from local array if API call was successful
-        const i = items.value.findIndex(i => i.id === item.id) // Fixed: use findIndex with id comparison
+        const i = items.value.findIndex(i => i.id === item.id)
         if(i > -1) {
             items.value.splice(i, 1)
             console.log('Item removed from local array')
