@@ -26,22 +26,25 @@ async function add(){
         id: newId,
         value: newItemName.value
     })
-    newItemName.value = ''
 
     try{
         const response = await fetch('http://localhost:3000/api/add-to-list', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({id: props.q.id, value: newItemName.value})
+            body: JSON.stringify({id: props.q.id, value: {
+                id: newId,
+                value: newItemName.value
+            }})
         })
         if(!response.ok){
             throw new Error('HTTP error! status: ' + response.status)
         }
-        console.log(response)
+        console.log(response.json())
     } catch (err) {
         error.value = err
     } finally {
         loading.value = false
+        newItemName.value = ''
     }
 }
 </script>

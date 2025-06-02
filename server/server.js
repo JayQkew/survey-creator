@@ -131,29 +131,57 @@ app.post('/api/delete-question', (req, res) => {
 })
 
 app.post('/api/add-to-list', (req, res) => {
-    const { id, value } = req.body
-    // where id , add value and new id 
+    const { id, value } = req.body;
+    
+    // Add input validation
+    if (!id || !value) {
+        return res.status(400).json({ error: 'Missing id or value' });
+    }
+    
     db.query(
         'SELECT * FROM questions WHERE id = ?',
         [id],
         (err, result) => {
-            if(err) res.status(500).json({error: err.message})
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            
+            // Check if question exists
+            if (!result || result.length === 0) {
+                return res.status(404).json({ error: 'Question not found' });
+            }
 
-            const typeDetail = JSON.parse(result[0].type_detail)
-            const options = typeDetail.options || []
-            console.log(options)
-            //GET THE ARRAY
+            let typeDetail;
+            try {
+                typeDetail = JSON.parse(result[0].type_detail);
+            } catch (parseError) {
+                return res.status(500).json({ error: 'Invalid type_detail format' });
+            }
+            
+            const options = typeDetail.options || [];
+            options.push(value);
+            
+            // Update the typeDetail object
+            typeDetail.options = options;
+            
+            db.query(
+                'UPDATE questions SET type_detail = ? WHERE id = ?',
+                [JSON.stringify(typeDetail), id], // Convert back to JSON string
+                (error, updateResult) => {
+                    if (error) {
+                        return res.status(500).json({ error: error.message });
+                    }
+                    
+                    console.log('Value added successfully');
+                    res.status(200).json({ 
+                        message: 'Value added successfully',
+                        options: options
+                    });
+                }
+            );
         }
-    )
-
-    db.query(
-        'UPDATE questions SET type_detail = ? WHERE id = ?',
-        [],
-        (err, result) => {
-            //UPDATE THE ARRAY
-        }
-    )
-})
+    );
+});
 
 app.post('/api/delete-survey', (req, res) => {
     const survey = req.body
