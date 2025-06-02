@@ -1,13 +1,23 @@
 <script setup>
 import FooterArea from '../components/Footer.vue'
 import LandingBtn from '../components/LandingBtn.vue'
+import SignIn from '../components/SignIn.vue';
+import { ref } from 'vue'
+
+const showSignIn = ref(false)
+function openSignIn() {
+    showSignIn.value = true
+}
+function closeSignIn() {
+    showSignIn.value = false
+}
 </script>
 
 <template>
     <header>
         <h1>Welcome to <span>EasySurvey</span></h1>
         <p>Surveys at your convenience</p>
-        <LandingBtn txt="Try Now"/>
+        <LandingBtn txt="Log In" @show-signin="openSignIn"/>
     </header>
     <main>
         <section>
@@ -26,6 +36,7 @@ import LandingBtn from '../components/LandingBtn.vue'
             <LandingBtn/>
         </div>
     </main>
+    <SignIn v-if="showSignIn" @close="closeSignIn" @submit="handleSignIn"/>
     <FooterArea />
 </template>
 
