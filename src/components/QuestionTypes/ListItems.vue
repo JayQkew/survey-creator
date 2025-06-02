@@ -32,7 +32,7 @@ async function add(){
         const response = await fetch('http://localhost:3000/api/add-to-list', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({id: newId, value: newItemName.value})
+            body: JSON.stringify({id: props.q.id, value: newItemName.value})
         })
         if(!response.ok){
             throw new Error('HTTP error! status: ' + response.status)

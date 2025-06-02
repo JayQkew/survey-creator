@@ -132,14 +132,16 @@ app.post('/api/delete-question', (req, res) => {
 
 app.post('/api/add-to-list', (req, res) => {
     const { id, value } = req.body
-    let options;
     // where id , add value and new id 
     db.query(
         'SELECT * FROM questions WHERE id = ?',
         [id],
         (err, result) => {
             if(err) res.status(500).json({error: err.message})
-            console.log(result)
+
+            const typeDetail = JSON.parse(result[0].type_detail)
+            const options = typeDetail.options || []
+            console.log(options)
             //GET THE ARRAY
         }
     )
