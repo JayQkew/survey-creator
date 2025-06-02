@@ -132,24 +132,14 @@ app.post('/api/delete-question', (req, res) => {
 
 app.post('/api/add-to-list', (req, res) => {
     const { id, value } = req.body;
-    
-    // Add input validation
-    if (!id || !value) {
-        return res.status(400).json({ error: 'Missing id or value' });
-    }
+    if (!id || !value) return res.status(400).json({ error: 'Missing id or value' });
     
     db.query(
         'SELECT * FROM questions WHERE id = ?',
         [id],
         (err, result) => {
-            if (err) {
-                return res.status(500).json({ error: err.message });
-            }
-            
-            // Check if question exists
-            if (!result || result.length === 0) {
-                return res.status(404).json({ error: 'Question not found' });
-            }
+            if (err) return res.status(500).json({ error: err.message });
+            if (!result || result.length === 0) return res.status(404).json({ error: 'Question not found' });
 
             let typeDetail;
             try {
@@ -157,11 +147,8 @@ app.post('/api/add-to-list', (req, res) => {
             } catch (parseError) {
                 return res.status(500).json({ error: 'Invalid type_detail format' });
             }
-            
             const options = typeDetail.options || [];
             options.push(value);
-            
-            // Update the typeDetail object
             typeDetail.options = options;
             
             db.query(
@@ -175,6 +162,67 @@ app.post('/api/add-to-list', (req, res) => {
                     console.log('Value added successfully');
                     res.status(200).json({ 
                         message: 'Value added successfully',
+                        options: options
+                    });
+                }
+            );
+        }
+    );
+});
+
+app.post('/api/delete-from-list', (req, res) => {
+    const { qId, id } = req.body;
+    
+    if (!id || !qId) {
+        return res.status(400).json({ error: 'Missing qId or id' });
+    }
+
+    db.query(
+        'SELECT * FROM questions WHERE id = ?',
+        [qId],
+        (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            
+            if (!results || results.length === 0) {
+                return res.status(404).json({ error: 'Question not found' });
+            }
+            
+            let type_detail;
+            try {
+                type_detail = JSON.parse(results[0].type_detail); // Fixed: results instead of result, type_detail instead of typeDetail
+            } catch (parseError) {
+                return res.status(500).json({ error: 'Invalid type_detail format' });
+            }
+
+            const options = type_detail.options || [];
+            
+            // Find the index of the option with the matching id
+            const optionIndex = options.findIndex(option => option.id === id);
+            
+            if (optionIndex === -1) {
+                return res.status(404).json({ error: 'Option not found' });
+            }
+            
+            // Remove the option from the array
+            options.splice(optionIndex, 1);
+            
+            // Update the type_detail object
+            type_detail.options = options;
+            
+            // Update the database
+            db.query(
+                'UPDATE questions SET type_detail = ? WHERE id = ?',
+                [JSON.stringify(type_detail), qId],
+                (updateErr, updateResult) => {
+                    if (updateErr) {
+                        return res.status(500).json({ error: updateErr.message });
+                    }
+                    
+                    console.log('Option deleted successfully');
+                    res.status(200).json({ 
+                        message: 'Option deleted successfully',
                         options: options
                     });
                 }

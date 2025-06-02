@@ -15,6 +15,8 @@ console.log(items.value)
 function remove(item){
     const i = items.value.indexOf(item)
     if(i > -1) items.value.splice(i,1)
+
+    
 }
 
 async function add(){
