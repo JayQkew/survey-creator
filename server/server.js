@@ -25,6 +25,28 @@ db.connect((err) => {
 app.use(cors())
 app.use(express.json())
 
+app.post('/api/log-in', (req, res) => {
+    const { username, password } = req.body
+    if (!username || !password) {
+        return res.status(400).json({ error: 'Email and password are required' })
+    }
+
+    db.query(
+        'SELECT * FROM users WHERE username = ? AND password_hash = ?',
+        [username, password],
+        (err, results) => {
+            if (err) return res.status(500).json({ error: err.message })
+            if (results.length === 0) {
+                return res.status(401).json({ error: 'Invalid email or password' })
+            }
+            //return the userID
+            // use the userID to find thier surveys
+            console.log(results[0])
+            res.json(results[0])
+        }
+    )
+})
+
 app.post('/api/user-surverys', (req, res) => {
     const user = req.body.user;
     db.query(
