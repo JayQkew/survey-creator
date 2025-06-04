@@ -51,13 +51,11 @@ header{
 }
 
 header p{
-    font-family: 'Ubuntu', monospace;
     font-size: 2.5rem;
     margin: 1rem;
 }
 
 h1{
-    font-family: 'Ubuntu Bold', monospace;
     font-size: 7.5rem;
     margin: 0.5rem;
 }
@@ -68,7 +66,6 @@ h1 span{
 }
 
 h2{
-    font-family: 'Ubuntu Bold', monospace;
     font-size: 4rem;
 }
 
