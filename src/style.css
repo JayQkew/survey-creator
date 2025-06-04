@@ -9,7 +9,8 @@
   --text-colour: var(--dark);
   --background-colour: var(--light);
 
-  font-family: 'RedHatDisplay', monospace;
+  /* font-family: 'RedHatDisplay', monospace; */
+  --regular-font: 'RedHatDisplay', sans-serif;
   color-scheme: light dark;
   color: var(--dark);
   background-color: var(--light);
@@ -34,6 +35,7 @@ a:hover {
 }
 
 body {
+  font-family: var(--regular-font);
   width: 100%;
   margin: 0;
   display: flex;
@@ -43,11 +45,12 @@ body {
 }
 
 body.light{
-
+  --text-colour: var(--dark);
+  --background-colour: var(--light);
 }
 
 .style-btn{
-    font-family: 'Ubuntu Bold', monospace;
+    font-family: 'Ubuntu Bold', sans-serif;
     background-color: var(--tan);
     color: var(--dark);
     border: 3px solid var(--dark);
