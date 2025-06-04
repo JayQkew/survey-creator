@@ -9,10 +9,10 @@
   --text-colour: var(--dark);
   --background-colour: var(--light);
 
-  font-family: 'Ubuntu Bold', monospace;
+  font-family: 'RedHatDisplay', monospace;
   color-scheme: light dark;
   color: var(--dark);
-  background-color: var(--tan);
+  background-color: var(--light);
 
 }
 
