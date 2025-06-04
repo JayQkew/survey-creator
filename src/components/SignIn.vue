@@ -79,15 +79,23 @@ form{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 1rem;
+    padding: 0.25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 3px solid black;
+    border: var(--border);
     width: fit-content;
-    border-radius: 1rem;
-    background-color: var(--tan);
+    background-color: var(--background-colour);
+    color: var(--text-colour);
+}
+
+.input-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
 }
 
 h2{

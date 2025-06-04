@@ -1,8 +1,8 @@
 @import './assets/webfonts/red-hat-font.css';
 
 :root {
-  --light: #FFFCF2;
-  --dark: #252422;
+  --light: #F2FAFF;
+  --dark: #252326;
   --blue-1: #4bc6e3;
   --blue-2: #1b6b93;
   --blue-3: #045474;
@@ -12,10 +12,11 @@
   --background-colour: var(--light);
 
   --regular-font: 'RedHatDisplay', sans-serif;
-  color-scheme: light dark;
-  color: var(--dark);
-  background-color: var(--light);
 
+  --border: 1px solid var(--text-colour);
+
+  color: var(--text-colour);
+  background-color: var(--background-colour);
 }
 
 body {
@@ -27,6 +28,8 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
+  background-color: var(--background-colour);
+  color: var(--text-colour);
 }
 
 body.light{
@@ -40,27 +43,26 @@ body.dark{
 }
 
 a {
-  color: #646cff;
+  color: var(--blue-2);
   text-decoration: inherit;
 }
+
 a:hover {
-  color: #535bf2;
+  color: var(--blue-3);
 }
 
-.page-heading{
-    font-size: 4rem;
-    margin: 1rem;
-}
-
-.subheading{
-    font-size: 1.5rem;
+input{
+  font-family: var(--regular-font);
+  background-color: var(--background-colour);
+  color: var(--text-colour);
+  border: var(--border);
 }
 
 .style-btn{
     font-family: var(--regular-font);
     background-color: var(--background-colour);
     color: var(--text-colour);
-    border: 3px solid var(--text-colour);
+    border: var(--border);
     cursor: pointer;
     transition: all 200ms;
 }
@@ -72,7 +74,16 @@ a:hover {
 
 .style-btn:active{
     transform: translateY(0);
-    box-shadow: 0 0 0;
+    box-shadow: 0 0 0 var(--text-colour);
+}
+
+.page-heading{
+    font-size: 4rem;
+    margin: 1rem;
+}
+
+.subheading{
+    font-size: 1.5rem;
 }
 
 #app {

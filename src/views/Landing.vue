@@ -2,6 +2,7 @@
 import FooterArea from '../components/Footer.vue'
 import LandingBtn from '../components/LandingBtn.vue'
 import SignIn from '../components/SignIn.vue';
+import Navbar from '../components/Navbar.vue'
 import { ref } from 'vue'
 
 const showSignIn = ref(false)
@@ -16,8 +17,8 @@ function closeSignIn() {
 <template>
     <SignIn v-if="showSignIn" @close="closeSignIn" @submit="handleSignIn"/>
     <header>
-        <h1>Welcome to <span>EasySurvey</span></h1>
-        <p>Surveys at your convenience</p>
+        <h1>Surveys at your<br>Convenience</h1>
+        <p>Make surveys in the blink of an eye</p>
         <LandingBtn txt="Log In" @show-signin="openSignIn"/>
     </header>
     <main>
@@ -50,15 +51,15 @@ header{
     width: 100%;
 }
 
+header h1{
+    font-size: 5rem;
+}
+
 header p{
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     margin: 1rem;
 }
 
-h1{
-    font-size: 7.5rem;
-    margin: 0.5rem;
-}
 
 h1 span{
     -webkit-text-fill-color: transparent;
