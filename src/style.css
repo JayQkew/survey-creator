@@ -1,14 +1,19 @@
 :root {
-  --dark: #242424;
-  --tan: #faf6ef;
-  --red: #FF571F;
-  --blue: #3358FF;
-  --yellow: #FFDC5F;
+  --light: #FFFCF2;
+  --dark: #252422;
+  --blue-1: #4bc6e3;
+  --blue-2: #1b6b93;
+  --blue-3: #045474;
+  --orange: #fb5c04;
+
+  --text-colour: var(--dark);
+  --background-colour: var(--light);
 
   font-family: 'Ubuntu Bold', monospace;
   color-scheme: light dark;
   color: var(--dark);
   background-color: var(--tan);
+
 }
 
 a {
@@ -28,6 +33,19 @@ a:hover {
     font-size: 1.5rem;
 }
 
+body {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+}
+
+body.light{
+
+}
+
 .style-btn{
     font-family: 'Ubuntu Bold', monospace;
     background-color: var(--tan);
@@ -45,15 +63,6 @@ a:hover {
 .style-btn:active{
     transform: translateY(0);
     box-shadow: 0 0 0;
-}
-
-body {
-  width: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: center;
 }
 
 #app {
