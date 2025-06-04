@@ -19,6 +19,27 @@
 
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  font-family: var(--regular-font);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body.light{
+  --text-colour: var(--dark);
+  --background-colour: var(--light);
+}
+
+body.dark{
+  --text-colour: var(--light);
+  --background-colour: var(--dark);
+}
+
 a {
   color: #646cff;
   text-decoration: inherit;
@@ -36,33 +57,18 @@ a:hover {
     font-size: 1.5rem;
 }
 
-body {
-  font-family: var(--regular-font);
-  width: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: center;
-}
-
-body.light{
-  --text-colour: var(--dark);
-  --background-colour: var(--light);
-}
-
 .style-btn{
-    font-family: 'Ubuntu Bold', sans-serif;
-    background-color: var(--tan);
-    color: var(--dark);
-    border: 3px solid var(--dark);
+    font-family: var(--regular-font);
+    background-color: var(--background-colour);
+    color: var(--text-colour);
+    border: 3px solid var(--text-colour);
     cursor: pointer;
     transition: all 200ms;
 }
 
 .style-btn:hover{
     transform: translateY(-0.5rem);
-    box-shadow: 0 0.5rem 0 var(--dark);
+    box-shadow: 0 0.5rem 0 var(--text-colour);
 }
 
 .style-btn:active{
