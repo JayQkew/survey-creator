@@ -16,11 +16,11 @@ import PageLayout from './layout/PageLayout.vue'
 
 const routes = [
     {
-        path: '/',
+        path: '',
         component: PageLayout,
         children: [
             {
-                path: 'landing',
+                path: '',
                 name: 'landing-page',
                 component: Landing
             },

@@ -1,17 +1,20 @@
-<script>
+<script setup>
+import { inject } from 'vue';
+
+const user = inject('user')
 </script>
 
 <template>
     <nav>
         <ul>
             <li>
-                <router-link :to="{name: 'surveyor-home'}">Home</router-link>
+                <router-link :to="{name: 'surveyor-home', params: {id: user.id}}">Home</router-link>
             </li>
             <li>
-                <router-link :to="{name: 'create-survey'}">Create</router-link>
+                <router-link :to="{name: 'create-survey', params: {id: user.id}}">Create</router-link>
             </li>
             <li>
-                <router-link :to="{name: 'surveyor-about'}">About</router-link>
+                <router-link :to="{name: 'surveyor-about', params: {id: user.id}}">About</router-link>
             </li>
         </ul>
     </nav>
