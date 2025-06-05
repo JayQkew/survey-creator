@@ -9,8 +9,6 @@ import ResSurvey from './views/ResSurvey.vue'
 import Error from './views/Error.vue'
 import Landing from './views/Landing.vue'
 
-import SurveyorLayout from './layout/SurveyorLayout.vue'
-import RespondentLayout from './layout/RespondentLayout.vue'
 import EmptyLayout from './layout/EmptyLayout.vue'
 import PageLayout from './layout/PageLayout.vue'
 
@@ -24,14 +22,6 @@ const routes = [
                 name: 'landing-page',
                 component: Landing
             },
-            // {
-            //     path: '/sign-up',
-            //     name: 'sign-up-page'
-            // },
-            // {
-            //     path: '/log-in',
-            //     name: 'log-in-page'
-            // },
             {
                 path: '/surveyor/:id',
                 component: EmptyLayout,
