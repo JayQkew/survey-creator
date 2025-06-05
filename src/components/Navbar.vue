@@ -17,10 +17,8 @@ const user = inject('user')
                 <router-link :to="{name: 'surveyor-about', params: {id: user.id}}">About</router-link>
             </li>
         </ul>
-
     </nav>
 </template>
-
 <style scoped>
 nav{
     display: flex;
