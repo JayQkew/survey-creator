@@ -1,8 +1,6 @@
 <script setup>
-import FooterArea from '../components/Footer.vue'
 import LandingBtn from '../components/LandingBtn.vue'
 import SignIn from '../components/SignIn.vue';
-import Navbar from '../components/Navbar.vue'
 import { ref } from 'vue'
 
 const showSignIn = ref(false)
@@ -15,7 +13,7 @@ function closeSignIn() {
 </script>
 
 <template>
-    <SignIn v-if="showSignIn" @close="closeSignIn" @submit="handleSignIn"/>
+    <SignIn v-if="showSignIn" @close="closeSignIn"/>
     <header>
         <h1>Surveys at your<br>Convenience</h1>
         <p>Make surveys in the blink of an eye</p>
@@ -38,7 +36,6 @@ function closeSignIn() {
             <LandingBtn/>
         </div>
     </main>
-    <FooterArea />
 </template>
 
 <style scoped>

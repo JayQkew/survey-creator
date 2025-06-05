@@ -111,9 +111,14 @@ h2{
     justify-content: center;
     gap: 1rem;
 }
+
+input{
+    border-radius: 0;
+}
+
 .style-btn {
     font-size: 1rem;
-    border-radius: 100vw;
+    border-radius: 0;
     padding: 0.5rem 1rem;
 }
 </style>

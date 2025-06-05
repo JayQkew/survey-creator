@@ -11,66 +11,84 @@ import Landing from './views/Landing.vue'
 
 import SurveyorLayout from './layout/SurveyorLayout.vue'
 import RespondentLayout from './layout/RespondentLayout.vue'
+import EmptyLayout from './layout/EmptyLayout.vue'
+import PageLayout from './layout/PageLayout.vue'
 
 const routes = [
     {
-        path: '/surveyor/:id',
-        component: SurveyorLayout,
-        children : [
+        path: '/',
+        component: PageLayout,
+        children: [
             {
-                path: 'home',
-                name: 'surveyor-home',
-                component: Home
+                path: 'landing',
+                name: 'landing-page',
+                component: Landing
             },
+            // {
+            //     path: '/sign-up',
+            //     name: 'sign-up-page'
+            // },
+            // {
+            //     path: '/log-in',
+            //     name: 'log-in-page'
+            // },
             {
-                path: 'about',
-                name: 'surveyor-about',
-                component: About
-            },
-            {
-                path: 'survey/:surveyId',
-                name: 'survey-details',
-                component: OwnSurvey,
+                path: '/surveyor/:id',
+                component: EmptyLayout,
                 props: true,
-                children: [
+                children : [
                     {
-                        path: 'data',
-                        name: 'survey-data',
-                        component: Data,
+                        path: 'home',
+                        name: 'surveyor-home',
+                        component: Home
+                    },
+                    {
+                        path: 'about',
+                        name: 'surveyor-about',
+                        component: About
+                    },
+                    {
+                        path: 'survey/:surveyId',
+                        name: 'survey-details',
+                        component: OwnSurvey,
+                        props: true,
+                        children: [
+                            {
+                                path: 'data',
+                                name: 'survey-data',
+                                component: Data,
+                            }
+                        ]
+                    },
+                    {
+                        path: 'new-survey',
+                        name: 'create-survey',
+                        component: NewSurvey
+                    },
+                    {
+                        path: '',
+                        redirect: { name: 'surveyor-home'}
                     }
                 ]
             },
             {
-                path: 'new-survey',
-                name: 'create-survey',
-                component: NewSurvey
-            },
-            {
-                path: '',
-                redirect: { name: 'surveyor-home'}
+                path: '/respondent/:id',
+                component: EmptyLayout,
+                props: true,
+                children: [
+                    {
+                        path: 'survey/:surveyId',
+                        name: 'respond-to-survey',
+                        component: ResSurvey,
+                        props: true
+                    },
+                    {
+                        path: '',
+                        redirect: { name: 'respond-to-survey' }
+                    }
+                ]
             }
         ]
-    },
-    {
-        path: '/respondent/:id',
-        component: RespondentLayout,
-        children: [
-            {
-                path: 'survey/:surveyId',
-                name: 'respond-to-survey',
-                component: ResSurvey,
-                props: true
-            },
-            {
-                path: '',
-                redirect: { name: 'respond-to-survey' }
-            }
-        ]
-    },
-    {
-        path: '/',
-        name: 'landing-page',
-        component: Landing
     },
     {
         path: '/:pathMatch(.*)*',
