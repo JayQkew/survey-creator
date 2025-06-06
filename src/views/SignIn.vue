@@ -38,8 +38,8 @@ async function handleSubmit(e){
 </script>
 
 <template>
+    <h1>Sign-up</h1>
     <form action="">
-        <h2>Sign-up</h2>
         <div class="inputs">
             <div class="input-section">
                 <label for="username">Username</label>
@@ -56,7 +56,6 @@ async function handleSubmit(e){
         </div>
         <div style="margin-top: 1rem; display: flex; gap: 1rem;">
             <button type="submit" class="style-btn">Submit</button>
-            <button type="button" class="style-btn" @click="handleClose">Close</button>
         </div>
     </form>
 </template>
