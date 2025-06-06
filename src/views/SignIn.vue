@@ -38,7 +38,27 @@ async function handleSubmit(e){
 </script>
 
 <template>
-    
+    <form action="">
+        <h2>Sign-up</h2>
+        <div class="inputs">
+            <div class="input-section">
+                <label for="username">Username</label>
+                <input type="text" id="username">
+            </div>
+            <div class="input-section">
+                <label for="password">Password</label>
+                <input type="password" id="password">
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="text" id="email">
+            </div>
+        </div>
+        <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+            <button type="submit" class="style-btn">Submit</button>
+            <button type="button" class="style-btn" @click="handleClose">Close</button>
+        </div>
+    </form>
 </template>
 
 <style>
