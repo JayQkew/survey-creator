@@ -13,14 +13,22 @@ async function handleSubmit(e){
     const password = e.target.querySelector('#password').value
     const passwordHash = btoa(password)
 
-    const userData = {
-        username: username,
-        email: email,
-        password: passwordHash
-    }
-
     try{
-        
+        const response = await fetch('http://localhost:3000/api/sign-up', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username: username,
+                email: email,
+                password: password
+            })
+        })
+        if (!response.ok){
+            throw new Error('HTTP error! status: ' + response.status)
+        }
+
+        const data = await response.json()
+        console.log(data)
     } catch (err) {
 
     } finally {

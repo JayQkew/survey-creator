@@ -47,6 +47,23 @@ app.post('/api/log-in', (req, res) => {
     )
 })
 
+app.post('/api/sign-up', (req, res) => {
+    const { username, email, password} = req.body;
+
+    if(!username || !email || !password){
+        return res.status(400).json({ error: 'username, email, and password are required' })
+    }
+
+    db.query(
+        'SELECT email FROM users',
+        (err, results) => {
+            if (err) return res.status(500).json({ error: err.message })
+            
+            console.log(results)
+        }
+    )
+})
+
 app.post('/api/user-surverys', (req, res) => {
     const user = req.body.user;
     db.query(
