@@ -15,7 +15,15 @@ function changeState(){
     console.log(state.value)
 }
 
-async function handleLogin(e){
+function onSubmit(e) {
+  if (state.value === 'login') {
+    handleLogin(e)
+  } else {
+    handleSignUp(e)
+  }
+}
+
+async function handleSignUp(e){
     e.preventDefault();
     
     const username = e.target.querySelector('#username').value
@@ -26,6 +34,7 @@ async function handleLogin(e){
     loading.value = true
     error.value = null
 
+    console.log('sign up')
     try{
         const response = await fetch('http://localhost:3000/api/sign-up', {
             method: 'POST',
@@ -48,7 +57,7 @@ async function handleLogin(e){
     }
 }
 
-async function handleSignup(e){
+async function handleLogin(e){
     e.preventDefault()
 
     const username = e.target.querySelector('#username').value
@@ -57,6 +66,8 @@ async function handleSignup(e){
 
     loading.value = true
     error.value = null
+
+    console.log('log in')
 
     try{
         const response = await fetch('http://localhost:3000/api/log-in', {
@@ -72,7 +83,14 @@ async function handleSignup(e){
         }
 
         const data = await response.json()
-        console.log('sign-up: '+ data)
+        if (data && data.id) {
+            // Optionally set the user in your global state
+            if (user) user.value = data;
+            // Redirect to the home page with the user id
+            router.push({ name: 'surveyor-home', params: { id: String(data.id) } });
+        } else {
+            throw new Error('No user id returned from server');
+        }
     } catch (err) {
         error.value = err
     } finally {
@@ -82,42 +100,36 @@ async function handleSignup(e){
 </script>
 
 <template>
-    <header>
-        <h1 v-if="state === 'login'">Log In</h1>
-        <h1 v-else>Sign Up</h1>
-    </header>
-    <main>
-        <form action="">
-            <div class="inputs">
-                <div class="input-section">
-                    <label for="username">Username</label>
-                    <input type="text" id="username">
-                </div>
-                <div class="input-section">
-                    <label for="password">Password</label>
-                    <input type="password" id="password">
-                </div>
-                <div v-if="state === 'signup'">
-                    <label for="email">Email</label>
-                    <input type="text" id="email">
-                </div>
-            </div>
-            <div v-if="state === 'login'">
-                <p>I dont have an account: <a @click="changeState">Sign up</a></p>
-                <button 
-                    type="submit" 
-                    class="style-btn"
-                    @click="handleLogin">Log in</button>
-            </div>
-            <div v-if="state === 'signup'">
-                <p>I have an account: <a @click="changeState">Log In</a></p>
-                <button 
-                    type="submit" 
-                    class="style-btn"
-                    @click="handleSignup">Sign up</button>
-            </div>
-        </form>
-    </main>
+  <header>
+    <h1 v-if="state === 'login'">Log In</h1>
+    <h1 v-else>Sign Up</h1>
+  </header>
+  <main>
+    <form @submit.prevent="onSubmit">
+      <div class="inputs">
+        <div class="input-section">
+          <label for="username">Username</label>
+          <input type="text" id="username" />
+        </div>
+        <div class="input-section">
+          <label for="password">Password</label>
+          <input type="password" id="password" />
+        </div>
+        <div v-if="state === 'signup'">
+          <label for="email">Email</label>
+          <input type="text" id="email" />
+        </div>
+      </div>
+      <div v-if="state === 'login'">
+        <p>I dont have an account: <a @click="changeState">Sign up</a></p>
+        <button type="submit" class="style-btn">Log in</button>
+      </div>
+      <div v-if="state === 'signup'">
+        <p>I have an account: <a @click="changeState">Log In</a></p>
+        <button type="submit" class="style-btn">Sign up</button>
+      </div>
+    </form>
+  </main>
 </template>
 
 <style scoped>
