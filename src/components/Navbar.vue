@@ -13,7 +13,7 @@ else page.value = 'user'
 
 <template>
     <nav>
-        <section v-if="page !== 'landing'">
+        <section v-if="page === 'user'">
             <div>
                 <router-link :to="{name: 'surveyor-home', params: {id: user.id}}">Home</router-link>
             </div>
@@ -72,7 +72,10 @@ nav div:last-child a{
     border-left: var(--border);
 }
 
-
+nav section div:last-child a{
+    border-right: var(--border);
+    border-left: none;
+}
 
 a:hover{
     background-color: var(--text-colour);
