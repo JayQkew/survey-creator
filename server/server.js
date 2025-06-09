@@ -41,7 +41,6 @@ app.post('/api/log-in', (req, res) => {
             }
             //return the userID
             // use the userID to find thier surveys
-            console.log(results[0])
             res.json(results[0])
         }
     )
@@ -55,11 +54,27 @@ app.post('/api/sign-up', (req, res) => {
     }
 
     db.query(
-        'SELECT email FROM users',
+        'SELECT email FROM users WHERE email = ?',
+        [email],
         (err, results) => {
             if (err) return res.status(500).json({ error: err.message })
             
-            console.log(results)
+            if (results.length > 0) {
+                return res.status(409).json({ error: 'Email already exists' })
+            }
+            
+            db.query(
+                'INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)',
+                [username, email, password],
+                (err, results) => {
+                    if (err) return res.status(500).json({ error: err.message })
+                    
+                    res.status(201).json({ 
+                        message: 'User created successfully',
+                        userId: results.insertId 
+                    })
+                }
+            )
         }
     )
 })
