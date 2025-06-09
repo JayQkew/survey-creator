@@ -6,17 +6,17 @@ const user = inject('user')
 
 <template>
     <nav>
-        <ul>
-            <li>
+        <section>
+            <div>
                 <router-link :to="{name: 'surveyor-home', params: {id: user.id}}">Home</router-link>
-            </li>
-            <li>
+            </div>
+            <div>
                 <router-link :to="{name: 'create-survey', params: {id: user.id}}">Create</router-link>
-            </li>
-            <li>
+            </div>
+            <div>
                 <router-link :to="{name: 'surveyor-about', params: {id: user.id}}">About</router-link>
-            </li>
-        </ul>
+            </div>
+        </section>
     </nav>
 </template>
 <style scoped>
@@ -28,12 +28,11 @@ nav{
     width: 100%;
     height: 4rem;
 }
-ul{
+section{
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
-    list-style: none;
     padding: 0px;
     margin: 0px;
     width: 100%;
@@ -41,28 +40,20 @@ ul{
     border-bottom: var(--border);
 }
 
-li{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-    margin: 0px;
-    width: 7.5rem;
-    height: 100%;
-    border-right: var(--border);
-}
-
-li a{
+a{
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-colour);
-    width: 100%;
-    height: 100%;
+    border-right: var(--border);
+    width: 7.5rem;
+    height: 4rem;
+    padding: 0px;
+    margin: 0px;
     transition: all 0.2s;
 }
 
-li:hover a{
+a:hover{
     background-color: var(--text-colour);
     color: var(--background-colour);
 }
