@@ -34,7 +34,6 @@ async function handleSignUp(e){
     loading.value = true
     error.value = null
 
-    console.log('sign up')
     try{
         const response = await fetch('http://localhost:3000/api/sign-up', {
             method: 'POST',
@@ -49,44 +48,8 @@ async function handleSignUp(e){
             throw new Error('HTTP error! status: ' + response.status)
         }
         const data = await response.json()
-        console.log('login' +data)
-    } catch (err) {
-        error.value = err
-    } finally {
-        loading.value = false
-    }
-}
-
-async function handleLogin(e){
-    e.preventDefault()
-
-    const username = e.target.querySelector('#username').value
-    const password = e.target.querySelector('#password').value
-    const passwordHash = btoa(password)
-
-    loading.value = true
-    error.value = null
-
-    console.log('log in')
-
-    try{
-        const response = await fetch('http://localhost:3000/api/log-in', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                username: username,
-                password: passwordHash
-            })
-        })
-        if(!response.ok){
-            throw new Error('HTTPS error! status: ' + response.status)
-        }
-
-        const data = await response.json()
         if (data && data.id) {
-            // Optionally set the user in your global state
             if (user) user.value = data;
-            // Redirect to the home page with the user id
             router.push({ name: 'surveyor-home', params: { id: String(data.id) } });
         } else {
             throw new Error('No user id returned from server');
@@ -96,6 +59,43 @@ async function handleLogin(e){
     } finally {
         loading.value = false
     }
+}
+
+async function handleLogin(e){
+  e.preventDefault()
+
+  const username = e.target.querySelector('#username').value
+  const password = e.target.querySelector('#password').value
+  const passwordHash = btoa(password)
+
+  loading.value = true
+  error.value = null
+
+  try{
+    const response = await fetch('http://localhost:3000/api/log-in', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        username: username,
+        password: passwordHash
+      })
+    })
+    if(!response.ok){
+      throw new Error('HTTPS error! status: ' + response.status)
+    }
+
+    const data = await response.json()
+    if (data && data.id) {
+      if (user) user.value = data;
+      router.push({ name: 'surveyor-home', params: { id: String(data.id) } });
+    } else {
+      throw new Error('No user id returned from server');
+    }
+  } catch (err) {
+    error.value = err
+  } finally {
+    loading.value = false
+  }
 }
 </script>
 

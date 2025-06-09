@@ -66,12 +66,12 @@ app.post('/api/sign-up', (req, res) => {
             db.query(
                 'INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)',
                 [username, email, password],
-                (err, results) => {
+                (err, result) => {
                     if (err) return res.status(500).json({ error: err.message })
-                    
+                    console.log(result)
                     res.status(201).json({ 
                         message: 'User created successfully',
-                        userId: results.insertId 
+                        id: result.insertId 
                     })
                 }
             )
