@@ -11,6 +11,7 @@ import Landing from './views/Landing.vue'
 
 import EmptyLayout from './layout/EmptyLayout.vue'
 import PageLayout from './layout/PageLayout.vue'
+import SignIn from './views/SignIn.vue'
 
 const routes = [
     {
@@ -23,7 +24,12 @@ const routes = [
                 component: Landing
             },
             {
-                path: '/surveyor/:id',
+                path: 'sign-in',
+                name: 'sign-in-page',
+                component: SignIn
+            },
+            {
+                path: 'surveyor/:id',
                 component: EmptyLayout,
                 props: true,
                 children : [

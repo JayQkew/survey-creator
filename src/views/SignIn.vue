@@ -1,9 +1,16 @@
 <script setup>
-import { inject } from 'vue';
+import { inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
 const user = inject('user')
+
+const state = ref('login')
+
+function changeState(){
+    state.value = state.value === 'login' ? 'signup' : 'login'
+    console.log(state.value)
+}
 
 async function handleSubmit(e){
     e.preventDefault();
@@ -38,26 +45,36 @@ async function handleSubmit(e){
 </script>
 
 <template>
-    <h1>Sign-up</h1>
-    <form action="">
-        <div class="inputs">
-            <div class="input-section">
-                <label for="username">Username</label>
-                <input type="text" id="username">
+    <header>
+        <h1 v-if="state === 'login'">Log In</h1>
+        <h1 v-else>Sign Up</h1>
+    </header>
+    <main>
+        <form action="">
+            <div class="inputs">
+                <div class="input-section">
+                    <label for="username">Username</label>
+                    <input type="text" id="username">
+                </div>
+                <div class="input-section">
+                    <label for="password">Password</label>
+                    <input type="password" id="password">
+                </div>
+                <div v-if="state === 'signup'">
+                    <label for="email">Email</label>
+                    <input type="text" id="email">
+                </div>
             </div>
-            <div class="input-section">
-                <label for="password">Password</label>
-                <input type="password" id="password">
+            <div v-if="state === 'login'">
+                <p>I dont have an account: <a @click="changeState">Sign Up</a></p>
+                <button type="submit" class="style-btn">Log in</button>
             </div>
-            <div>
-                <label for="email">Email</label>
-                <input type="text" id="email">
+            <div v-if="state === 'signup'">
+                <p>I have an account: <a @click="changeState">Log In</a></p>
+                <button type="submit" class="style-btn">Sign up</button>
             </div>
-        </div>
-        <div style="margin-top: 1rem; display: flex; gap: 1rem;">
-            <button type="submit" class="style-btn">Submit</button>
-        </div>
-    </form>
+        </form>
+    </main>
 </template>
 
 <style>
