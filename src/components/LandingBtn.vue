@@ -15,7 +15,7 @@ function goto() {
 
 <style scoped>
 .style-btn{
-    font-size: 2rem;
+    font-size: 1.5rem;
     border-radius: 0.25rem;
     padding: 0.5rem 2rem;
 }

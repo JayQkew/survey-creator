@@ -15,9 +15,11 @@ function closeSignIn() {
 <template>
     <SignIn v-if="showSignIn" @close="closeSignIn"/>
     <header>
-        <h1>Surveys at your<br>Convenience</h1>
-        <p>Make surveys in the blink of an eye</p>
-        <LandingBtn txt="Log In" @show-signin="openSignIn"/>
+        <div>
+            <h1>Surveys at your<br>Convenience</h1>
+            <p>Make surveys in the blink of an eye</p>
+            <LandingBtn txt="Get Started" @show-signin="openSignIn"/>
+        </div>
     </header>
     <main>
         <section>
@@ -41,12 +43,13 @@ header{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 75vh;
+    height: 80vh;
     width: 100%;
 }
 
 header h1{
     font-size: 5rem;
+    margin: 1rem;
 }
 
 header p{
@@ -61,21 +64,35 @@ h1 span{
 }
 
 h2{
-    font-size: 4rem;
+    margin-top: 0;
+    font-size: 2rem;
+    width: 100%;
 }
 
 p{
-    font-size: 2rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    width: 100%;
 }
 
 section{
-    border: 3px solid var(--dark);
-    border-radius: 1rem;
+    border: var(--border);
+    border-radius: 0.25rem;
+    width: 100%;
+    padding-block: 1rem;
+    transition: all 0.3s;
+}
+
+section:hover{
+    flex-grow: 2;
+    color: var(--background-colour);
+    background-color: var(--text-colour);
 }
 
 main{
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    height: 10rem;
 }
 </style>
