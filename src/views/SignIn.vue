@@ -1,7 +1,6 @@
 <script setup>
 import { inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { errorMessages } from 'vue/compiler-sfc';
 
 const router = useRouter()
 const user = inject('user')
@@ -100,12 +99,13 @@ async function handleLogin(e){
 </script>
 
 <template>
-  <header>
-    <h1 v-if="state === 'login'" class="page-heading">Log In</h1>
-    <h1 v-else class="page-heading">Sign Up</h1>
-  </header>
+  <!-- <header>
+    <h1 class="page-heading">Sign In</h1>
+  </header> -->
   <main>
     <form @submit.prevent="onSubmit">
+      <h2 v-if="state === 'login'">Log In</h2>
+      <h2 v-else>Sign Up</h2>
       <div class="inputs">
         <div class="input-section">
           <label for="username">Username</label>
@@ -115,7 +115,7 @@ async function handleLogin(e){
           <label for="password">Password</label>
           <input type="password" id="password" />
         </div>
-        <div v-if="state === 'signup'">
+        <div v-if="state === 'signup'" class="input-section">
           <label for="email">Email</label>
           <input type="text" id="email" />
         </div>
@@ -133,7 +133,58 @@ async function handleLogin(e){
 </template>
 
 <style scoped>
+main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+}
+
 a{
-    cursor: pointer;
+  cursor: pointer;
+}
+
+form{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border: var(--border);
+  border-radius: 0.25rem;
+  width: 25rem;
+  padding: 1rem;
+}
+
+.inputs{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.input-section{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+input{
+  box-sizing: border-box;
+  width: 100%;
+  height: 2rem;
+  padding-inline: 0.25rem;
+  margin: 0;
+  border: var(--border);
+  border-radius: 0.25rem;
+}
+
+button{
+  font-size: 1rem;
+  border: var(--border);
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
 }
 </style>
