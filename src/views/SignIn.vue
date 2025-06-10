@@ -101,8 +101,8 @@ async function handleLogin(e){
 
 <template>
   <header>
-    <h1 v-if="state === 'login'">Log In</h1>
-    <h1 v-else>Sign Up</h1>
+    <h1 v-if="state === 'login'" class="page-heading">Log In</h1>
+    <h1 v-else class="page-heading">Sign Up</h1>
   </header>
   <main>
     <form @submit.prevent="onSubmit">

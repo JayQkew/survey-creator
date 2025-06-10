@@ -86,7 +86,16 @@ input{
     font-size: 1.5rem;
 }
 
+main{
+  margin-inline: 1rem;
+}
+
 #app {
   width: 100vw;
+}
+
+::selection{
+  background-color: var(--text-colour);
+  color: var(--background-colour);
 }
 

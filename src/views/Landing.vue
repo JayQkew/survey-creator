@@ -32,9 +32,6 @@ function closeSignIn() {
             <h2>Review Data</h2>
             <p>See all the results desplayed on graphs for better visual understanding</p>
         </section>
-        <div>
-            <LandingBtn/>
-        </div>
     </main>
 </template>
 
@@ -44,7 +41,7 @@ header{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 50rem;
+    height: 75vh;
     width: 100%;
 }
 
@@ -78,7 +75,7 @@ section{
 
 main{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem;
 }
 </style>
