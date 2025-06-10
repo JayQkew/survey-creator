@@ -121,11 +121,22 @@ section{
     border: var(--border);
     border-radius: 0.5rem;
     width: 100%;
-    padding-block: 1rem;
+    padding: 0.5rem;
 }
 
 .question-header{
+    box-sizing: border-box;
     display: flex;
+    width: 100%;
     flex-direction: row;
+    gap: 0.5rem;
+}
+
+input{
+    font-size: 1rem;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 0.25rem;
+    padding-inline: 0.5rem;
 }
 </style>
