@@ -64,6 +64,7 @@ ul{
 }
 
 .style-btn{
+  border: var(--border);
   border-radius: 0.5rem;
   font-size: 5rem;
 }
