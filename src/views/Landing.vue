@@ -1,24 +1,20 @@
 <script setup>
-import LandingBtn from '../components/LandingBtn.vue'
-import SignIn from '../components/SignIn.vue';
-import { ref } from 'vue'
+import { useRouter } from 'vue-router';
 
-const showSignIn = ref(false)
-function openSignIn() {
-    showSignIn.value = true
-}
-function closeSignIn() {
-    showSignIn.value = false
+const router = useRouter()
+
+function handleGetStarted(){
+    router.push({ name: 'sign-in-page' })
 }
 </script>
 
 <template>
-    <SignIn v-if="showSignIn" @close="closeSignIn"/>
     <header>
         <div>
             <h1>Surveys at your<br>Convenience</h1>
             <p>Make surveys in the blink of an eye</p>
             <LandingBtn txt="Get Started" @show-signin="openSignIn"/>
+            <button class="style-btn" @click="handleGetStarted">Get Started</button>
         </div>
     </header>
     <main>
@@ -57,7 +53,6 @@ header p{
     margin: 1rem;
 }
 
-
 h1 span{
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke: 0.15rem;
@@ -94,5 +89,11 @@ main{
     flex-direction: row;
     gap: 1rem;
     height: 10rem;
+}
+
+.style-btn{
+    font-size: 1.5rem;
+    border-radius: 0.25rem;
+    padding: 0.5rem 2rem;
 }
 </style>
