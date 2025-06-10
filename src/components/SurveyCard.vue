@@ -54,8 +54,8 @@ section{
     justify-content: flex-start;
     align-items: stretch;
     flex-direction: column;
-    border: 3px solid var(--dark);
-    border-radius: 1.5rem;
+    border: var(--border);
+    border-radius: 0.5rem;
     padding: 0.5rem;
     gap: 0.5rem;
 }
@@ -68,12 +68,12 @@ h2{
     margin: 0;
     padding-left: 0.5rem;
     flex-grow: 1;
-    border: 3px solid var(--dark);
-    border-radius: 1rem;
+    border: var(--border);
+    border-radius: 0.25rem;
 }
 
 p{
-    font-size: 1.25rem;
+    font-size: 1rem;
     margin: 0.25rem 0;
 }
 
@@ -86,7 +86,7 @@ label{
     display: flex;
     align-items: center;
     font-size: 1rem;
-    border-radius: 1rem;
+    border-radius: 0.25rem;
     padding: 0.5rem;
     height: 100%;
 }
@@ -99,9 +99,10 @@ label{
 .container{
     display: flex;
     justify-content: flex-start;
+    align-items: flex-start;
     flex-direction: column;
-    border: 3px solid var(--dark);
-    border-radius: 1rem;
+    border: var(--border);
+    border-radius: 0.25rem;
 }
 
 .card{
