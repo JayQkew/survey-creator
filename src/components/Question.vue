@@ -82,7 +82,7 @@ async function deleteQuestion(){
 <template>
     <li>
         <section>
-            <div>
+            <div class="question-header">
                 <h2 v-if="isRespondent">{{ q.question }}</h2>
                 <input 
                     v-else 
@@ -92,10 +92,10 @@ async function deleteQuestion(){
                     v-model="name" 
                     @blur="updateQuestion"
                     @keydown="onKeyDown"/>
+                <QuestionDetail :q="q"/>
                 <button @click="deleteQuestion">Delete Question</button>
             </div>                                
             <template v-if="!isRespondent">
-                <QuestionDetail :q="q"/>
                 <template v-if="!q.type"/>
                 <Text v-if="q.type === 'text'"/>
                 <SingleOption v-else-if="q.type === 'single'" :q="q">Single Option</SingleOption>
@@ -118,8 +118,14 @@ section{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 3px solid var(--dark);
-    border-radius: 1.5rem;
+    border: var(--border);
+    border-radius: 0.5rem;
     width: 100%;
+    padding-block: 1rem;
+}
+
+.question-header{
+    display: flex;
+    flex-direction: row;
 }
 </style>
