@@ -130,6 +130,7 @@ section{
     width: 100%;
     flex-direction: row;
     gap: 0.5rem;
+    height: 2.5rem;
 }
 
 input{

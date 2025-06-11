@@ -38,10 +38,27 @@ watch(typeValue, () =>{
 </script>
 
 <template>
-    <label for="question-type">Type:</label>
-    <select name="question-type" id="question-type" v-model="typeValue">
-        <option value="single">Single Option</option>
-        <option value="multiple">Multiple Options</option>
-        <option value="text">Text</option>
-    </select>
+    <div class="question-type-container">
+        <p for="question-type">Type:</p>
+        <select name="question-type" id="question-type" v-model="typeValue">
+            <option value="single">Single Option</option>
+            <option value="multiple">Multiple Options</option>
+            <option value="text">Text</option>
+        </select>
+    </div>
 </template>
+
+<style scoped>
+.question-type-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+select{
+    height: 100%;
+}
+</style>

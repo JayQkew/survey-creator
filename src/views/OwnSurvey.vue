@@ -133,6 +133,7 @@ ul{
   align-items: center;
   gap: 0.5rem;
   margin: 0;
+  padding: 0;
 }
 
 .add-btn{
