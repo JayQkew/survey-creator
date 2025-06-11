@@ -2,8 +2,7 @@
 </script>
 
 <template>
-    <input v-if="isRespondent" type="text">
-    <p v-else>This is a typed Response</p>
+    <input type="text" placeholder="Type response here">
 </template>
 
 <style>

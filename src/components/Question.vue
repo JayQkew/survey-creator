@@ -82,7 +82,7 @@ async function deleteQuestion(){
 
 <template>
     <li>
-        <section>
+        <section class="question">
             <div class="question-header">
                 <h2 v-if="isRespondent">{{ q.question }}</h2>
                 <input 
@@ -93,17 +93,24 @@ async function deleteQuestion(){
                     v-model="name" 
                     @blur="updateQuestion"
                     @keydown="onKeyDown"/>
-                <QuestionDetail :q="q"/>
                 <button @click="deleteQuestion">
                     <div class="svg" v-html="trashSvg"></div>
                 </button>
             </div>                                
-            <template v-if="!isRespondent">
-                <template v-if="!q.type"/>
-                <Text v-if="q.type === 'text'"/>
-                <SingleOption v-else-if="q.type === 'single'" :q="q">Single Option</SingleOption>
-                <MultipleOption v-else-if="q.type === 'multiple'" :q="q">Multiple Option</MultipleOption>
-            </template>
+            <section v-if="!isRespondent" class="question-body">
+                <div class="question-main">
+                    <template v-if="!q.type"/>
+                    <Text v-if="q.type === 'text'"/>
+                    <SingleOption v-else-if="q.type === 'single'" :q="q">Single Option</SingleOption>
+                    <MultipleOption v-else-if="q.type === 'multiple'" :q="q">Multiple Option</MultipleOption>
+                </div>
+                <div class="question-aside">
+                    <QuestionDetail :q="q"/>
+                    <p v-if="q.type === 'text'">Let the user choose one of the options</p>
+                    <p v-else-if="q.type === 'single'">Let the user choose multiple options</p>
+                    <p v-else-if="q.type === 'multiple'">Let the user type thier response</p>
+                </div>
+            </section>
         </section>
     </li>
 </template>
@@ -116,7 +123,7 @@ li{
     width: 100%;
 }
 
-section{
+.question{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -134,6 +141,15 @@ section{
     flex-direction: row;
     gap: 0.5rem;
     height: 2.5rem;
+}
+
+.question-body{
+    border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
 }
 
 input{
