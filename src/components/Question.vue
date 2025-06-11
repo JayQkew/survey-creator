@@ -3,6 +3,7 @@ import Text from '../components/QuestionTypes/Text.vue'
 import QuestionDetail from '../components/QuestionDetails.vue'
 import MultipleOption from './QuestionTypes/MultipleOption.vue'
 import SingleOption from './QuestionTypes/SingleOption.vue'
+import trashSvg from '../assets/trash3-fill.svg?raw'
 import { ref, computed, inject } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -93,7 +94,9 @@ async function deleteQuestion(){
                     @blur="updateQuestion"
                     @keydown="onKeyDown"/>
                 <QuestionDetail :q="q"/>
-                <button @click="deleteQuestion">Delete Question</button>
+                <button @click="deleteQuestion">
+                    <div class="svg" v-html="trashSvg"></div>
+                </button>
             </div>                                
             <template v-if="!isRespondent">
                 <template v-if="!q.type"/>
@@ -139,5 +142,20 @@ input{
     width: 100%;
     border-radius: 0.25rem;
     padding-inline: 0.5rem;
+}
+
+button{
+    box-sizing: border-box;
+    width: 2.5rem;
+}
+
+button div{
+    box-sizing: border-box;
+    width: 2.5rem;
+}
+
+button .svg{
+    width: 100%;
+    height: 100%;
 }
 </style>
