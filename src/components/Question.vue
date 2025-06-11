@@ -172,6 +172,10 @@ li{
     justify-content: flex-start;
 }
 
+.question-aside p{
+    text-align: left;
+}
+
 input{
     font-size: 1.5rem;
     box-sizing: border-box;

@@ -89,7 +89,7 @@ async function add(){
              </li>
         </ul>
         <div class="add-item">
-            <input type="text" v-model="newItemName">
+            <input type="text" v-model="newItemName" placeholder="option">
             <button @click="add" class="add-btn">Add</button>
          </div>
     </section>
@@ -122,15 +122,16 @@ ul{
     justify-content: center;
     margin-top: 1rem;
     height: 2rem;
+    gap: 0.5rem;
 }
 
 input{
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    margin-left: 2rem;
     border: var(--border);
     border-radius: 0.25rem;
+    padding-left: 0.5rem;
 }
 
 .add-btn{
