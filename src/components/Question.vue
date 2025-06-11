@@ -124,6 +124,7 @@ li{
 }
 
 .question{
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -132,6 +133,7 @@ li{
     border-radius: 0.5rem;
     width: 100%;
     padding: 0.5rem;
+    gap: 0.5rem;
 }
 
 .question-header{
@@ -140,10 +142,11 @@ li{
     width: 100%;
     flex-direction: row;
     gap: 0.5rem;
-    height: 2.5rem;
+    height: fit-content;
 }
 
 .question-body{
+    box-sizing: border-box;
     border: none;
     display: flex;
     flex-direction: row;
@@ -152,12 +155,29 @@ li{
     width: 100%;
 }
 
+.question-main{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+}
+
+.question-aside{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
 input{
-    font-size: 1rem;
+    font-size: 1.5rem;
     box-sizing: border-box;
     width: 100%;
     border-radius: 0.25rem;
-    padding-inline: 0.5rem;
+    padding: 0.5rem;
 }
 
 button{

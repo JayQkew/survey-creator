@@ -56,13 +56,16 @@ watch(typeValue, () =>{
     justify-content: center;
     box-sizing: border-box;
     height: 100%;
+    width: 100%;
+    gap: 0.5rem;
 }
 
 select{
     box-sizing: border-box;
     font: var(--regular-font);
-    font-size: 0.75rem;
-    height: 100%;
+    font-size: 1rem;
+    height: 3rem;
+    width: 100%;
     border: var(--border);
     border-radius: 0.25rem;
     background-color: var(--background-colour);
