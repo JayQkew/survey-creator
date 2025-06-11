@@ -145,17 +145,26 @@ input{
 }
 
 button{
-    box-sizing: border-box;
-    width: 2.5rem;
+    color: var(--text-colour);
+    background-color: var(--background-colour);
+    border: var(--border);
+    border-radius: 0.25rem;
+    transition: all 0.2s;
+}
+
+button:hover{
+    color: var(--background-colour);
+    background-color: var(--text-colour);
 }
 
 button div{
-    box-sizing: border-box;
     width: 2.5rem;
+    margin: 0;
+    padding: 0;
 }
 
-button .svg{
-    width: 100%;
-    height: 100%;
+button div svg{
+    margin: 0;
+    padding: 0;
 }
 </style>
