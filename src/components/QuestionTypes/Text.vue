@@ -12,6 +12,6 @@
     width: 100%;
     height: 2.5rem;
     border-radius: 0.25rem;
-    margin-right: 1rem;
+    margin-right: 3rem;
 }
 </style>

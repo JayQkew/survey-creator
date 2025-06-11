@@ -79,30 +79,61 @@ async function add(){
 </script>
 
 <template>
-   <ul>
-        <li v-for="i in items" :key="i.id">
-            <div>
-                {{ i.value }}
-                <button @click="remove(i)">x</button>
-            </div>
-        </li>
-   </ul>
-   <input type="text" v-model="newItemName">
-   <button @click="add">Add</button>
+    <section>
+        <ul>
+             <li v-for="i in items" :key="i.id">
+                 <div class="list-item">
+                     {{ i.value }}
+                     <button @click="remove(i)">x</button>
+                 </div>
+             </li>
+        </ul>
+        <div class="add-item">
+            <input type="text" v-model="newItemName">
+            <button @click="add" class="add-btn">Add</button>
+         </div>
+    </section>
 </template>
 
 <style scoped>
+section{
+    padding-right: 3rem;
+}
+
 ul{
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    padding-left: 2rem;
 }
-div{
+
+.list-item{
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     padding-left: 1rem;
+}
+
+.add-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    height: 2rem;
+}
+
+input{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    margin-left: 2rem;
+    border: var(--border);
+    border-radius: 0.25rem;
+}
+
+.add-btn{
+    height: 100%;
 }
 </style>
