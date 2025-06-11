@@ -153,12 +153,12 @@ li{
     align-items: flex-start;
     justify-content: space-between;
     width: 100%;
+    gap: 0.5rem;
 }
 
 .question-main{
     display: flex;
     flex-direction: row;
-    gap: 0.5rem;
     justify-content: center;
     align-items: center;
     width: 70%;
