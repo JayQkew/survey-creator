@@ -1,4 +1,4 @@
-<script setup>
+z<script setup>
 import { ref } from 'vue';
 
 const props = defineProps({
@@ -80,10 +80,10 @@ async function add(){
 
 <template>
    <ul>
-    <li v-for="i in items" :key="i.id">
-        {{ i.value }}
-        <button @click="remove(i)">x</button>
-    </li>
+        <li v-for="i in items" :key="i.id">
+            {{ i.value }}
+            <button @click="remove(i)">x</button>
+        </li>
    </ul>
    <input type="text" v-model="newItemName">
    <button @click="add">Add</button>

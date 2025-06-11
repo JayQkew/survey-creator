@@ -14,16 +14,19 @@ const props = defineProps({
 </script>
 
 <template>
-    <p>Let the user choose multiple options</p>
     <div v-if="isRespondent">
         <Checkbox 
             v-for="choice in props.q.type_detail" 
             :data="choice" 
             :id="props.q.id"/>
     </div>
-    <div v-else>
+    <div v-else class="list-options">
         <ListItems :q="props.q"/>
     </div>
 </template>
 
-<style></style>
+<style>
+.list-options{
+    width: 100%;
+}
+</style>
