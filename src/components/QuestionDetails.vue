@@ -55,7 +55,7 @@ watch(typeValue, () =>{
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    height: 100%;
+    height: 2.5rem;
     width: 100%;
     gap: 0.5rem;
 }
@@ -64,7 +64,7 @@ select{
     box-sizing: border-box;
     font: var(--regular-font);
     font-size: 1rem;
-    height: 3rem;
+    height: 100%;
     width: 100%;
     border: var(--border);
     border-radius: 0.25rem;
