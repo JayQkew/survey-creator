@@ -308,12 +308,13 @@ app.post('/api/add-survey', (req, res) => {
     const { surveyorId, date } = req.body
 
     db.query(
-        'INSERT INTO surveys (surveyor_id, date) VALUES (?, ?)',
-        [surveyorId, date],
+        'INSERT INTO surveys (surveyor_id, date, description) VALUES (?, ?, ?)',
+        [surveyorId, date, ""],
         (err, result) => {
             if (err) return res.status(500).json({ error: err.message })
 
             const surveyId = result.insertId
+            console.log(surveyId)
 
             db.query(
                 'SELECT * FROM surveys WHERE id = ?',
@@ -331,7 +332,6 @@ app.post('/api/add-survey', (req, res) => {
                     })
                 }
             )
-            res.status(201).json({message: 'Survey added with'})
     })
 })
 

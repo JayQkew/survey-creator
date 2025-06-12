@@ -22,14 +22,14 @@ async function addNewSurvey(){
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-          surveyprId: user.value.id,
+          surveyorId: user.value.id,
           date: formatted
         })
       })
       
-      const data = response.json()
+      const data = await response.json()
 
-      
+      console.log(data)
     } catch (err){
       error.value = err
     } finally {
