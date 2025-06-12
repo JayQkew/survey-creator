@@ -329,6 +329,36 @@ app.post('/api/add-survey', (req, res) => {
     })
 })
 
+app.post('/api/update-survey-title', (req, res) => {
+    const { id, newTitle } = req.body;
+    if (!id || !newTitle) {
+        return res.status(400).json({ error: 'Missing id or newTitle' });
+    }
+    db.query(
+        'UPDATE surveys SET title = ? WHERE id = ?',
+        [newTitle, id],
+        (err, result) => {
+            if (err) return res.status(500).json({ error: err.message });
+            res.status(200).json({ message: 'Survey title updated successfully' });
+        }
+    );
+});
+
+app.post('/api/update-survey-desc', (req, res) => {
+    const { id, newDesc } = req.body;
+    if (!id || !newDesc){
+        return res.status(400).json({ error: 'Missing id or newDesc'})
+    }
+    db.query(
+        'UPDATE surveys SET description = ? WHERE id = ?',
+        [newDesc, id],
+        (err, result) => {
+            if (err) res.status(500).json({ error: err.message })
+            res.status(200).json({ message: 'Survey description updated successfully'})
+        }
+    )
+})
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`)
 })

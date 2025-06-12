@@ -106,9 +106,9 @@ async function deleteQuestion(){
                 </div>
                 <div class="question-aside">
                     <QuestionDetail :q="q"/>
-                    <p v-if="q.type === 'text'">Let the user choose one of the options</p>
-                    <p v-else-if="q.type === 'single'">Let the user choose multiple options</p>
-                    <p v-else-if="q.type === 'multiple'">Let the user type thier response</p>
+                    <p v-if="q.type === 'text'">Let the user type thier response</p>
+                    <p v-else-if="q.type === 'single'">Let the user choose one of the options</p>
+                    <p v-else-if="q.type === 'multiple'">Let the user choose multiple options</p>
                 </div>
             </section>
         </section>
