@@ -304,6 +304,37 @@ app.post('/api/delete-survey', (req, res) => {
     }
 })
 
+app.post('/api/add-survey', (req, res) => {
+    const { surveyorId, date } = req.body
+
+    db.query(
+        'INSERT INTO surveys (surveyor_id, date) VALUES (?, ?)',
+        [surveyorId, date],
+        (err, result) => {
+            if (err) return res.status(500).json({ error: err.message })
+
+            const surveyId = result.insertId
+
+            db.query(
+                'SELECT * FROM surveys WHERE id = ?',
+                [surveyId],
+                (err, surveys) => {
+                    if (err) return res.status(500).json({ error: err.message })
+                    
+                    const survey = surveys[0]
+                    survey.questions = []
+
+                    res.status(201).json({
+                        message: 'Survey added successfully',
+                        surveyId: surveyId,
+                        survey: survey
+                    })
+                }
+            )
+            res.status(201).json({message: 'Survey added with'})
+    })
+})
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`)
 })

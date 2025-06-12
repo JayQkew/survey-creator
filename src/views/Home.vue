@@ -10,8 +10,31 @@ const surveys = ref(null)
 const loading = ref(true)
 const error = ref(null)
 
-function goToNewSurvey(){
-    router.push({ name: 'create-survey' })
+async function addNewSurvey(){
+    // router.push({ name: 'create-survey' })
+    loading.value = true
+    error.value = null
+
+    const date = new Date();
+    const formatted = date.toISOString().substring(0, 10);
+    try{
+      const response = await fetch('http://localhost:3000/api/add-survey', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          surveyprId: user.value.id,
+          date: formatted
+        })
+      })
+      
+      const data = response.json()
+
+      
+    } catch (err){
+      error.value = err
+    } finally {
+      loading.value = false
+    }
 }
 
 async function fetchData(){
@@ -47,7 +70,7 @@ onMounted(fetchData)
         <div class="survey-card-container">
             <ul>
                 <SurveyCard v-for="s in surveys" :survey="s" />
-                <button class="style-btn" @click="goToNewSurvey"> + </button>
+                <button class="style-btn" @click="addNewSurvey"> + </button>
             </ul>
         </div>
     </main>
