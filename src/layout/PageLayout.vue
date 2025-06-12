@@ -6,7 +6,32 @@ import FooterComponent from '../components/Footer.vue'
 <template>
     <div>
         <Navbar />
-        <router-view />
+        <div class="main-content-page">
+            <aside></aside>
+            <main>
+                <router-view />
+            </main>
+            <aside></aside>
+        </div>
         <FooterComponent />
     </div>
 </template>
+
+<style scoped>
+.main-content-page{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+aside{
+    content: "";
+}
+
+main{
+    width: 75%;
+}
+</style>
