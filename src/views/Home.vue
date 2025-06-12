@@ -56,16 +56,21 @@ onMounted(fetchData)
 <style scoped>
 ul{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 50% 50%;
     gap: 1rem;
     list-style: none;
-    margin: 0 4rem;
+    margin: 0;
     padding: 0;
+    width: 100%;
 }
 
 .style-btn{
   border: var(--border);
   border-radius: 0.5rem;
   font-size: 5rem;
+}
+
+main{
+  margin: 0;
 }
 </style>

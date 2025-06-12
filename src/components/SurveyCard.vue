@@ -45,11 +45,15 @@ header{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     gap: 0.5rem
 }
 
+li{
+    box-sizing: border-box;
+}
+
 section{
+    box-sizing: border-box;
     display: flex;
     justify-content: flex-start;
     align-items: stretch;
@@ -58,18 +62,21 @@ section{
     border-radius: 0.5rem;
     padding: 0.5rem;
     gap: 0.5rem;
+    width: 100%;
 }
 
 h2{
-    display: flex;
-    align-items: center;
+    display: block;
     width: 100%;
-    height: 3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     margin: 0;
     padding-left: 0.5rem;
-    flex-grow: 1;
     border: var(--border);
     border-radius: 0.25rem;
+    height: 3rem;
+    line-height: 3rem;
 }
 
 p{
