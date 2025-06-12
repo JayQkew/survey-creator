@@ -1,4 +1,4 @@
-z<script setup>
+<script setup>
 import { ref } from 'vue';
 
 const props = defineProps({
@@ -89,7 +89,11 @@ async function add(){
              </li>
         </ul>
         <div class="add-item">
-            <input type="text" v-model="newItemName" placeholder="option">
+            <input 
+                type="text" 
+                v-model="newItemName" 
+                placeholder="option"
+                @keyup.enter="add">
             <button @click="add" class="add-btn">Add</button>
          </div>
     </section>
