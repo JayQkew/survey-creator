@@ -28,7 +28,7 @@ async function addNewSurvey(){
       })
       
       const data = await response.json()
-
+      fetchData();
       console.log(data)
     } catch (err){
       error.value = err
