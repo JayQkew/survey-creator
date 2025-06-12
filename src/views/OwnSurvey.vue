@@ -100,15 +100,15 @@ provide('survey', {
     <h1 v-else-if="survey">{{ survey.title }}</h1>
     <h1 v-else>No Data</h1>
     <div v-if="survey">
-      <div class="detail-container">
+      <!-- <div class="detail-container">
         <p>{{ survey.date.split('T')[0] }}</p>
         <p>{{ survey.link }}</p>
         <p>respondents: {{ survey.respondents }}</p>
         <p v-if="survey.active">active</p>
         <p v-else>unactive</p>
-      </div>
+      </div> -->
       <p>{{ survey.description }}</p>
-      <button @click="deleteSurvey">Delete</button>
+      <button @click="deleteSurvey" class="delete-btn">Delete</button>
     </div>
   </header>
   <main>
@@ -174,5 +174,38 @@ ul{
   grid-template-columns: 50% 50%;
   width: 100%;
   gap: 1rem;
+}
+
+.detail-container p{
+  text-align: start;
+  margin: 0;
+}
+
+main{
+  margin: 0;
+}
+
+.delete-btn{
+  font-family: var(--regular-font);
+  padding: 0.5rem 1rem;
+  color: var(--orange);
+  background-color: var(--background-colour);
+  border: 1px solid var(--orange);
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+}
+
+.delete-btn:hover{
+  color: var(--background-colour);
+  background-color: var(--orange);
+  transform: translateY(-0.25rem);
+  box-shadow: 0 0.25rem 0 var(--text-colour);
+}
+
+.delete-btn:active{
+  color: var(--orange);
+  background-color: var(--background-colour);
+  transform: translateY(0);
+  box-shadow: 0 0 0 var(--text-colour);
 }
 </style>
