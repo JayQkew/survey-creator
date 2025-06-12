@@ -82,7 +82,7 @@ async function deleteQuestion(){
 
 <template>
     <li>
-        <section class="question">
+        <section class="question pop-out">
             <div class="question-header">
                 <h2 v-if="isRespondent">{{ q.question }}</h2>
                 <input 
@@ -121,6 +121,15 @@ li{
     justify-content: center;
     align-items: center;
     width: 100%;
+}
+
+.pop-out{
+    transition: all 0.2s;
+}
+
+.pop-out:hover{
+    transform: translateY(-0.25rem);
+    box-shadow: 0 0.25rem 0 var(--text-colour);
 }
 
 .question{

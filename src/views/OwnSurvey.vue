@@ -131,7 +131,7 @@ ul{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
   margin: 0;
   padding: 0;
 }
