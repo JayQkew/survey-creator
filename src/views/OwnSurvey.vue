@@ -102,8 +102,8 @@ provide('survey', {
     <div v-if="survey">
       <div class="detail-container">
         <p>{{ survey.date.split('T')[0] }}</p>
-        <p>respondents: {{ survey.respondents }}</p>
         <p>{{ survey.link }}</p>
+        <p>respondents: {{ survey.respondents }}</p>
         <p v-if="survey.active">active</p>
         <p v-else>unactive</p>
       </div>
@@ -125,6 +125,10 @@ provide('survey', {
 </template>
 
 <style scoped>
+header{
+  margin-bottom: 2rem;
+}
+
 ul{
   list-style: none;
   display: flex;
@@ -166,9 +170,9 @@ ul{
 }
 
 .detail-container{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 100%;
+  gap: 1rem;
 }
 </style>

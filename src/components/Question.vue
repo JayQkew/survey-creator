@@ -143,6 +143,7 @@ li{
     width: 100%;
     padding: 0.5rem;
     gap: 0.5rem;
+    background-color: var(--background-colour);
 }
 
 .question-header{
