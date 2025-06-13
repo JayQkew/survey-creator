@@ -102,34 +102,32 @@ async function handleLogin(e){
   <!-- <header>
     <h1 class="page-heading">Sign In</h1>
   </header> -->
-  <main>
-    <form @submit.prevent="onSubmit">
-      <h2 v-if="state === 'login'">Log In</h2>
-      <h2 v-else>Sign Up</h2>
-      <div class="inputs">
-        <div class="input-section">
-          <label for="username">Username</label>
-          <input type="text" id="username" />
-        </div>
-        <div class="input-section">
-          <label for="password">Password</label>
-          <input type="password" id="password" />
-        </div>
-        <div v-if="state === 'signup'" class="input-section">
-          <label for="email">Email</label>
-          <input type="text" id="email" />
-        </div>
+  <form @submit.prevent="onSubmit">
+    <h2 v-if="state === 'login'">Log In</h2>
+    <h2 v-else>Sign Up</h2>
+    <div class="inputs">
+      <div class="input-section">
+        <label for="username">Username</label>
+        <input type="text" id="username" />
       </div>
-      <div v-if="state === 'login'">
-        <p>I dont have an account: <a @click="changeState">Sign up</a></p>
-        <button type="submit" class="style-btn">Log in</button>
+      <div class="input-section">
+        <label for="password">Password</label>
+        <input type="password" id="password" />
       </div>
-      <div v-if="state === 'signup'">
-        <p>I have an account: <a @click="changeState">Log In</a></p>
-        <button type="submit" class="style-btn">Sign up</button>
+      <div v-if="state === 'signup'" class="input-section">
+        <label for="email">Email</label>
+        <input type="text" id="email" />
       </div>
-    </form>
-  </main>
+    </div>
+    <div v-if="state === 'login'">
+      <p>I dont have an account: <a @click="changeState">Sign up</a></p>
+      <button type="submit" class="style-btn">Log in</button>
+    </div>
+    <div v-if="state === 'signup'">
+      <p>I have an account: <a @click="changeState">Log In</a></p>
+      <button type="submit" class="style-btn">Sign up</button>
+    </div>
+  </form>
 </template>
 
 <style scoped>
@@ -147,11 +145,14 @@ a{
 form{
   box-sizing: border-box;
   display: flex;
+  align-self: center;
+  justify-self: center;
   flex-direction: column;
   border: var(--border);
   border-radius: 0.25rem;
   width: 25rem;
   padding: 1rem;
+  margin-top: 1rem;
 }
 
 .inputs{

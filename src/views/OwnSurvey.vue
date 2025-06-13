@@ -11,7 +11,7 @@ const loading = ref(true)
 const error = ref(null)
 const surveyData = ref(null)
 
-const surveyTitle = ref("")
+const surveyTitle = ref("New Survey")
 
 async function addQuestion(){
   const surveyId = survey.value.id
@@ -89,7 +89,7 @@ async function deleteSurvey(){
 
 async function updateTitle(){
   try{
-    const response = await fetch('http://localhost:3000/api/update-question-name', {
+    const response = await fetch('http://localhost:3000/api/update-survey-title', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -103,6 +103,13 @@ async function updateTitle(){
   } catch (err) {
     console.log(err)
   }
+}
+
+function onKeyDown(e) {
+    if (e.key === 'Enter') {
+        updateTitle()
+        e.target.blur()
+    }
 }
 
 onMounted(() => {
@@ -119,7 +126,10 @@ provide('survey', {
     <h1 v-if="loading">Loading...</h1>
     <h1 v-else-if="error">Error: {{ error }}</h1>
     <!-- <h1 v-else-if="survey">{{ survey.title }}</h1> -->
-    <input v-else-if="survey" :value="survey.title">
+    <input v-else-if="survey" 
+      v-model="surveyTitle"
+      @blur="updateTitle"
+      @keydown="onKeyDown">
     <h1 v-else>No Data</h1>
     <div v-if="survey">
       <!-- <div class="detail-container">
