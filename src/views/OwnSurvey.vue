@@ -11,6 +11,8 @@ const loading = ref(true)
 const error = ref(null)
 const surveyData = ref(null)
 
+const surveyTitle = ref("")
+
 async function addQuestion(){
   const surveyId = survey.value.id
   loading.value = true
@@ -53,6 +55,7 @@ async function fetchSurveyData(){
     }
     survey.value = await response.json()
     console.log(survey.value)
+    surveyTitle.value = survey.value.title
     // survey.value = surveyData.value.find(x => x.id === route.params.surveyId)
   } catch (e){
     error.value = e
@@ -84,6 +87,24 @@ async function deleteSurvey(){
   }
 }
 
+async function updateTitle(){
+  try{
+    const response = await fetch('http://localhost:3000/api/update-question-name', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        id: survey.value.id,
+        newTitle: surveyTitle.value
+      })
+    })
+    if (!response.ok){
+      throw new Error('HTTP error! status: ' + response.status)
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 onMounted(() => {
   fetchSurveyData()
 })
@@ -97,7 +118,8 @@ provide('survey', {
   <header>
     <h1 v-if="loading">Loading...</h1>
     <h1 v-else-if="error">Error: {{ error }}</h1>
-    <h1 v-else-if="survey">{{ survey.title }}</h1>
+    <!-- <h1 v-else-if="survey">{{ survey.title }}</h1> -->
+    <input v-else-if="survey" :value="survey.title">
     <h1 v-else>No Data</h1>
     <div v-if="survey">
       <!-- <div class="detail-container">
@@ -207,5 +229,15 @@ main{
   background-color: var(--background-colour);
   transform: translateY(0);
   box-shadow: 0 0 0 var(--text-colour);
+}
+
+input{
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  border: var(--border);
+  border-radius: 0.25rem;
+  margin-top: 1rem;
+  width: 100%;
 }
 </style>

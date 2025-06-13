@@ -71,10 +71,11 @@ p{
 }
 
 section{
+    box-sizing: border-box;
     border: var(--border);
     border-radius: 0.25rem;
     width: 100%;
-    padding-block: 1rem;
+    padding: 1rem;
     transition: all 0.3s;
 }
 
