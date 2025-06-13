@@ -12,6 +12,7 @@ const error = ref(null)
 const surveyData = ref(null)
 
 const surveyTitle = ref("New Survey")
+const surveyDescription = ref("Survey Description")
 
 async function addQuestion(){
   const surveyId = survey.value.id
@@ -56,6 +57,7 @@ async function fetchSurveyData(){
     survey.value = await response.json()
     console.log(survey.value)
     surveyTitle.value = survey.value.title
+    surveyDescription.value = survey.value.description
     // survey.value = surveyData.value.find(x => x.id === route.params.surveyId)
   } catch (e){
     error.value = e
@@ -105,11 +107,36 @@ async function updateTitle(){
   }
 }
 
-function onKeyDown(e) {
+async function updateDescription(){
+  try{
+    const response = await fetch('http://localhost:3000/api/update-survey-desc', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        id: survey.value.id,
+        newDesc: surveyDescription.value
+      })
+    })
+    if (!response.ok){
+      throw new Error('HTTP error! status: ' + response.status)
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+function onKeyDownTitle(e) {
     if (e.key === 'Enter') {
         updateTitle()
         e.target.blur()
     }
+}
+
+function onKeyDownDesc(e){
+  if(e.key == 'Enter'){
+    updateDescription()
+    e.target.blur()
+  }
 }
 
 onMounted(() => {
@@ -125,21 +152,19 @@ provide('survey', {
   <header>
     <h1 v-if="loading">Loading...</h1>
     <h1 v-else-if="error">Error: {{ error }}</h1>
-    <!-- <h1 v-else-if="survey">{{ survey.title }}</h1> -->
     <input v-else-if="survey" 
       v-model="surveyTitle"
       @blur="updateTitle"
-      @keydown="onKeyDown">
+      @keydown="onKeyDownTitle">
     <h1 v-else>No Data</h1>
-    <div v-if="survey">
-      <!-- <div class="detail-container">
-        <p>{{ survey.date.split('T')[0] }}</p>
-        <p>{{ survey.link }}</p>
-        <p>respondents: {{ survey.respondents }}</p>
-        <p v-if="survey.active">active</p>
-        <p v-else>unactive</p>
-      </div> -->
-      <p>{{ survey.description }}</p>
+    <div v-if="survey" class="survey-details">
+      <textarea 
+        name="surveyDesc" 
+        id=""
+        v-model="surveyDescription"
+        @blur="updateDescription"
+        @keydown="onKeyDownDesc">
+      </textarea>
       <button @click="deleteSurvey" class="delete-btn">Delete</button>
     </div>
   </header>
@@ -159,6 +184,11 @@ provide('survey', {
 <style scoped>
 header{
   margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 ul{
@@ -241,6 +271,17 @@ main{
   box-shadow: 0 0 0 var(--text-colour);
 }
 
+.survey-details{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding-top: 1rem;
+  gap: 1rem;
+}
+
 input{
   font-size: 2rem;
   font-weight: bold;
@@ -249,5 +290,17 @@ input{
   border-radius: 0.25rem;
   margin-top: 1rem;
   width: 100%;
+}
+
+textarea{
+  box-sizing: border-box;
+  font-family: var(--regular-font);
+  background-color: var(--background-colour);
+  color: var(--text-colour);
+  border: var(--border);
+  border-radius: 0.25rem;
+  width: 100%;
+  resize: none;
+  padding: 0.5rem;
 }
 </style>
