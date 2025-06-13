@@ -108,3 +108,7 @@ main{
   color: var(--background-colour);
 }
 
+button:hover{
+  cursor: pointer;
+}
+

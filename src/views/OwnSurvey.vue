@@ -287,6 +287,7 @@ input{
 textarea{
   box-sizing: border-box;
   font-family: var(--regular-font);
+  font-size: 1rem;
   background-color: var(--background-colour);
   color: var(--text-colour);
   border: var(--border);
