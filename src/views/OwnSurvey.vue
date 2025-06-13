@@ -132,13 +132,6 @@ function onKeyDownTitle(e) {
     }
 }
 
-function onKeyDownDesc(e){
-  if(e.key == 'Enter'){
-    updateDescription()
-    e.target.blur()
-  }
-}
-
 onMounted(() => {
   fetchSurveyData()
 })
@@ -162,8 +155,7 @@ provide('survey', {
         name="surveyDesc" 
         id=""
         v-model="surveyDescription"
-        @blur="updateDescription"
-        @keydown="onKeyDownDesc">
+        @blur="updateDescription">
       </textarea>
       <button @click="deleteSurvey" class="delete-btn">Delete</button>
     </div>
@@ -302,5 +294,6 @@ textarea{
   width: 100%;
   resize: none;
   padding: 0.5rem;
+  field-sizing: content;
 }
 </style>
