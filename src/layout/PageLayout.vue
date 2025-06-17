@@ -32,6 +32,8 @@ aside{
 }
 
 main{
+    box-sizing: border-box;
     width: 75%;
+    margin: 0;
 }
 </style>

@@ -77,7 +77,18 @@ onMounted(fetchData)
 </template>
 
 <style scoped>
+main{
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.survey-card-container{
+  box-sizing: border-box;
+  width: 100%;
+}
+
 ul{
+    box-sizing: border-box;
     display: grid;
     grid-template-columns: 50% 50%;
     gap: 1rem;
