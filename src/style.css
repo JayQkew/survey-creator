@@ -35,11 +35,14 @@ body {
 body.light {
   --text-colour: var(--dark);
   --background-colour: var(--light);
+  --border: 1px solid var(--dark);
+
 }
 
 body.dark {
   --text-colour: var(--light);
   --background-colour: var(--dark);
+  --border: 1px solid var(--light);
 }
 
 .light a {

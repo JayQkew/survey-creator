@@ -342,4 +342,9 @@ textarea{
   width: 1.75rem;
   opacity: 1;
 }
+
+.svg svg{
+  fill: currentColor;
+  stroke: currentColor;
+}
 </style>
