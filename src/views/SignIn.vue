@@ -119,6 +119,9 @@ async function handleLogin(e){
         <input type="text" id="email" />
       </div>
     </div>
+    <div v-if="error != null">
+      <p>{{ error.message }}</p>
+    </div>
     <div v-if="state === 'login'">
       <p>I dont have an account: <a @click="changeState">Sign up</a></p>
       <button type="submit" class="style-btn">Log in</button>

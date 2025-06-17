@@ -198,8 +198,8 @@ button{
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-colour);
-    background-color: var(--background-colour);
+    color: var(--background-colour);
+    background-color: var(--text-colour);
     border: var(--border);
     border-radius: 0.25rem;
     transition: all 0.2s;
@@ -208,8 +208,8 @@ button{
 }
 
 button:hover{
-    color: var(--background-colour);
-    background-color: var(--text-colour);
+    color: var(--text-colour);
+    background-color: var(--background-colour);
 }
 
 .delete-question div{
