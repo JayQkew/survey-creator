@@ -2,6 +2,7 @@
 import { onMounted, provide, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import Question from '../components/Question.vue'
+import editSvg from '../assets/pen-solid.svg?raw'
 
 const route = useRoute();
 const router = useRouter();
@@ -11,6 +12,8 @@ const loading = ref(true)
 const error = ref(null)
 const surveyData = ref(null)
 
+const title = ref('')
+
 const surveyTitle = ref("New Survey")
 const surveyDescription = ref("Survey Description")
 
@@ -18,6 +21,8 @@ async function addQuestion(){
   const surveyId = survey.value.id
   loading.value = true
   error.value = null
+
+  title.value = 'Loading...'
   console.log(surveyId)
   try{
     const response = await fetch('http://localhost:3000/api/add-question', {
@@ -32,6 +37,7 @@ async function addQuestion(){
 
   } catch (err) {
     error.value = err
+    title.value = `Error: ${err}`
   } finally {
     loading.value = false
     await fetchSurveyData()
@@ -43,6 +49,8 @@ async function fetchSurveyData(){
 
   loading.value = true
   error.value = null
+  title.value = 'Loading...'
+
   try{
     const response = await fetch('http://localhost:3000/api/get-survey', {
       method: 'POST',
@@ -70,6 +78,8 @@ async function deleteSurvey(){
   if(!confirm('Confirm you want to delete this survey?')) return
 
   loading.value = true
+  title.value = 'Loading...'
+
   try{
     const response = await fetch('http://localhost:3000/api/delete-survey', {
       method: 'POST',
@@ -84,6 +94,7 @@ async function deleteSurvey(){
     router.push('/surveyor/123/home')
   } catch (err){
     error.value = err
+    title.value = `Error: ${err}`
   } finally {
     loading.value = false
   }
@@ -143,13 +154,14 @@ provide('survey', {
 
 <template>
   <header>
-    <h1 v-if="loading">Loading...</h1>
-    <h1 v-else-if="error">Error: {{ error }}</h1>
-    <input v-else-if="survey" 
-      v-model="surveyTitle"
-      @blur="updateTitle"
-      @keydown="onKeyDownTitle">
-    <h1 v-else>No Data</h1>
+    <div class="survey-title">
+      <input v-if="survey" 
+        v-model="surveyTitle"
+        @blur="updateTitle"
+        @keydown="onKeyDownTitle">
+      <h1 v-else="loading || error">{{ title }}</h1>
+      <div v-if="survey" class="svg" v-html="editSvg"></div>
+    </div>
     <div v-if="survey" class="survey-details">
       <textarea 
         name="surveyDesc" 
@@ -278,8 +290,7 @@ input{
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
-  border: var(--border);
-  border-radius: 0.25rem;
+  border: none;
   margin-top: 1rem;
   width: 100%;
 }
@@ -296,5 +307,19 @@ textarea{
   resize: none;
   padding: 0.5rem;
   field-sizing: content;
+}
+
+.svg{
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--text-colour);
+}
+
+.survey-title{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 </style>
