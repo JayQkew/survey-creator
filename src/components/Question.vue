@@ -3,7 +3,7 @@ import Text from '../components/QuestionTypes/Text.vue'
 import QuestionDetail from '../components/QuestionDetails.vue'
 import MultipleOption from './QuestionTypes/MultipleOption.vue'
 import SingleOption from './QuestionTypes/SingleOption.vue'
-import trashSvg from '../assets/trash3-fill.svg?raw'
+import trashSvg from '../assets/trash-solid.svg?raw'
 import { ref, computed, inject } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -93,7 +93,7 @@ async function deleteQuestion(){
                     v-model="name" 
                     @blur="updateQuestion"
                     @keydown="onKeyDown"/>
-                <button @click="deleteQuestion">
+                <button @click="deleteQuestion" class="delete-question">
                     <div class="svg" v-html="trashSvg"></div>
                 </button>
             </div>                                
@@ -195,11 +195,16 @@ input{
 }
 
 button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--text-colour);
     background-color: var(--background-colour);
     border: var(--border);
     border-radius: 0.25rem;
     transition: all 0.2s;
+    width: 2.5rem;
+    height: 2.5rem;
 }
 
 button:hover{
@@ -207,14 +212,18 @@ button:hover{
     background-color: var(--text-colour);
 }
 
-button div{
+.delete-question div{
     width: 2.5rem;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    width: 1rem;
+    height: 1rem;
 }
 
-button div svg{
+.delete-question .svg svg{
     margin: 0;
     padding: 0;
+
 }
 </style>
