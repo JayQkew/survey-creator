@@ -9,6 +9,7 @@ const route = useRoute()
 const page = ref('landing')
 
 if(route.fullPath === '/') page.value = 'landing'
+else if(route.name === 'respondent') page.value = 'res'
 else page.value = 'user'
 
 function lightMode(){

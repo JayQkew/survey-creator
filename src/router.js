@@ -60,23 +60,12 @@ const routes = [
                         redirect: { name: 'surveyor-home'}
                     }
                 ]
-            }
-        ]
-    },
-    {
-        path: 'survey/:surveyId',
-        component: EmptyLayout,
-        props: true,
-        children: [
-            {
-                path: '',
-                name: 'respond-to-survey',
-                component: ResSurvey,
-                props: true,
             },
             {
-                path: '',
-                redirect: { name: 'respond-to-survey' }
+                path: '/res/:surveyId',
+                name: 'respondent',
+                component: ResSurvey,
+                props: true
             }
         ]
     },
