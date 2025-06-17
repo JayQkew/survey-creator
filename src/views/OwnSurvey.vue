@@ -155,12 +155,14 @@ provide('survey', {
 <template>
   <header>
     <div class="survey-title">
-      <input v-if="survey" 
-        v-model="surveyTitle"
-        @blur="updateTitle"
-        @keydown="onKeyDownTitle">
+      <div v-if="survey" class="title-container">
+        <input 
+          v-model="surveyTitle"
+          @blur="updateTitle"
+          @keydown="onKeyDownTitle">
+        <div class="svg" v-html="editSvg"></div>
+      </div>
       <h1 v-else="loading || error">{{ title }}</h1>
-      <div v-if="survey" class="svg" v-html="editSvg"></div>
     </div>
     <div v-if="survey" class="survey-details">
       <textarea 
@@ -291,7 +293,6 @@ input{
   font-weight: bold;
   text-align: center;
   border: none;
-  margin-top: 1rem;
   width: 100%;
 }
 
@@ -310,9 +311,11 @@ textarea{
 }
 
 .svg{
-  width: 1.75rem;
+  width: 0;
   height: 1.75rem;
   color: var(--text-colour);
+  opacity: 0;
+  transition: all 0.2s;
 }
 
 .survey-title{
@@ -321,5 +324,22 @@ textarea{
   width: 100%;
   justify-content: center;
   align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.title-container:hover .svg,
+.title-container input:focus + .svg {
+  width: 1.75rem;
+  opacity: 1;
 }
 </style>
