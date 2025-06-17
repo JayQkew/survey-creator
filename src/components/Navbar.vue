@@ -29,9 +29,6 @@ function lightMode(){
                 <router-link :to="{name: 'surveyor-about', params: {id: user.id}}">About</router-link>
             </div>
         </section>
-        <button v-if="page === 'user'" @click="lightMode">
-            <div class="svg" v-html="modeSvg"></div>
-        </button>
         <div  v-if="page === 'landing'">
             <router-link :to="{name: 'landing-page'}">Home</router-link>
         </div>
@@ -41,6 +38,12 @@ function lightMode(){
             </button>
             <router-link :to="{name: 'sign-in-page'}">Sign In</router-link>
         </div>
+        <section v-if="page === 'res'">
+            <router-link :to="{name: 'landing-page'}">Mojo Surveys</router-link>
+        </section>
+        <button v-if="page === 'user' || page === 'res'" @click="lightMode">
+            <div class="svg" v-html="modeSvg"></div>
+        </button>
     </nav>
 </template>
 
