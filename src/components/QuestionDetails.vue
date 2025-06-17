@@ -61,6 +61,7 @@ watch(typeValue, () =>{
 }
 
 select{
+    color: var(--text-colour);
     box-sizing: border-box;
     font: var(--regular-font);
     font-size: 1rem;

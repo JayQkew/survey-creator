@@ -121,7 +121,7 @@ label{
 
 .card:hover{
     transform: translateY(-0.5rem);
-    box-shadow: 0 0.5rem 0 var(--dark);
+    box-shadow: 0 0.5rem 0 var(--text-colour);
 }
 
 .card:active{
