@@ -114,11 +114,10 @@ async function deleteQuestion(){
                     <p v-else-if="q.type === 'multiple'">Let the user choose multiple options</p>
                 </div>
             </section>
-            <section v-else>
+            <section v-else class="respondent-body">
                     <Text v-if="q.type === 'text'"/>
                     <SingleOption v-else-if="q.type === 'single'" :q="q">Single Option</SingleOption>
                     <MultipleOption v-else-if="q.type === 'multiple'" :q="q">Multiple Option</MultipleOption>
-
             </section>
         </section>
     </li>
@@ -153,6 +152,10 @@ li{
     padding: 0.5rem;
     gap: 0.5rem;
     background-color: var(--background-colour);
+}
+
+.respondent-body{
+    width: 100%;
 }
 
 .question-header{

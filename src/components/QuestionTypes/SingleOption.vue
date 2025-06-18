@@ -18,7 +18,7 @@ const choices = JSON.parse(props.q.type_detail).options.map(choice => {
 </script>
 
 <template>
-    <div v-if="isRespondent">
+    <div v-if="isRespondent" class="respondent-radio">
         <RadioBtn v-for="c in choices" :key="c.id" :data="c"/>
     </div>
     <div v-else class="list-options">
@@ -27,4 +27,12 @@ const choices = JSON.parse(props.q.type_detail).options.map(choice => {
 </template>
 
 <style>
+.respondent-radio{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
 </style>

@@ -14,5 +14,11 @@ console.log(d)
     </div>
 </template>
 
-<style>
+<style scoped>
+div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 </style>
