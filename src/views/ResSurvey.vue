@@ -61,5 +61,18 @@ provide('survey', {
     </main>
 </template>
 
-<style>
+<style scoped>
+main{
+    margin: 0;
+}
+
+ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+}
 </style>

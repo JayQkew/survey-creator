@@ -164,6 +164,10 @@ li{
     height: fit-content;
 }
 
+.question-header h2{
+    margin-top: 0;
+}
+
 .question-body{
     box-sizing: border-box;
     border: none;

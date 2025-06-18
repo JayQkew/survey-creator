@@ -1,7 +1,6 @@
 <script setup>
 const props = defineProps({
-    data: Object,
-    id: String
+    data: Object
 })
 
 const d = props.data
