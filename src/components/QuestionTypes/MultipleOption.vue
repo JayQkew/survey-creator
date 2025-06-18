@@ -11,14 +11,18 @@ const props = defineProps({
     id: String,
     q: Object
 })
+
+const choices = JSON.parse(props.q.type_detail).options.map(choice => {
+    return {value: choice, id: props.q.id}
+})
 </script>
 
 <template>
     <div v-if="isRespondent">
         <Checkbox 
-            v-for="choice in props.q.type_detail" 
+            v-for="choice in choices" 
             :data="choice" 
-            :id="props.q.id"/>
+            :id="choice.id"/>
     </div>
     <div v-else class="list-options">
         <ListItems :q="props.q"/>
