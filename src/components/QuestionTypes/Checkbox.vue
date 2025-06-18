@@ -13,4 +13,12 @@ const d = props.data
     </div>
 </template>
 
-<style></style>
+<style scoped>
+div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1rem;
+}
+</style>

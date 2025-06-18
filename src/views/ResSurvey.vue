@@ -62,6 +62,15 @@ provide('survey', {
 </template>
 
 <style scoped>
+header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-block: 1rem;
+    margin-bottom: 1.5rem;
+}
+
 main{
     margin: 0;
 }
