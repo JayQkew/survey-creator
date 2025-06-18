@@ -9,8 +9,8 @@ console.log(d)
 
 <template>
     <div>
-        <input type="radio" :id="String(d.value)" :name="d.id" :value="d.value">
-        <label :for="String(d.value)">{{ d.value.value }}</label>
+        <input type="radio" :id="d.value.id" :name="d.id" :value="d.value">
+        <label :for="d.value.id">{{ d.value.value }}</label>
     </div>
 </template>
 

@@ -21,8 +21,9 @@ const choices = JSON.parse(props.q.type_detail).options.map(choice => {
     <div v-if="isRespondent">
         <Checkbox 
             v-for="choice in choices" 
-            :data="choice" 
-            :id="choice.id"/>
+            :data="choice"
+            :key="choice.id" 
+            :id="choice.value.id"/>
     </div>
     <div v-else class="list-options">
         <ListItems :q="props.q"/>

@@ -9,8 +9,8 @@ const d = props.data
 
 <template>
     <div>
-        <input type="checkbox" :id="d.id" :name="d.id" :value="d.value">
-        <label :for="d.id">{{ d.value.value }}</label>
+        <input type="checkbox" :id="d.value.id" :name="d.id" :value="d.value">
+        <label :for="d.value.id">{{ d.value.value }}</label>
     </div>
 </template>
 
