@@ -8,7 +8,7 @@ import { ref, computed, inject } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const isRespondent = computed(() => route.path.includes('respondent'))
+const isRespondent = computed(() => route.path.includes('res'))
 const props = defineProps({
     qID: String
 })
@@ -84,7 +84,7 @@ async function deleteQuestion(){
     <li>
         <section class="question pop-out">
             <div class="question-header">
-                <h2 v-if="isRespondent">{{ q.question }}</h2>
+                <h2 v-if="isRespondent">{{ q.question_text }}</h2>
                 <input 
                     v-else 
                     type="text" 
@@ -93,7 +93,10 @@ async function deleteQuestion(){
                     v-model="name" 
                     @blur="updateQuestion"
                     @keydown="onKeyDown"/>
-                <button @click="deleteQuestion" class="delete-question">
+                <button 
+                    v-if="!isRespondent"
+                    @click="deleteQuestion" 
+                    class="delete-question">
                     <div class="svg" v-html="trashSvg"></div>
                 </button>
             </div>                                

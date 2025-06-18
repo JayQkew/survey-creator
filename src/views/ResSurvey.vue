@@ -1,10 +1,11 @@
 <script setup>
-import { onMounted, ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { onMounted, provide, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import Question from '../components/Question.vue'
 
 const route = useRoute()
-const router = useRouter()
 
+const questions = ref(null)
 const survey = ref(null)
 const loading = ref(false)
 const error = ref(null)
@@ -27,6 +28,8 @@ async function fetchSurveyData(){
         }
 
         survey.value = await response.json()
+        // console.log(survey.value)
+        questions.value = survey.value.questions
     } catch (err) {
         error.value = err
     } finally {
@@ -37,11 +40,25 @@ async function fetchSurveyData(){
 onMounted(() => {
     fetchSurveyData()
 })
+
+provide('survey', {
+    survey
+})
 </script>
 
 <template>
-    <h1 v-if="survey">{{ survey.title }}</h1>
-    <p v-if="survey">{{ survey.description }}</p>
+    <header>
+        <h1 v-if="survey">{{ survey.title }}</h1>
+        <p v-if="survey">{{ survey.description }}</p>
+    </header>
+    <main>
+        <ul v-if="survey">
+            <Question
+                v-for="question in survey.questions"
+                :key="question.id"
+                :qID="question.id"/>
+        </ul>
+    </main>
 </template>
 
 <style>
