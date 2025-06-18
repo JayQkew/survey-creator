@@ -4,7 +4,7 @@ import ListItems from './ListItems.vue';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 const route = useRoute()
-const isRespondent = computed(() => route.path.includes('respondent'))
+const isRespondent = computed(() => route.path.includes('res'))
 
 const props = defineProps({
     q: Object

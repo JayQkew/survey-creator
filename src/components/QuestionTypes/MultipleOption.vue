@@ -5,7 +5,7 @@ import { useRoute } from 'vue-router';
 import { computed } from 'vue';
 
 const route = useRoute()
-const isRespondent = computed(() => route.path.includes('respondent'))
+const isRespondent = computed(() => route.path.includes('res'))
 const props = defineProps({
     details: Array,
     id: String,
