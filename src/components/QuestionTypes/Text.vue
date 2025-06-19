@@ -1,8 +1,40 @@
-<script>
+<script setup>
+import { inject, computed } from 'vue'
+import { useRoute } from 'vue-router'
+
+const props = defineProps({
+    q: Object
+})
+
+const route = useRoute()
+const isRespondent = computed(() => route.path.includes('res'))
+
+const d = {
+    value: '',
+    id: props.q.id
+}
+const { responses } = inject('responses')
+
+responses.value.find(r => r.qId === d.id).answer = ['']
+
+function handleInput(e){
+    responses.value.find(r => r.qId === d.id).answer[0] = e.target.value
+    console.log(responses.value)
+}
 </script>
 
 <template>
-    <input type="text" placeholder="Type response here" class="type-response">
+    <input 
+        v-if="isRespondent"
+        type="text" 
+        placeholder="Type response here" 
+        class="type-response"
+        @change="handleInput">
+    <input 
+        v-else
+        type="text"
+        placeholder="Type response here"
+        class="type-response">
 </template>
 
 <style scoped>

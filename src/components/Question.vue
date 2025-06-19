@@ -103,7 +103,7 @@ async function deleteQuestion(){
             <section v-if="!isRespondent" class="question-body">
                 <div class="question-main">
                     <template v-if="!q.type"/>
-                    <Text v-if="q.type === 'text'"/>
+                    <Text v-if="q.type === 'text'" :q="q"/>
                     <SingleOption v-else-if="q.type === 'single'" :q="q">Single Option</SingleOption>
                     <MultipleOption v-else-if="q.type === 'multiple'" :q="q">Multiple Option</MultipleOption>
                 </div>
@@ -115,7 +115,7 @@ async function deleteQuestion(){
                 </div>
             </section>
             <section v-else class="respondent-body">
-                    <Text v-if="q.type === 'text'"/>
+                    <Text v-if="q.type === 'text'" :q="q"/>
                     <SingleOption v-else-if="q.type === 'single'" :q="q">Single Option</SingleOption>
                     <MultipleOption v-else-if="q.type === 'multiple'" :q="q">Multiple Option</MultipleOption>
             </section>
