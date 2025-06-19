@@ -6,6 +6,7 @@ import Question from '../components/Question.vue'
 const route = useRoute()
 
 const questions = ref(null)
+const responses = ref(null)
 const survey = ref(null)
 const loading = ref(false)
 const error = ref(null)
@@ -30,6 +31,17 @@ async function fetchSurveyData(){
         survey.value = await response.json()
         // console.log(survey.value)
         questions.value = survey.value.questions
+        console.log(questions.value)
+        responses.value = questions.value.map(q => {
+            const typeDetails = JSON.parse(q.type_detail)
+            const options = typeDetails.options
+            return {
+                qId: q.id,
+                options: options,
+                answer: []
+            }
+        })
+        console.log(responses.value)
     } catch (err) {
         error.value = err
     } finally {
@@ -43,6 +55,10 @@ onMounted(() => {
 
 provide('survey', {
     survey
+})
+
+provide('responses', {
+    responses
 })
 </script>
 

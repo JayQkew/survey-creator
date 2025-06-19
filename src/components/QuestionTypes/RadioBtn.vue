@@ -1,10 +1,16 @@
 <script setup>
+import { inject } from 'vue'
+
 const props= defineProps({
     data: Object
 })
 
 const d = props.data
-console.log(d)
+const {responses} = inject('responses')
+
+function handleInput(){
+    
+}
 </script>
 
 <template>
