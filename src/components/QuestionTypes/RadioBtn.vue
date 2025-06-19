@@ -14,10 +14,7 @@ responses.value.find(r => r.qId === d.id).answer = [{}]
 console.log(responses.value)
 
 function handleInput(e){
-    // find the qID
-    // add the response here
     responses.value.find(r => r.qId === d.id).answer[0] = d.value
-    console.log(responses.value)
 }
 </script>
 
