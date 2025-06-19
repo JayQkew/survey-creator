@@ -41,10 +41,33 @@ async function fetchSurveyData(){
                 answer: []
             }
         })
-        console.log(responses.value)
     } catch (err) {
         error.value = err
     } finally {
+        loading.value = false
+    }
+}
+
+async function submitResponse(){
+    loading.value = true
+    error.value = null
+
+    try{
+        const response = await fetch('http://localhost:3000/api/submit-response', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(responses.value)
+        })
+
+        if(!response.ok){
+            throw new Error('HTTPS error! Status: ' + response.status)
+        }
+
+        const data = await response.json()
+        console.log(data.message)
+    } catch (err) {
+        error.value = err
+    } finally{
         loading.value = false
     }
 }
@@ -74,6 +97,7 @@ provide('responses', {
                 :key="question.id"
                 :qID="question.id"/>
         </ul>
+        <button @click="submitResponse">Sumbit</button>
     </main>
 </template>
 

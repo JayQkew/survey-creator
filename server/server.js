@@ -359,6 +359,24 @@ app.post('/api/update-survey-desc', (req, res) => {
     )
 })
 
+app.post('/api/submit-response', (req, res) => {
+    const response = req.body
+    // console.log(response)
+    response.map(r => {
+        db.query(
+            'INSERT INTO responses (question_id, answer) VALUES (?, ?)',
+            [r.qId, r.answer],
+            (err, result) => {
+                if (err) return res.status(500).json({ error: err.message })
+                
+                res.status(201).json({
+                    message: "Response submitted successfully"
+                })
+            }
+        )
+    })
+})
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`)
 })
