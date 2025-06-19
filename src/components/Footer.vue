@@ -2,7 +2,9 @@
 </script>
 
 <template>
-    <p>This is the footer</p>
+    <section id="footer" class="footer">
+        <p>This is the footer</p>
+    </section>
 </template>
 
 <style>

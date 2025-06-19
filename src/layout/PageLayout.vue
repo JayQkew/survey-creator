@@ -9,7 +9,9 @@ import FooterComponent from '../components/Footer.vue'
         <div class="main-content-page">
             <aside></aside>
             <main>
-                <router-view />
+                <div class="main-container">
+                    <router-view />
+                </div>
             </main>
             <aside></aside>
         </div>
@@ -35,5 +37,9 @@ main{
     box-sizing: border-box;
     width: 75%;
     margin: 0;
+}
+
+.main-container{
+    min-height: 84vh;
 }
 </style>
