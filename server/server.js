@@ -360,22 +360,34 @@ app.post('/api/update-survey-desc', (req, res) => {
 })
 
 app.post('/api/submit-response', (req, res) => {
-    const response = req.body
-    // console.log(response)
-    response.map(r => {
-        db.query(
-            'INSERT INTO responses (question_id, answer) VALUES (?, ?)',
-            [r.qId, r.answer],
-            (err, result) => {
-                if (err) return res.status(500).json({ error: err.message })
-                
-                res.status(201).json({
-                    message: "Response submitted successfully"
-                })
-            }
-        )
-    })
-})
+    const responses = req.body;
+
+    if (!Array.isArray(responses) || responses.length === 0) {
+        return res.status(400).json({ error: 'No responses provided' });
+    }
+
+    // Create an array of promises for all inserts
+    const insertPromises = responses.map(r => {
+        return new Promise((resolve, reject) => {
+            db.query(
+                'INSERT INTO responses (question_id, answer) VALUES (?, ?)',
+                [r.qId, r.answer],
+                (err, result) => {
+                    if (err) return reject(err);
+                    resolve(result);
+                }
+            );
+        });
+    });
+
+    Promise.all(insertPromises)
+        .then(() => {
+            res.status(201).json({ message: "All responses submitted successfully" });
+        })
+        .catch(err => {
+            res.status(500).json({ error: err.message });
+        });
+});
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`)
