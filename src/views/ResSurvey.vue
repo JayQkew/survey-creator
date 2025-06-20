@@ -128,6 +128,7 @@ ul{
 .submit-btn{
     margin: 1rem;
     font-family: var(--regular-font);
+    font-weight: bolder;
     padding: 0.5rem 1rem;
     border: 1px solid var(--blue-1);
     background-color: var(--background-colour);
@@ -144,9 +145,9 @@ ul{
 }
 
 .submit-btn:active{
-  color: var(--blue-1);
-  background-color: var(--background-colour);
-  transform: translateY(0);
-  box-shadow: 0 0 0 var(--text-colour);
+    color: var(--blue-1);
+    background-color: var(--background-colour);
+    transform: translateY(0);
+    box-shadow: 0 0 0 var(--text-colour);
 }
 </style>
