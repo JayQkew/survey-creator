@@ -56,7 +56,7 @@ async function submitResponse(){
         const response = await fetch('http://localhost:3000/api/submit-response', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(responses.value)
+            body: JSON.stringify({data: responses.value})
         })
 
         if(!response.ok){

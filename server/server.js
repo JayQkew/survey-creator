@@ -362,16 +362,16 @@ app.post('/api/update-survey-desc', (req, res) => {
 app.post('/api/submit-response', (req, res) => {
     const responses = req.body;
 
-    if (!Array.isArray(responses) || responses.length === 0) {
+    if (!Array.isArray(responses.data) || responses.data.length === 0) {
         return res.status(400).json({ error: 'No responses provided' });
     }
 
     // Create an array of promises for all inserts
-    const insertPromises = responses.map(r => {
+    const insertPromises = responses.data.map(r => {
         return new Promise((resolve, reject) => {
             db.query(
                 'INSERT INTO responses (question_id, answer) VALUES (?, ?)',
-                [r.qId, r.answer],
+                [r.qId, JSON.stringify(r.answer)],
                 (err, result) => {
                     if (err) return reject(err);
                     resolve(result);
