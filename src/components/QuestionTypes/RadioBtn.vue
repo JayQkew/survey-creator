@@ -6,7 +6,7 @@ const props= defineProps({
 })
 
 const d = props.data
-const { responses } = inject('responses')
+const { responses } = inject('responses', {})
 
 console.log(d)
 

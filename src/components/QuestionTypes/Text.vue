@@ -13,9 +13,10 @@ const d = {
     value: '',
     id: props.q.id
 }
-const { responses } = inject('responses')
+const { responses } = inject('responses', {})
 
-responses.value.find(r => r.qId === d.id).answer = ['']
+console.log(responses)
+if(responses != undefined) responses.value.find(r => r.qId === d.id).answer = ['']
 
 function handleInput(e){
     responses.value.find(r => r.qId === d.id).answer[0] = e.target.value
