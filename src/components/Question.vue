@@ -219,8 +219,8 @@ button{
     border: var(--border);
     border-radius: 0.25rem;
     transition: all 0.2s;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3rem;
+    height: 3rem;
 }
 
 button:hover{
@@ -240,6 +240,5 @@ button:hover{
 .delete-question .svg svg{
     margin: 0;
     padding: 0;
-
 }
 </style>
