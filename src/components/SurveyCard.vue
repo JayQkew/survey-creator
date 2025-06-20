@@ -8,7 +8,7 @@ const props = defineProps({
 })
 
 function copyLink(){
-    navigator.clipboard.writeText(props.survey.link)
+    navigator.clipboard.writeText('http://localhost:5173/res/'+props.survey.id)
 }
 
 function goToSurvey(){
