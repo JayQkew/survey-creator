@@ -95,8 +95,8 @@ async function deleteQuestion(){
                     @keydown="onKeyDown"/>
                 <button 
                     v-if="!isRespondent"
-                    @click="deleteQuestion" 
-                    class="delete-question">
+                    class="accent-btn rc-btn"
+                    @click="deleteQuestion">
                     <div class="svg" v-html="trashSvg"></div>
                 </button>
             </div>                                
@@ -214,21 +214,11 @@ button{
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--background-colour);
-    background-color: var(--text-colour);
-    border: var(--border);
-    border-radius: 0.25rem;
-    transition: all 0.2s;
     width: 3rem;
     height: 3rem;
 }
 
-button:hover{
-    color: var(--text-colour);
-    background-color: var(--background-colour);
-}
-
-.delete-question div{
+.svg{
     width: 2.5rem;
     margin: 0;
     padding: 0;
@@ -237,7 +227,8 @@ button:hover{
     height: 1rem;
 }
 
-.delete-question .svg svg{
+.svg svg{
+    fill: currentColor;
     margin: 0;
     padding: 0;
 }

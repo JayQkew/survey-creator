@@ -17,25 +17,27 @@ button:hover{
 }
 
 .rc-btn{
-    background-color: var(--red);
-    color: var(--background-colour);
-}
-
-.rc-btn:hover{
     background-color: var(--background-colour);
     color: var(--red);
     border-color: var(--red);
 }
 
-.gc-btn{
-    background-color: var(--green);
+.rc-btn:hover{
+    background-color: var(--red);
     color: var(--background-colour);
+    border-color: none;
 }
 
-.gc-btn:hover{
+.gc-btn{
     background-color: var(--background-colour);
     color: var(--green);
     border-color: var(--green);
+}
+
+.gc-btn:hover{
+    background-color: var(--green);
+    color: var(--background-colour);
+    border-color: none;
 }
 
 .accent-btn{

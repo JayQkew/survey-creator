@@ -177,7 +177,11 @@ provide('survey', {
         v-model="surveyDescription"
         @blur="updateDescription">
       </textarea>
-      <button @click="deleteSurvey" class="delete-btn">Delete</button>
+      <button 
+        class="accent-btn rc-btn sp-btn mfs-btn" 
+        @click="deleteSurvey">
+        Delete
+      </button>
     </div>
   </header>
   <main>
