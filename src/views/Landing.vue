@@ -15,7 +15,7 @@ function handleGetStarted(){
             <p>Make surveys in the blink of an eye</p>
             <LandingBtn txt="Get Started" @show-signin="openSignIn"/>
             <button 
-                class="accent-btn la-btn lp-btn lfs-btn" 
+                class="accent-btn gc-btn la-btn lp-btn lfs-btn" 
                 @click="handleGetStarted">
                 Get Started
             </button>

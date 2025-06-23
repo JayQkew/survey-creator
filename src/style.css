@@ -8,12 +8,17 @@
   --blue-3: #045474;
   --orange: #fb5c04;
 
+  --green: #0DAB76;
+  --yellow: #FFC559;
+  --red: #FF3A3A;
+
   --text-colour: var(--dark);
   --background-colour: var(--light);
 
   --regular-font: 'RedHatDisplay', sans-serif;
 
   --border: 1px solid var(--text-colour);
+  --border-width: 1px solid;
 
   --transition: all 0.2s;
 

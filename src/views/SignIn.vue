@@ -125,7 +125,7 @@ async function handleLogin(e){
     <div v-if="state === 'login'">
       <p>I dont have an account: <a @click="changeState">Sign up</a></p>
       <button 
-        class="accent-btn sa-btn sp-btn sfs-btn"
+        class="accent-btn tc-btn sa-btn sp-btn sfs-btn"
         type="submit">
         Log in
       </button>
@@ -133,7 +133,7 @@ async function handleLogin(e){
     <div v-if="state === 'signup'">
       <p>I have an account: <a @click="changeState">Log In</a></p>
       <button 
-        class="accent-btn sa-btn sp-btn sfs-btn" 
+        class="accent-btn tc-btn sa-btn sp-btn sfs-btn" 
         type="submit" >
         Sign up
       </button>

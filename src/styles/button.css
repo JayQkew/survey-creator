@@ -6,27 +6,53 @@ button:hover{
     cursor: pointer;
 }
 
-.accent-btn{
+.tc-btn{
     background-color: var(--background-colour);
     color: var(--text-colour);
-    border: var(--border);
+    border-color: var(--text-colour)
+}
+
+.rc-btn{
+    background-color: var(--red);
+    color: var(--background-colour);
+}
+
+.rc-btn:hover{
+    background-color: var(--background-colour);
+    color: var(--red);
+    border-color: var(--red);
+}
+
+.gc-btn{
+    background-color: var(--green);
+    color: var(--background-colour);
+}
+
+.gc-btn:hover{
+    background-color: var(--background-colour);
+    color: var(--green);
+    border-color: var(--green);
+}
+
+.accent-btn{
+    border: var(--border-width);
     border-radius: 0.25rem;
     transition: var(--transition);
 }
 
 .sa-btn:hover{
     transform: translateY(-0.25rem);
-    box-shadow: 0 0.25rem 0 var(--text-colour);
+    box-shadow: 0 0.25rem 0 currentColor;
 }
 
 .la-btn:hover{
     transform: translateY(-0.5rem);
-    box-shadow: 0 0.5rem 0 var(--text-colour);
+    box-shadow: 0 0.5rem 0 currentColor;
 }
 
 .accent-btn:active{
     transform: translateY(0);
-    box-shadow: 0 0 0 var(--text-colour);
+    box-shadow: 0 0 0 currentColor;
 }
 
 .sp-btn{
