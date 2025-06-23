@@ -108,15 +108,22 @@ async function handleLogin(e){
     <div class="inputs">
       <div class="input-section">
         <label for="username">Username</label>
-        <input type="text" id="username" />
+        <input 
+          class="tc-i sp-i sfs-i"
+          type="text" 
+          id="username" />
       </div>
       <div class="input-section">
         <label for="password">Password</label>
-        <input type="password" id="password" />
+        <input 
+          type="password" 
+          id="password" />
       </div>
       <div v-if="state === 'signup'" class="input-section">
         <label for="email">Email</label>
-        <input type="text" id="email" />
+        <input 
+          type="text" 
+          id="email" />
       </div>
     </div>
     <div v-if="error != null">
@@ -184,13 +191,7 @@ form{
 }
 
 input{
-  box-sizing: border-box;
-  width: 100%;
   height: 2rem;
-  padding-inline: 0.25rem;
-  margin: 0;
-  border: var(--border);
-  border-radius: 0.25rem;
 }
 
 button{

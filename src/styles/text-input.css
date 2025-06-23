@@ -1,0 +1,42 @@
+input{
+    font-family: var(--regular-font);
+    box-sizing: border-box;
+    width: 100%;
+    border: var(--border-width);
+    border-radius: 0.25rem;
+    margin: 0;
+}
+
+.tc-i{
+    background-color: var(--background-colour);
+    color: var(--text-colour);
+    border-color: var(--text-colour);
+}
+
+.no-border-i{
+    border: none;
+}
+
+.sp-i{
+    padding: 0.25rem;
+}
+
+.mp-i{
+    padding: 0.5rem;
+}
+
+.lp-i{
+    padding: 1rem;
+}
+
+.sfs-i{
+    font-size: 0.8rem;
+}
+
+.mfs-i{
+    font-size: 1rem;
+}
+
+.lfs-i{
+    font-size: 1.5rem;
+}
