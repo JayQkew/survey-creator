@@ -70,7 +70,11 @@ onMounted(fetchData)
         <div class="survey-card-container">
             <ul>
                 <SurveyCard v-for="s in surveys" :survey="s" />
-                <button class="style-btn" @click="addNewSurvey"> + </button>
+                <button 
+                  class="style-btn accent-btn la-btn tc-btn" 
+                  @click="addNewSurvey">
+                   + 
+                  </button>
             </ul>
         </div>
     </main>
@@ -99,7 +103,6 @@ ul{
 }
 
 .style-btn{
-  border: var(--border);
   border-radius: 0.5rem;
   font-size: 5rem;
 }
