@@ -154,6 +154,12 @@ provide('survey', {
 
 <template>
   <header>
+    <nav>
+        <router-link >Edit</router-link>
+        <router-link >Responses</router-link>
+        <router-link >Share</router-link>
+        <router-link >Delete</router-link>
+    </nav>
     <div class="survey-title">
       <div v-if="survey" class="title-container">
         <input 
@@ -346,5 +352,32 @@ textarea{
 .svg svg{
   fill: currentColor;
   stroke: currentColor;
+}
+
+nav{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--text-colour);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin-block: 1rem
+}
+
+nav a{
+  background-color: var(--text-colour);
+  font-weight: bold;
+  color: var(--background-colour);
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--text-colour);
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+}
+
+nav a:hover{
+  background-color: var(--background-colour);
+  color: var(--text-colour);
 }
 </style>

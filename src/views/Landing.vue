@@ -14,7 +14,11 @@ function handleGetStarted(){
             <h1>Surveys at your<br>Convenience</h1>
             <p>Make surveys in the blink of an eye</p>
             <LandingBtn txt="Get Started" @show-signin="openSignIn"/>
-            <button class="style-btn" @click="handleGetStarted">Get Started</button>
+            <button 
+                class="accent-btn l-a-btn l-padding-btn l-fs-btn" 
+                @click="handleGetStarted">
+                Get Started
+            </button>
         </div>
     </header>
     <main>

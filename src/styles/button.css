@@ -1,0 +1,50 @@
+button{
+    font-family: var(--regular-font);
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.accent-btn{
+    background-color: var(--background-colour);
+    color: var(--text-colour);
+    border: var(--border);
+    border-radius: 0.25rem;
+    transition: var(--transition);
+}
+
+.s-a-btn:hover{
+    transform: translateY(-0.25rem);
+    box-shadow: 0 0.25rem 0 var(--text-colour);
+}
+
+.l-a-btn:hover{
+    transform: translateY(-0.5rem);
+    box-shadow: 0 0.5rem 0 var(--text-colour);
+}
+
+.accent-btn:active{
+    transform: translateY(0);
+    box-shadow: 0 0 0 var(--text-colour);
+}
+
+.s-padding-btn{
+    padding: 0.5rem 1rem;
+}
+
+.l-padding-btn{
+    padding: 0.5rem 2rem;
+}
+
+.s-fs-btn{
+    font-size: 0.5rem;
+}
+
+.m-fs-btn{
+    font-size: 1rem;
+}
+
+.l-fs-btn{
+    font-size: 1.5rem;
+}
