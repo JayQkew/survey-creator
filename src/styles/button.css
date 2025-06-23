@@ -14,12 +14,12 @@ button:hover{
     transition: var(--transition);
 }
 
-.s-a-btn:hover{
+.sa-btn:hover{
     transform: translateY(-0.25rem);
     box-shadow: 0 0.25rem 0 var(--text-colour);
 }
 
-.l-a-btn:hover{
+.la-btn:hover{
     transform: translateY(-0.5rem);
     box-shadow: 0 0.5rem 0 var(--text-colour);
 }
@@ -29,22 +29,22 @@ button:hover{
     box-shadow: 0 0 0 var(--text-colour);
 }
 
-.s-padding-btn{
+.sp-btn{
     padding: 0.5rem 1rem;
 }
 
-.l-padding-btn{
+.lp-btn{
     padding: 0.5rem 2rem;
 }
 
-.s-fs-btn{
+.sfs-btn{
     font-size: 0.5rem;
 }
 
-.m-fs-btn{
+.mfs-btn{
     font-size: 1rem;
 }
 
-.l-fs-btn{
+.lfs-btn{
     font-size: 1.5rem;
 }

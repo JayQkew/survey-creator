@@ -15,7 +15,7 @@ function handleGetStarted(){
             <p>Make surveys in the blink of an eye</p>
             <LandingBtn txt="Get Started" @show-signin="openSignIn"/>
             <button 
-                class="accent-btn l-a-btn l-padding-btn l-fs-btn" 
+                class="accent-btn la-btn lp-btn lfs-btn" 
                 @click="handleGetStarted">
                 Get Started
             </button>
@@ -94,11 +94,5 @@ main{
     flex-direction: row;
     gap: 1rem;
     height: 10rem;
-}
-
-.style-btn{
-    font-size: 1.5rem;
-    border-radius: 0.25rem;
-    padding: 0.5rem 2rem;
 }
 </style>
