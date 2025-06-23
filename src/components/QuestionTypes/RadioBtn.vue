@@ -19,7 +19,7 @@ function handleInput(e){
 </script>
 
 <template>
-    <div class="flex-ctr">
+    <div class="flex-ctr-c">
         <input 
             type="radio" 
             :id="d.value.id" 
@@ -31,7 +31,4 @@ function handleInput(e){
 </template>
 
 <style scoped>
-div{
-    flex-direction: column;
-}
 </style>

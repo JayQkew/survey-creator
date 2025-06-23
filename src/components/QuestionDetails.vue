@@ -38,7 +38,7 @@ watch(typeValue, () =>{
 </script>
 
 <template>
-    <div class="question-type-container flex-ctr">
+    <div class="question-type-container flex-ctr-r">
         <p for="question-type">Type:</p>
         <select name="question-type" id="question-type" v-model="typeValue">
             <option value="single">Single Option</option>
@@ -50,7 +50,6 @@ watch(typeValue, () =>{
 
 <style scoped>
 .question-type-container{
-    flex-direction: row;
     box-sizing: border-box;
     height: 2.5rem;
     width: 100%;

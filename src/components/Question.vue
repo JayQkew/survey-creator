@@ -82,7 +82,7 @@ async function deleteQuestion(){
 
 <template>
     <li class="flex-ctr">
-        <section class="question pop-out flex-ctr">
+        <section class="question pop-out flex-ctr-c">
             <div class="question-header">
                 <h2 v-if="isRespondent">{{ q.question_text }}</h2>
                 <input 
@@ -102,7 +102,7 @@ async function deleteQuestion(){
                 </button>
             </div>                                
             <section v-if="!isRespondent" class="question-body">
-                <div class="question-main flex-ctr">
+                <div class="question-main flex-ctr-r">
                     <template v-if="!q.type"/>
                     <Text v-if="q.type === 'text'" :q="q"/>
                     <SingleOption v-else-if="q.type === 'single'" :q="q">Single Option</SingleOption>
@@ -140,7 +140,6 @@ li{
 
 .question{
     box-sizing: border-box;
-    flex-direction: column;
     border: var(--border);
     border-radius: 0.5rem;
     width: 100%;
@@ -178,7 +177,6 @@ li{
 }
 
 .question-main{
-    flex-direction: row;
     width: 70%;
 }
 

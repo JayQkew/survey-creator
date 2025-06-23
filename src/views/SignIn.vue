@@ -102,7 +102,7 @@ async function handleLogin(e){
   <form @submit.prevent="onSubmit">
     <h2 v-if="state === 'login'">Log In</h2>
     <h2 v-else>Sign Up</h2>
-    <div class="inputs flex-ctr">
+    <div class="inputs flex-ctr-c">
       <div class="input-section">
         <label for="username">Username</label>
         <input 
@@ -166,7 +166,6 @@ form{
 }
 
 .inputs{
-  flex-direction: column;
   gap: 1rem;
 }
 

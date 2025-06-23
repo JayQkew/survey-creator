@@ -85,7 +85,7 @@ provide('responses', {
 </script>
 
 <template>
-    <header class="flex-ctr">
+    <header class="flex-ctr-c">
         <h1 v-if="survey">{{ survey.title }}</h1>
         <p v-if="survey">{{ survey.description }}</p>
     </header>
@@ -106,7 +106,6 @@ provide('responses', {
 
 <style scoped>
 header{
-    flex-direction: column;
     padding-block: 1rem;
     margin-bottom: 1.5rem;
 }

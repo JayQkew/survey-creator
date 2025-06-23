@@ -153,15 +153,15 @@ provide('survey', {
 </script>
 
 <template>
-  <header class="flex-ctr">
-    <nav class="flex-ctr">
+  <header class="flex-ctr-c">
+    <nav class="flex-ctr-r">
         <router-link >Edit</router-link>
         <router-link >Responses</router-link>
         <router-link >Share</router-link>
         <router-link >Delete</router-link>
     </nav>
-    <div class="survey-title flex-ctr">
-      <div v-if="survey" class="title-container flex-ctr">
+    <div class="survey-title flex-ctr-r">
+      <div v-if="survey" class="title-container flex-ctr-r">
         <input 
           class="text-input tc-i no-border-i xlfs-i"
           v-model="surveyTitle"
@@ -171,7 +171,7 @@ provide('survey', {
       </div>
       <h1 v-else="loading || error">{{ title }}</h1>
     </div>
-    <div v-if="survey" class="survey-details flex-ctr">
+    <div v-if="survey" class="survey-details flex-ctr-c">
       <textarea 
         name="surveyDesc" 
         id=""
@@ -186,13 +186,13 @@ provide('survey', {
     </div>
   </header>
   <main>
-    <ul v-if="survey" class="flex-ctr">
+    <ul v-if="survey" class="flex-ctr-c">
       <Question 
         v-for="question in survey.questions" 
         :key="question.id" 
         :qID="question.id"/>
     </ul>
-    <div class="btn-container flex-ctr">
+    <div class="btn-container flex-ctr-r">
       <button type="button" class="style-btn add-btn" @click="addQuestion">+</button>
     </div>
   </main>
@@ -201,13 +201,11 @@ provide('survey', {
 <style scoped>
 header{
   margin-bottom: 2rem;
-  flex-direction: column;
   box-sizing: border-box;
 }
 
 ul{
   list-style: none;
-  flex-direction: column;
   gap: 1rem;
   margin: 0;
   padding: 0;
@@ -225,7 +223,6 @@ ul{
 }
 
 .btn-container{
-  flex-direction: row;
   gap: 0.5rem;
 }
 
@@ -246,7 +243,6 @@ main{
 }
 
 .survey-details{
-  flex-direction: column;
   box-sizing: border-box;
   width: 100%;
   padding-top: 1rem;
@@ -281,14 +277,12 @@ textarea{
 }
 
 .survey-title{
-  flex-direction: row;
   width: 100%;
   margin-top: 1rem;
   gap: 1rem;
 }
 
 .title-container {
-  flex-direction: row;
   gap: 1rem;
   width: 100%;
 }
@@ -305,7 +299,6 @@ textarea{
 }
 
 nav{
-  flex-direction: row;
   gap: 0.5rem;
   background-color: var(--text-colour);
   border-radius: 0.5rem;

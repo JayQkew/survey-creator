@@ -80,6 +80,20 @@ a:hover {
   align-items: center;
 }
 
+.flex-ctr-r{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.flex-ctr-c{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 main{
   margin-inline: 1rem;
 }
