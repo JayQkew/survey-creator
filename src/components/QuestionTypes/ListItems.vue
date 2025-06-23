@@ -92,7 +92,7 @@ async function add(){
                  </div>
              </li>
         </ul>
-        <div class="add-item">
+        <div class="add-item flex-ctr">
             <input 
                 class="text-input tc-i sp-i sfs-i"
                 type="text" 
@@ -130,9 +130,6 @@ ul{
 }
 
 .add-item{
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-top: 1rem;
     height: 2rem;
     gap: 0.5rem;

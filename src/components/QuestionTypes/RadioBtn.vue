@@ -19,7 +19,7 @@ function handleInput(e){
 </script>
 
 <template>
-    <div>
+    <div class="flex-ctr">
         <input 
             type="radio" 
             :id="d.value.id" 
@@ -32,9 +32,6 @@ function handleInput(e){
 
 <style scoped>
 div{
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 </style>

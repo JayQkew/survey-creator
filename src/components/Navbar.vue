@@ -23,25 +23,25 @@ function lightMode(){
     <nav>
         <section v-if="page === 'user'">
             <div>
-                <router-link :to="{name: 'surveyor-home', params: {id: user.id}}">Home</router-link>
+                <router-link class="flex-ctr" :to="{name: 'surveyor-home', params: {id: user.id}}">Home</router-link>
             </div>
             <div>
-                <router-link :to="{name: 'surveyor-about', params: {id: user.id}}">About</router-link>
+                <router-link class="flex-ctr" :to="{name: 'surveyor-about', params: {id: user.id}}">About</router-link>
             </div>
         </section>
         <div  v-if="page === 'landing'">
-            <router-link :to="{name: 'landing-page'}">Home</router-link>
+            <router-link class="flex-ctr" :to="{name: 'landing-page'}">Home</router-link>
         </div>
         <div  v-if="page === 'landing'" class="other">
-            <button @click="lightMode">
+            <button class="flex-ctr" @click="lightMode">
                 <div class="svg" v-html="modeSvg"></div>
             </button>
-            <router-link :to="{name: 'sign-in-page'}">Sign In</router-link>
+            <router-link class="flex-ctr" :to="{name: 'sign-in-page'}">Sign In</router-link>
         </div>
         <section v-if="page === 'res'">
-            <router-link :to="{name: 'landing-page'}">Mojo Surveys</router-link>
+            <router-link class="flex-ctr" :to="{name: 'landing-page'}">Mojo Surveys</router-link>
         </section>
-        <button v-if="page === 'user' || page === 'res'" @click="lightMode">
+        <button class="flex-ctr" v-if="page === 'user' || page === 'res'" @click="lightMode">
             <div class="svg" v-html="modeSvg"></div>
         </button>
     </nav>
@@ -82,9 +82,6 @@ button{
     font-family: var(--regular-font);
     background-color: var(--background-colour);
     color: var(--text-colour);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: var(--text-colour);
     border-radius: 0;
     border: none;
@@ -101,9 +98,6 @@ button:hover{
 }
 
 a{
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: var(--text-colour);
     border-right: var(--border);
     width: 7.5rem;

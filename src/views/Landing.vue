@@ -9,7 +9,7 @@ function handleGetStarted(){
 </script>
 
 <template>
-    <header>
+    <header class="flex-ctr">
         <div>
             <h1>Surveys at your<br>Convenience</h1>
             <p>Make surveys in the blink of an eye</p>
@@ -38,9 +38,6 @@ function handleGetStarted(){
 
 <style scoped>
 header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
     height: 80vh;
     width: 100%;

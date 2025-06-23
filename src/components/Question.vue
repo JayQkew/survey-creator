@@ -81,8 +81,8 @@ async function deleteQuestion(){
 </script>
 
 <template>
-    <li>
-        <section class="question pop-out">
+    <li class="flex-ctr">
+        <section class="question pop-out flex-ctr">
             <div class="question-header">
                 <h2 v-if="isRespondent">{{ q.question_text }}</h2>
                 <input 
@@ -96,13 +96,13 @@ async function deleteQuestion(){
                     @keydown="onKeyDown"/>
                 <button 
                     v-if="!isRespondent"
-                    class="accent-btn rc-btn"
+                    class="accent-btn rc-btn flex-ctr"
                     @click="deleteQuestion">
                     <div class="svg" v-html="trashSvg"></div>
                 </button>
             </div>                                
             <section v-if="!isRespondent" class="question-body">
-                <div class="question-main">
+                <div class="question-main flex-ctr">
                     <template v-if="!q.type"/>
                     <Text v-if="q.type === 'text'" :q="q"/>
                     <SingleOption v-else-if="q.type === 'single'" :q="q">Single Option</SingleOption>
@@ -126,9 +126,6 @@ async function deleteQuestion(){
 
 <style scoped>
 li{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
 }
 
@@ -143,10 +140,7 @@ li{
 
 .question{
     box-sizing: border-box;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     border: var(--border);
     border-radius: 0.5rem;
     width: 100%;
@@ -184,10 +178,7 @@ li{
 }
 
 .question-main{
-    display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
     width: 70%;
 }
 
@@ -204,9 +195,6 @@ li{
 }
 
 button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 3rem;
     height: 3rem;
 }
