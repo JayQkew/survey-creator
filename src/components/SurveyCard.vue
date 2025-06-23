@@ -112,8 +112,8 @@ button{
 .card{
     cursor: pointer;
     transform: translateY(0);
-    box-shadow: 0 0 0;
-    transition: all 200ms;
+    box-shadow: 0 0 0;  
+    transition: var(--transition);
 }
 
 .card:hover{

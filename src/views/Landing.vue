@@ -70,7 +70,7 @@ section{
     border-radius: 0.25rem;
     width: 100%;
     padding: 1rem;
-    transition: all 0.3s;
+    transition: var(--transition);
 }
 
 section:hover{

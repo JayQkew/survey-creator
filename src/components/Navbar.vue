@@ -82,14 +82,13 @@ button{
     font-family: var(--regular-font);
     background-color: var(--background-colour);
     color: var(--text-colour);
-    color: var(--text-colour);
     border-radius: 0;
     border: none;
     width: 4rem;
     height: 4rem;
     padding: 0px;
     margin: 0px;
-    transition: all 0.2s;  
+    transition: var(--transition);
 }
 
 button:hover{
@@ -104,7 +103,7 @@ a{
     height: 4rem;
     padding: 0px;
     margin: 0px;
-    transition: all 0.2s;
+    transition: var(--transition);
 }
 
 nav div:last-child a{

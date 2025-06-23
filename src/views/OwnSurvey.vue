@@ -273,7 +273,7 @@ textarea{
   height: 1.75rem;
   color: var(--text-colour);
   opacity: 0;
-  transition: all 0.2s;
+  transition: var(--transition);
 }
 
 .survey-title{
@@ -312,8 +312,8 @@ nav a{
   color: var(--background-colour);
   padding: 0.25rem 0.5rem;
   border: 1px solid var(--text-colour);
-  border-radius: 0.25rem;
-  transition: all 0.2s;
+  border-radius: 0.25rem;  
+  transition: var(--transition);
 }
 
 nav a:hover{
