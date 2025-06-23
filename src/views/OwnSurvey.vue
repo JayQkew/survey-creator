@@ -153,15 +153,15 @@ provide('survey', {
 </script>
 
 <template>
-  <header>
-    <nav>
+  <header class="flex-ctr">
+    <nav class="flex-ctr">
         <router-link >Edit</router-link>
         <router-link >Responses</router-link>
         <router-link >Share</router-link>
         <router-link >Delete</router-link>
     </nav>
-    <div class="survey-title">
-      <div v-if="survey" class="title-container">
+    <div class="survey-title flex-ctr">
+      <div v-if="survey" class="title-container flex-ctr">
         <input 
           class="text-input tc-i no-border-i xlfs-i"
           v-model="surveyTitle"
@@ -171,7 +171,7 @@ provide('survey', {
       </div>
       <h1 v-else="loading || error">{{ title }}</h1>
     </div>
-    <div v-if="survey" class="survey-details">
+    <div v-if="survey" class="survey-details flex-ctr">
       <textarea 
         name="surveyDesc" 
         id=""
@@ -186,13 +186,13 @@ provide('survey', {
     </div>
   </header>
   <main>
-    <ul v-if="survey">
+    <ul v-if="survey" class="flex-ctr">
       <Question 
         v-for="question in survey.questions" 
         :key="question.id" 
         :qID="question.id"/>
     </ul>
-    <div class="btn-container">
+    <div class="btn-container flex-ctr">
       <button type="button" class="style-btn add-btn" @click="addQuestion">+</button>
     </div>
   </main>
@@ -201,19 +201,13 @@ provide('survey', {
 <style scoped>
 header{
   margin-bottom: 2rem;
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   box-sizing: border-box;
 }
 
 ul{
   list-style: none;
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 1rem;
   margin: 0;
   padding: 0;
@@ -231,10 +225,7 @@ ul{
 }
 
 .btn-container{
-  display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
   gap: 0.5rem;
 }
 
@@ -254,35 +245,8 @@ main{
   margin: 0;
 }
 
-.delete-btn{
-  font-family: var(--regular-font);
-  padding: 0.5rem 1rem;
-  color: var(--orange);
-  background-color: var(--background-colour);
-  border: 1px solid var(--orange);
-  border-radius: 0.25rem;
-  transition: all 0.2s;
-}
-
-.delete-btn:hover{
-  color: var(--background-colour);
-  background-color: var(--orange);
-  transform: translateY(-0.25rem);
-  box-shadow: 0 0.25rem 0 var(--text-colour);
-}
-
-.delete-btn:active{
-  color: var(--orange);
-  background-color: var(--background-colour);
-  transform: translateY(0);
-  box-shadow: 0 0 0 var(--text-colour);
-}
-
 .survey-details{
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   box-sizing: border-box;
   width: 100%;
   padding-top: 1rem;
@@ -317,22 +281,16 @@ textarea{
 }
 
 .survey-title{
-  display: flex;
   flex-direction: row;
   width: 100%;
-  justify-content: center;
-  align-items: center;
   margin-top: 1rem;
   gap: 1rem;
 }
 
 .title-container {
-  display: flex;
   flex-direction: row;
-  align-items: center;
   gap: 1rem;
   width: 100%;
-  justify-content: center;
 }
 
 .title-container:hover .svg,
@@ -347,10 +305,7 @@ textarea{
 }
 
 nav{
-  display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
   gap: 0.5rem;
   background-color: var(--text-colour);
   border-radius: 0.5rem;

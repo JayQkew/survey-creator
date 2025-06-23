@@ -99,13 +99,10 @@ async function handleLogin(e){
 </script>
 
 <template>
-  <!-- <header>
-    <h1 class="page-heading">Sign In</h1>
-  </header> -->
   <form @submit.prevent="onSubmit">
     <h2 v-if="state === 'login'">Log In</h2>
     <h2 v-else>Sign Up</h2>
-    <div class="inputs">
+    <div class="inputs flex-ctr">
       <div class="input-section">
         <label for="username">Username</label>
         <input 
@@ -169,10 +166,7 @@ form{
 }
 
 .inputs{
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 1rem;
 }
 

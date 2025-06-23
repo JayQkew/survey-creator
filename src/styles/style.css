@@ -1,4 +1,4 @@
-@import './assets/webfonts/red-hat-font.css';
+@import '../assets/webfonts/red-hat-font.css';
 
 :root {
   --light: #F2FAFF;
@@ -65,17 +65,19 @@ a:hover {
   color: var(--blue-3);
 }
 
-.dark a:hover {
-  color: var(--blue-3);
-}
-
 .page-heading{
-    font-size: xx-large;
-    margin: 1rem;
+  font-size: xx-large;
+  margin: 1rem;
 }
 
 .subheading{
-    font-size: large;
+  font-size: large;
+}
+
+.flex-ctr{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 main{

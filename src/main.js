@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import './style.css'
+import './styles/style.css'
 import './styles/button.css'
 import './styles/text-input.css'
 import router from './router.js'
