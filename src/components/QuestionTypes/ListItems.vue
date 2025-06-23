@@ -84,7 +84,11 @@ async function add(){
              <li v-for="i in items" :key="i.id">
                  <div class="list-item">
                      {{ i.value }}
-                     <button @click="remove(i)" class="remove-btn">x</button>
+                     <button 
+                        class="accent-btn rc-btn mfs-btn" 
+                        @click="remove(i)">
+                        x
+                    </button>
                  </div>
              </li>
         </ul>
@@ -94,7 +98,11 @@ async function add(){
                 v-model="newItemName" 
                 placeholder="option"
                 @keyup.enter="add">
-            <button @click="add" class="add-btn style-btn">Add</button>
+            <button 
+                class="add-btn accent-btn gc-btn mfs-btn" 
+                @click="add">
+                Add
+            </button>
          </div>
     </section>
 </template>
@@ -140,27 +148,6 @@ input{
 
 .add-btn{
     height: 100%;
-}
-
-.add-btn:hover{
-    transform: translateY(-0.25rem);
-    box-shadow: 0 0.25rem 0 var(--text-colour);
-}
-
-.remove-btn{
-    transition: all 0.2s;
-}
-
-.remove-btn:hover{
-    color: var(--background-colour);
-    background-color: var(--text-colour);
-}
-
-button{
-    background-color: var(--background-colour);
-    color: var(--text-colour);
-    border: var(--border);
-    border-radius: 0.25rem;
 }
 
 </style>
