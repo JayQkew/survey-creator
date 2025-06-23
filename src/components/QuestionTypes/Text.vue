@@ -27,24 +27,20 @@ function handleInput(e){
 <template>
     <input 
         v-if="isRespondent"
+        class="tc-i mp-i sfs-i"
         type="text" 
         placeholder="Type response here" 
-        class="type-response"
         @change="handleInput">
     <input 
         v-else
+        class="tc-i mp-i sfs-i"
         type="text"
-        placeholder="Type response here"
-        class="type-response">
+        placeholder="Type response here">
 </template>
 
 <style scoped>
-.type-response{
-    font-size: 1rem;
-    box-sizing: border-box;
-    width: 100%;
+input{
     height: 2.5rem;
-    border-radius: 0.25rem;
     margin-right: 3rem;
 }
 </style>
