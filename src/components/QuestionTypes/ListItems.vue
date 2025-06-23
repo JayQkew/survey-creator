@@ -94,6 +94,7 @@ async function add(){
         </ul>
         <div class="add-item">
             <input 
+                class="tc-i sp-i sfs-i"
                 type="text" 
                 v-model="newItemName" 
                 placeholder="option"
@@ -138,11 +139,7 @@ ul{
 }
 
 input{
-    box-sizing: border-box;
-    width: 100%;
     height: 100%;
-    border: var(--border);
-    border-radius: 0.25rem;
     padding-left: 0.5rem;
 }
 

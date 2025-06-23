@@ -87,6 +87,7 @@ async function deleteQuestion(){
                 <h2 v-if="isRespondent">{{ q.question_text }}</h2>
                 <input 
                     v-else 
+                    class="tc-i mp-i lfs-i"
                     type="text" 
                     name="quesiton-name" 
                     id="question-name"
@@ -200,14 +201,6 @@ li{
 
 .question-aside p{
     text-align: left;
-}
-
-input{
-    font-size: 1.5rem;
-    box-sizing: border-box;
-    width: 100%;
-    border-radius: 0.25rem;
-    padding: 0.5rem;
 }
 
 button{
