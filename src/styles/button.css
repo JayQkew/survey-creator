@@ -6,6 +6,10 @@ button:hover{
     cursor: pointer;
 }
 
+.btn-trans{
+    transition: var(--transition);
+}
+
 .tc-btn{
     background-color: var(--background-colour);
     color: var(--text-colour);

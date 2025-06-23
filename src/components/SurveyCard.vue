@@ -26,7 +26,11 @@ function goToSurvey(){
         <section class="card" @click="goToSurvey">
             <header>
                 <h2>{{ survey.title }}</h2>
-                <button class="style-btn" @click.stop="copyLink"><div class="svg" v-html="copySvg"></div></button>
+                <button 
+                    class="accent-btn sa-btn tc-btn mfs-btn " 
+                    @click.stop="copyLink">
+                    <div class="svg" v-html="copySvg"></div>
+                </button>
             </header>
             <section class="container">
                 <!-- <p>respondents: {{ survey.respondents }}</p> -->
@@ -89,11 +93,9 @@ label{
     margin: 0.25rem 0;
 }
 
-.style-btn{
+button{
     display: flex;
     align-items: center;
-    font-size: 1rem;
-    border-radius: 0.25rem;
     padding: 0.5rem;
     height: 100%;
 }
