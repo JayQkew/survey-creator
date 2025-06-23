@@ -109,19 +109,21 @@ async function handleLogin(e){
       <div class="input-section">
         <label for="username">Username</label>
         <input 
-          class="tc-i sp-i sfs-i"
+          class="tc-i sp-i sfs-i lfw-i"
           type="text" 
           id="username" />
       </div>
       <div class="input-section">
         <label for="password">Password</label>
         <input 
+          class="tc-i sp-i sfs-i lfw-i"
           type="password" 
           id="password" />
       </div>
       <div v-if="state === 'signup'" class="input-section">
         <label for="email">Email</label>
         <input 
+          class="tc-i sp-i sfs-i lfw-i"
           type="text" 
           id="email" />
       </div>
@@ -132,7 +134,7 @@ async function handleLogin(e){
     <div v-if="state === 'login'">
       <p>I dont have an account: <a @click="changeState">Sign up</a></p>
       <button 
-        class="accent-btn tc-btn sa-btn sp-btn sfs-btn"
+        class="accent-btn tc-btn sa-btn sp-btn mfs-btn"
         type="submit">
         Log in
       </button>
@@ -140,7 +142,7 @@ async function handleLogin(e){
     <div v-if="state === 'signup'">
       <p>I have an account: <a @click="changeState">Log In</a></p>
       <button 
-        class="accent-btn tc-btn sa-btn sp-btn sfs-btn" 
+        class="accent-btn tc-btn sa-btn sp-btn mfs-btn" 
         type="submit" >
         Sign up
       </button>
@@ -194,10 +196,9 @@ input{
   height: 2rem;
 }
 
-button{
-  font-size: 1rem;
-  border: var(--border);
-  border-radius: 0.25rem;
-  padding: 0.5rem 1rem;
+label{
+  font-weight: lighter;
 }
+
+
 </style>
