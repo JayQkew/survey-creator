@@ -1,4 +1,4 @@
-input{
+.text-input{
     font-family: var(--regular-font);
     box-sizing: border-box;
     width: 100%;

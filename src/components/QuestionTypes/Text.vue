@@ -27,13 +27,13 @@ function handleInput(e){
 <template>
     <input 
         v-if="isRespondent"
-        class="tc-i mp-i sfs-i"
+        class="text-input tc-i mp-i sfs-i"
         type="text" 
         placeholder="Type response here" 
         @change="handleInput">
     <input 
         v-else
-        class="tc-i mp-i sfs-i"
+        class="text-input tc-i mp-i sfs-i"
         type="text"
         placeholder="Type response here">
 </template>

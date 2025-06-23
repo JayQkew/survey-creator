@@ -87,7 +87,7 @@ async function deleteQuestion(){
                 <h2 v-if="isRespondent">{{ q.question_text }}</h2>
                 <input 
                     v-else 
-                    class="tc-i mp-i lfs-i"
+                    class="text-input tc-i mp-i lfs-i"
                     type="text" 
                     name="quesiton-name" 
                     id="question-name"

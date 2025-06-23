@@ -163,7 +163,7 @@ provide('survey', {
     <div class="survey-title">
       <div v-if="survey" class="title-container">
         <input 
-          class="tc-i no-border-i xlfs-i"
+          class="text-input tc-i no-border-i xlfs-i"
           v-model="surveyTitle"
           @blur="updateTitle"
           @keydown="onKeyDownTitle">

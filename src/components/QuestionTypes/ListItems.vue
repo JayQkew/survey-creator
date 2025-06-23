@@ -94,7 +94,7 @@ async function add(){
         </ul>
         <div class="add-item">
             <input 
-                class="tc-i sp-i sfs-i"
+                class="text-input tc-i sp-i sfs-i"
                 type="text" 
                 v-model="newItemName" 
                 placeholder="option"
