@@ -43,7 +43,6 @@ body.light {
   --text-colour: var(--dark);
   --background-colour: var(--light);
   --border: 1px solid var(--dark);
-
 }
 
 body.dark {
@@ -70,32 +69,6 @@ a:hover {
   color: var(--blue-3);
 }
 
-input{
-  font-family: var(--regular-font);
-  background-color: var(--background-colour);
-  color: var(--text-colour);
-  border: var(--border);
-}
-
-.style-btn{
-    font-family: var(--regular-font);
-    background-color: var(--background-colour);
-    color: var(--text-colour);
-    border: var(--border);
-    cursor: pointer;
-    transition: all 200ms;
-}
-
-.style-btn:hover{
-    transform: translateY(-0.5rem);
-    box-shadow: 0 0.5rem 0 var(--text-colour);
-}
-
-.style-btn:active{
-    transform: translateY(0);
-    box-shadow: 0 0 0 var(--text-colour);
-}
-
 .page-heading{
     font-size: 3rem;
     margin: 1rem;
@@ -116,10 +89,6 @@ main{
 ::selection{
   background-color: var(--text-colour);
   color: var(--background-colour);
-}
-
-button:hover{
-  cursor: pointer;
 }
 
 select:hover{

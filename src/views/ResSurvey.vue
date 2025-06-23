@@ -29,7 +29,6 @@ async function fetchSurveyData(){
         }
 
         survey.value = await response.json()
-        // console.log(survey.value)
         questions.value = survey.value.questions
         console.log(questions.value)
         responses.value = questions.value.map(q => {
@@ -97,7 +96,11 @@ provide('responses', {
                 :key="question.id"
                 :qID="question.id"/>
         </ul>
-        <button @click="submitResponse" class="submit-btn">Sumbit</button>
+        <button 
+            class="accent-btn gc-btn sp-btn mfs-btn" 
+            @click="submitResponse">
+            Sumbit
+        </button>
     </main>
 </template>
 
@@ -125,29 +128,7 @@ ul{
     margin: 0;
 }
 
-.submit-btn{
+button{
     margin: 1rem;
-    font-family: var(--regular-font);
-    font-weight: bolder;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--blue-1);
-    background-color: var(--background-colour);
-    color: var(--blue-1);
-    border-radius: 0.25rem;
-    transition: all 0.2s;
-}
-
-.submit-btn:hover{
-    color: var(--background-colour);
-    background-color: var(--blue-1);
-    transform: translateY(-0.25rem);
-    box-shadow: 0 0.25rem 0 var(--text-colour);
-}
-
-.submit-btn:active{
-    color: var(--blue-1);
-    background-color: var(--background-colour);
-    transform: translateY(0);
-    box-shadow: 0 0 0 var(--text-colour);
 }
 </style>

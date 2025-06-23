@@ -70,13 +70,13 @@ button:hover{
 }
 
 .sfs-btn{
-    font-size: 0.5rem;
+    font-size: small;
 }
 
 .mfs-btn{
-    font-size: 1rem;
+    font-size: medium;
 }
 
 .lfs-btn{
-    font-size: 1.5rem;
+    font-size: x-large;
 }

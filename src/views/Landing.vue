@@ -13,9 +13,8 @@ function handleGetStarted(){
         <div>
             <h1>Surveys at your<br>Convenience</h1>
             <p>Make surveys in the blink of an eye</p>
-            <LandingBtn txt="Get Started" @show-signin="openSignIn"/>
             <button 
-                class="accent-btn gc-btn la-btn lp-btn lfs-btn" 
+                class="accent-btn gc-btn lp-btn lfs-btn" 
                 @click="handleGetStarted">
                 Get Started
             </button>
@@ -47,30 +46,25 @@ header{
     width: 100%;
 }
 
-header h1{
+h1{
     font-size: 5rem;
     margin: 1rem;
 }
 
 header p{
-    font-size: 1.5rem;
+    font-size: x-large;
     margin: 1rem;
-}
-
-h1 span{
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 0.15rem;
 }
 
 h2{
     margin-top: 0;
-    font-size: 2rem;
+    font-size: xx-large;
     width: 100%;
 }
 
 p{
     margin-bottom: 0;
-    font-size: 1rem;
+    font-size: medium;
     width: 100%;
 }
 
