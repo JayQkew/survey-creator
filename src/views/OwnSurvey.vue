@@ -221,22 +221,12 @@ ul{
 
 .add-btn{
   font-family: 'Ubuntu Bold';
-  font-size: 1.5rem;
+  font-size: x-large;
   margin-top: 0.5rem;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 100%;
   padding: 0;
-  text-align: center;
-}
-
-.save-btn{
-  font-family: 'Ubuntu Bold';
-  font-size: 1.5rem;
-  margin-top: 0.5rem;
-  height: 2.5rem;
-  border-radius: 100vw;
-  padding-inline: 1rem;
   text-align: center;
 }
 
@@ -307,7 +297,7 @@ input{
 textarea{
   box-sizing: border-box;
   font-family: var(--regular-font);
-  font-size: 1rem;
+  font-size: medium;
   background-color: var(--background-colour);
   color: var(--text-colour);
   border: var(--border);

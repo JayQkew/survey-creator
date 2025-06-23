@@ -109,21 +109,21 @@ async function handleLogin(e){
       <div class="input-section">
         <label for="username">Username</label>
         <input 
-          class="tc-i sp-i sfs-i lfw-i"
+          class="text-input tc-i sp-i sfs-i lfw-i"
           type="text" 
           id="username" />
       </div>
       <div class="input-section">
         <label for="password">Password</label>
         <input 
-          class="tc-i sp-i sfs-i lfw-i"
+          class="text-input tc-i sp-i sfs-i lfw-i"
           type="password" 
           id="password" />
       </div>
       <div v-if="state === 'signup'" class="input-section">
         <label for="email">Email</label>
         <input 
-          class="tc-i sp-i sfs-i lfw-i"
+          class="text-input tc-i sp-i sfs-i lfw-i"
           type="text" 
           id="email" />
       </div>
@@ -151,13 +151,6 @@ async function handleLogin(e){
 </template>
 
 <style scoped>
-main{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1rem;
-}
-
 a{
   cursor: pointer;
 }
@@ -197,7 +190,7 @@ input{
 }
 
 label{
-  font-weight: lighter;
+  font-size: small;
 }
 
 

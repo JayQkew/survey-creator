@@ -84,12 +84,7 @@ h2{
 }
 
 p{
-    font-size: 1rem;
-    margin: 0.25rem 0;
-}
-
-label{
-    font-size: 1.25rem;
+    font-size: medium;
     margin: 0.25rem 0;
 }
 

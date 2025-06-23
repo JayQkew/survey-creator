@@ -64,7 +64,7 @@ select{
     color: var(--text-colour);
     box-sizing: border-box;
     font: var(--regular-font);
-    font-size: 1rem;
+    font-size: medium;
     height: 100%;
     width: 100%;
     border: var(--border);
