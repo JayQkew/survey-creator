@@ -141,19 +141,10 @@ app.post('/api/update-survey', (req, res) => {
 
             const insertPromises = survey.questions.map(q => {
                 return new Promise((resolve, reject) => {
-                    // db.query(
-                    //     'INSERT INTO responses (question_id, answer) VALUES (?, ?)',
-                    //     [r.qId, JSON.stringify(r.answer)],
-                    //     (err, result) => {
-                    //         if (err) return reject(err);
-                    //         resolve(result);
-                    //     }
-                    // );
-
                     if (typeof q.id === 'number'){
                         db.query(
                             'UPDATE questions SET question_text = ?, type = ?, type_detail = ? WHERE id = ?',
-                            [q.question_text, q.type, q.type, q.type_detail, q.id],
+                            [q.question_text, q.type, q.type_detail, q.id],
                             (err, res) => {
                                 if(err) return reject(err);
                                 resolve(res)
@@ -161,19 +152,28 @@ app.post('/api/update-survey', (req, res) => {
                         )
                     } else{
                         db.query(
-                            'INSERT INTO questions (survey_id, type, type_detail) VALUES (?, ?, ?)',
-                            [id, 'single', JSON.stringify({options: []})],
-                            (err, result) => {
-                                if (err) return res.status(500).json({ error: err.message })
-                                res.status(201).json({message: 'Question added with id'})
+                            'INSERT INTO questions (survey_id, type, type_detail, question_text) VALUES (?, ?, ?, ?)',
+                            [survey.id, q.type, q.type_detail, q.question_text],
+                            (err, res) => {
+                                if (err) return reject(err);
+                                resolve(res)
                         })
                     }
                 });
             });
 
-            res.json({
-                message: 'Survey Updated Successfully'
-            })
+            Promise.all(insertPromises)
+                .then(() => {
+                    db.query('SELECT * FROM questions WHERE survey_id = ?', [survey.id], (err, questions) => {
+                        if (err) return res.status(500).json({ error: err.message });
+
+                        const filtered = questions.filter(q => !.includes(q.id));
+                    });
+                    res.status(201).json({ message: "All responses submitted successfully" });
+                })
+                .catch(err => {
+                    res.status(500).json({ error: err.message });
+                });
         }
     )
 })
