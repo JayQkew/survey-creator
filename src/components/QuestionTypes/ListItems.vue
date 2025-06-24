@@ -10,73 +10,15 @@ const { survey } = inject('survey')
 const question = survey.value.questions.find((q) => q.id === props.q.id)
 const newItemName = ref('')
 const items = ref(JSON.parse(question.type_detail).options)
-const loading = ref(false)
-const error = ref(null)
 
-async function remove(item){
-    console.log('Removing item:', item)
-    loading.value = true
-    error.value = null
-
-    try{
-        const response = await fetch('http://localhost:3000/api/delete-from-list', { 
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({qId: props.q.id, id: item.id})
-        })
-        
-        if(!response.ok){
-            const errorData = await response.json()
-            throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.error || 'Unknown error'}`)
-        }
-        
-        const result = await response.json() // Fixed: await the response.json()
-        console.log('Delete response:', result)
-        
-        const i = items.value.findIndex(i => i.id === item.id)
-        if(i > -1) {
-            items.value.splice(i, 1)
-            console.log('Item removed from local array')
-        }
-        
-    } catch (err){
-        console.error('Remove error:', err)
-        error.value = err.message
-    } finally{
-        loading.value = false
+function remove(item){
+    const i = items.value.findIndex(i => i.id === item.id)
+    if(i > -1) {
+        items.value.splice(i, 1)
+        question.type_detail = JSON.stringify({options: items.value})
+        console.log(survey.value)
     }
 }
-
-// async function add(){
-//     const newId = 'opt_' + Date.now()
-//     loading.value = true
-//     error.value = null
-
-//     if(newItemName.value != '') items.value.push({
-//         id: newId,
-//         value: newItemName.value
-//     })
-
-//     try{
-//         const response = await fetch('http://localhost:3000/api/add-to-list', {
-//             method: 'POST',
-//             headers: {'Content-Type': 'application/json'},
-//             body: JSON.stringify({id: props.q.id, value: {
-//                 id: newId,
-//                 value: newItemName.value
-//             }})
-//         })
-//         if(!response.ok){
-//             throw new Error('HTTP error! status: ' + response.status)
-//         }
-//         console.log(response.json())
-//     } catch (err) {
-//         error.value = err
-//     } finally {
-//         loading.value = false
-//         newItemName.value = ''
-//     }
-// }
 
 function add(){
     const newId = 'opt_' + Date.now()
