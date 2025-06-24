@@ -1,16 +1,17 @@
 <script setup>
-import { ref } from 'vue';
+import { inject, ref } from 'vue';
 
 const props = defineProps({
     q: Object
 })
 
+const { survey } = inject('survey')
+
+const question = survey.value.questions.find((q) => q.id === props.q.id)
 const newItemName = ref('')
-const items = ref(JSON.parse(props.q.type_detail).options)
+const items = ref(JSON.parse(question.type_detail).options)
 const loading = ref(false)
 const error = ref(null)
-
-console.log(items.value)
 
 async function remove(item){
     console.log('Removing item:', item)
@@ -46,33 +47,47 @@ async function remove(item){
     }
 }
 
-async function add(){
+// async function add(){
+//     const newId = 'opt_' + Date.now()
+//     loading.value = true
+//     error.value = null
+
+//     if(newItemName.value != '') items.value.push({
+//         id: newId,
+//         value: newItemName.value
+//     })
+
+//     try{
+//         const response = await fetch('http://localhost:3000/api/add-to-list', {
+//             method: 'POST',
+//             headers: {'Content-Type': 'application/json'},
+//             body: JSON.stringify({id: props.q.id, value: {
+//                 id: newId,
+//                 value: newItemName.value
+//             }})
+//         })
+//         if(!response.ok){
+//             throw new Error('HTTP error! status: ' + response.status)
+//         }
+//         console.log(response.json())
+//     } catch (err) {
+//         error.value = err
+//     } finally {
+//         loading.value = false
+//         newItemName.value = ''
+//     }
+// }
+
+function add(){
     const newId = 'opt_' + Date.now()
-    loading.value = true
-    error.value = null
-
-    if(newItemName.value != '') items.value.push({
-        id: newId,
-        value: newItemName.value
-    })
-
-    try{
-        const response = await fetch('http://localhost:3000/api/add-to-list', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({id: props.q.id, value: {
-                id: newId,
-                value: newItemName.value
-            }})
+    if(newItemName.value != '') {
+        items.value.push({
+            id: newId,
+            value: newItemName.value
         })
-        if(!response.ok){
-            throw new Error('HTTP error! status: ' + response.status)
-        }
-        console.log(response.json())
-    } catch (err) {
-        error.value = err
-    } finally {
-        loading.value = false
+
+        question.type_detail = JSON.stringify({options: items.value})
+        console.log(survey.value)
         newItemName.value = ''
     }
 }

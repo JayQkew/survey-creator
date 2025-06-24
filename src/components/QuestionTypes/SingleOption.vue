@@ -10,7 +10,6 @@ const props = defineProps({
     q: Object
 })
 
-console.log(props.q.type_detail)
 const choices = JSON.parse(props.q.type_detail).options.map(choice => {
     return {value: choice, id: props.q.id}
 })

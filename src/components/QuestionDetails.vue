@@ -9,7 +9,6 @@ const typeValue = ref(props.q.type)
 
 async function handleChange(){
     props.q.type = typeValue.value
-    console.log(survey.value)
 }
  
 watch(typeValue, () =>{
