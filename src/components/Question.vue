@@ -17,9 +17,6 @@ const { survey } = inject('survey')
 const q = survey.value.questions.find((q) => q.id === props.qID)
 const qText = ref(q.question_text)
 
-const loading = ref(false)
-const error = ref(null)
-
 function updateText(){
     q.question_text = qText.value
 }

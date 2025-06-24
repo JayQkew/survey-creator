@@ -155,6 +155,7 @@ app.post('/api/update-question-name', (req, res) => {
     );
 });
 
+//depricate
 app.post('/api/update-question-type', (req, res) => {
     const { id, question_type } = req.body
     

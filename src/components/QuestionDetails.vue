@@ -1,35 +1,15 @@
 <script setup>
-import { ref, watch } from 'vue'
-
+import { inject, ref, watch } from 'vue'
+const { survey } = inject('survey')
 const props = defineProps({
     q: Object
 })
 
 const typeValue = ref(props.q.type)
-const loading = ref(false)
-const error = ref(null)
 
 async function handleChange(){
     props.q.type = typeValue.value
-    loading.value = true
-    error.value = null
-    try{
-        const response = await fetch('http://localhost:3000/api/update-question-type', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                id: props.q.id,
-                question_type: typeValue.value
-            })
-        })
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`)
-        }
-    } catch (err) {
-        error.value = err
-    } finally {
-        loading.value = false
-    }
+    console.log(survey.value)
 }
  
 watch(typeValue, () =>{
