@@ -117,21 +117,8 @@ async function deleteSurvey(){
 }
 
 async function updateTitle(){
-  try{
-    const response = await fetch('http://localhost:3000/api/update-survey-title', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        id: survey.value.id,
-        newTitle: surveyTitle.value
-      })
-    })
-    if (!response.ok){
-      throw new Error('HTTP error! status: ' + response.status)
-    }
-  } catch (err) {
-    console.log(err)
-  }
+  survey.value.title = surveyTitle.value;
+  console.log(survey.value)
 }
 
 async function updateDescription(){
@@ -154,7 +141,6 @@ async function updateDescription(){
 
 function onKeyDownTitle(e) {
     if (e.key === 'Enter') {
-        updateTitle()
         e.target.blur()
     }
 }

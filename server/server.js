@@ -185,6 +185,7 @@ app.post('/api/delete-question', (req, res) => {
     )
 })
 
+//depricate
 app.post('/api/add-to-list', (req, res) => {
     const { id, value } = req.body;
     if (!id || !value) return res.status(400).json({ error: 'Missing id or value' });
@@ -225,6 +226,7 @@ app.post('/api/add-to-list', (req, res) => {
     );
 });
 
+//depricate
 app.post('/api/delete-from-list', (req, res) => {
     const { qId, id } = req.body;
     

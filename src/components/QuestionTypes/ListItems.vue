@@ -29,7 +29,6 @@ function add(){
         })
 
         question.type_detail = JSON.stringify({options: items.value})
-        console.log(survey.value)
         newItemName.value = ''
     }
 }
