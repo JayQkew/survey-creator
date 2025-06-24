@@ -15,23 +15,6 @@ const title = ref('')
 const surveyTitle = ref("New Survey")
 const surveyDescription = ref("Survey Description")
 
-function addQuestion(){
-  const now = new Date()
-  const baseQuestion = {
-    id: now.toString(),
-    survey_id: survey.value.id,
-    question_text: '',
-    public_responses: 0,
-    type: 'single',
-    type_detail: JSON.stringify({
-      options: []
-    })
-  }
-
-  survey.value.questions.push(baseQuestion)
-  console.log(survey.value)
-}
-
 async function fetchSurveyData(){
   const data = route.params.surveyId;
 
@@ -87,12 +70,55 @@ async function deleteSurvey(){
   }
 }
 
-async function updateTitle(){
+async function saveSurvey(){
+  loading.value = true
+  error.value = null
+
+  try{
+    const response = await fetch('http://localhost:3000/api/update-survey', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({survey: survey.value})
+    })
+    if(!response.ok){
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    survey.value = await response.json()
+    surveyTitle.value = survey.value.title
+    surveyDescription.value = survey.value.description
+  } catch (err) {
+    error.value = err
+  } finally{
+    loading.value = false
+    fetchSurveyData()
+  }
+}
+
+function addQuestion(){
+  const now = new Date()
+  const baseQuestion = {
+    id: now.toString(),
+    survey_id: survey.value.id,
+    question_text: '',
+    public_responses: 0,
+    type: 'single',
+    type_detail: JSON.stringify({
+      options: []
+    })
+  }
+
+  survey.value.questions.push(baseQuestion)
+  console.log(survey.value)
+}
+
+function updateTitle(){
   survey.value.title = surveyTitle.value;
   console.log(survey.value)
 }
 
-async function updateDescription(){
+function updateDescription(){
   survey.value.description = surveyDescription.value;
   console.log(survey.value)
 }
@@ -138,11 +164,18 @@ provide('survey', {
         v-model="surveyDescription"
         @blur="updateDescription">
       </textarea>
-      <button 
-        class="accent-btn rc-btn sp-btn mfs-btn" 
-        @click="deleteSurvey">
-        Delete
-      </button>
+      <div class="flex-ctr-r btn-container">
+        <button 
+          class="accent-btn rc-btn sp-btn mfs-btn" 
+          @click="deleteSurvey">
+          Delete
+        </button>
+        <button
+          class="accent-btn gc-btn sp-btn mfs-btn"
+          @click="saveSurvey">
+          Save
+        </button>
+      </div>
     </div>
   </header>
   <main>

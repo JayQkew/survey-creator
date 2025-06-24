@@ -126,6 +126,26 @@ app.post('/api/get-survey', (req, res) => {
     });
 })
 
+app.post('/api/update-survey', (req, res) => {
+    const { survey } = req.body;
+    console.log(survey)
+
+    db.query(
+        'UPDATE surveys SET title = ?, description = ? WHERE id = ?',
+        [survey.title, survey.description, survey.id],
+        (err, results) => {
+            if (err) return res.status(500).json({ error: err.message });
+            if (!results || results.length === 0) {
+                return res.status(404).json({ error: 'Survey not found' });
+            } 
+
+            res.json({
+                message: 'Survey Updated Successfully'
+            })
+        }
+    )
+})
+
 //depricate
 app.post('/api/add-question', (req, res) => {
     const { id } = req.body
@@ -332,6 +352,7 @@ app.post('/api/add-survey', (req, res) => {
     })
 })
 
+//depricate
 app.post('/api/update-survey-title', (req, res) => {
     const { id, newTitle } = req.body;
     if (!id || !newTitle) {
@@ -347,6 +368,7 @@ app.post('/api/update-survey-title', (req, res) => {
     );
 });
 
+//depricate
 app.post('/api/update-survey-desc', (req, res) => {
     const { id, newDesc } = req.body;
     if (!id || !newDesc){
