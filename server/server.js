@@ -139,6 +139,38 @@ app.post('/api/update-survey', (req, res) => {
                 return res.status(404).json({ error: 'Survey not found' });
             } 
 
+            const insertPromises = survey.questions.map(q => {
+                return new Promise((resolve, reject) => {
+                    // db.query(
+                    //     'INSERT INTO responses (question_id, answer) VALUES (?, ?)',
+                    //     [r.qId, JSON.stringify(r.answer)],
+                    //     (err, result) => {
+                    //         if (err) return reject(err);
+                    //         resolve(result);
+                    //     }
+                    // );
+
+                    if (typeof q.id === 'number'){
+                        db.query(
+                            'UPDATE questions SET question_text = ?, type = ?, type_detail = ? WHERE id = ?',
+                            [q.question_text, q.type, q.type, q.type_detail, q.id],
+                            (err, res) => {
+                                if(err) return reject(err);
+                                resolve(res)
+                            }
+                        )
+                    } else{
+                        db.query(
+                            'INSERT INTO questions (survey_id, type, type_detail) VALUES (?, ?, ?)',
+                            [id, 'single', JSON.stringify({options: []})],
+                            (err, result) => {
+                                if (err) return res.status(500).json({ error: err.message })
+                                res.status(201).json({message: 'Question added with id'})
+                        })
+                    }
+                });
+            });
+
             res.json({
                 message: 'Survey Updated Successfully'
             })
