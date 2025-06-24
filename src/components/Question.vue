@@ -20,30 +20,6 @@ const qText = ref(q.question_text)
 const loading = ref(false)
 const error = ref(null)
 
-async function updateQuestion() {
-    q.question_text = qText.value;
-    loading.value = true;
-    error.value = null;
-    try {
-        const response = await fetch('http://localhost:3000/api/update-question-name', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                id: q.id,
-                question_text: qText.value
-            })
-        });
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        // Optionally handle response
-    } catch (err) {
-        error.value = err;
-    } finally {
-        loading.value = false;
-    }
-}
-
 function updateText(){
     q.question_text = qText.value
 }
@@ -54,32 +30,10 @@ function onKeyDown(e) {
     }
 }
 
-async function deleteQuestion(){
-    const index = survey.value.questions.findIndex((question) => question.id === props.qID)
-    if (index !== -1) {
-        survey.value.questions.splice(index, 1)
-    }
-
-    loading.value = true
-    error.value = null
-    try{
-        const response = await fetch('http://localhost:3000/api/delete-question', {
-            method: 'POST',
-            headers: { 'Content-type': 'application/json' },
-            body: JSON.stringify({
-                id: props.qID
-            })
-        })
-        if(!response.ok){
-            throw new Error(`HTTP error! status: ${response.status}`)
-        }
-    } catch (err){
-        error.value = err
-    } finally{
-        loading.value = false
-    }
+function deleteQuestion(){
+    survey.value.questions = survey.value.questions.filter((question) => question.id != q.id)
+    console.log(survey.value)
 }
-
 </script>
 
 <template>

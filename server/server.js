@@ -126,6 +126,7 @@ app.post('/api/get-survey', (req, res) => {
     });
 })
 
+//depricate
 app.post('/api/add-question', (req, res) => {
     const { id } = req.body
 
@@ -138,6 +139,7 @@ app.post('/api/add-question', (req, res) => {
     })
 })
 
+//depricate
 app.post('/api/update-question-name', (req, res) => {
     const { id, question_text } = req.body;
     if (!id || !question_text) {
@@ -169,6 +171,7 @@ app.post('/api/update-question-type', (req, res) => {
     )
 })
 
+//depricate
 app.post('/api/delete-question', (req, res) => {
     const { id } = req.body
     db.query(
