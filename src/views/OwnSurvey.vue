@@ -17,31 +17,47 @@ const title = ref('')
 const surveyTitle = ref("New Survey")
 const surveyDescription = ref("Survey Description")
 
-async function addQuestion(){
-  const surveyId = survey.value.id
-  loading.value = true
-  error.value = null
+// async function addQuestion(){
+//   const surveyId = survey.value.id
+//   loading.value = true
+//   error.value = null
 
-  title.value = 'Loading...'
-  console.log(surveyId)
-  try{
-    const response = await fetch('http://localhost:3000/api/add-question', {
-      method: 'POST',
-      headers: { 'Content-Type' : 'application/json' },
-      body: JSON.stringify({id: surveyId})
+//   title.value = 'Loading...'
+//   console.log(surveyId)
+//   try{
+//     const response = await fetch('http://localhost:3000/api/add-question', {
+//       method: 'POST',
+//       headers: { 'Content-Type' : 'application/json' },
+//       body: JSON.stringify({id: surveyId})
+//     })
+
+//     if(!response.ok){
+//       throw new Error(`HTTP error! status: ${response.status}`)
+//     }
+
+//   } catch (err) {
+//     error.value = err
+//     title.value = `Error: ${err}`
+//   } finally {
+//     loading.value = false
+//     await fetchSurveyData()
+//   }
+// }
+
+function addQuestion(){
+  const baseQuestion = {
+    id: -1,
+    survey_id: survey.value.id,
+    question_text: '',
+    public_responses: 0,
+    type: 'single',
+    type_detail: JSON.stringify({
+      options: []
     })
-
-    if(!response.ok){
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-
-  } catch (err) {
-    error.value = err
-    title.value = `Error: ${err}`
-  } finally {
-    loading.value = false
-    await fetchSurveyData()
   }
+
+  survey.value.questions.push(baseQuestion)
+  console.log(survey.value)
 }
 
 async function fetchSurveyData(){
@@ -66,7 +82,6 @@ async function fetchSurveyData(){
     console.log(survey.value)
     surveyTitle.value = survey.value.title
     surveyDescription.value = survey.value.description
-    // survey.value = surveyData.value.find(x => x.id === route.params.surveyId)
   } catch (e){
     error.value = e
   } finally{
