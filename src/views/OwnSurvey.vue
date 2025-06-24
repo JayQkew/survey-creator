@@ -10,39 +10,10 @@ const router = useRouter();
 const survey = ref(null)
 const loading = ref(true)
 const error = ref(null)
-const surveyData = ref(null)
-
 const title = ref('')
 
 const surveyTitle = ref("New Survey")
 const surveyDescription = ref("Survey Description")
-
-// async function addQuestion(){
-//   const surveyId = survey.value.id
-//   loading.value = true
-//   error.value = null
-
-//   title.value = 'Loading...'
-//   console.log(surveyId)
-//   try{
-//     const response = await fetch('http://localhost:3000/api/add-question', {
-//       method: 'POST',
-//       headers: { 'Content-Type' : 'application/json' },
-//       body: JSON.stringify({id: surveyId})
-//     })
-
-//     if(!response.ok){
-//       throw new Error(`HTTP error! status: ${response.status}`)
-//     }
-
-//   } catch (err) {
-//     error.value = err
-//     title.value = `Error: ${err}`
-//   } finally {
-//     loading.value = false
-//     await fetchSurveyData()
-//   }
-// }
 
 function addQuestion(){
   const now = new Date()
@@ -122,21 +93,8 @@ async function updateTitle(){
 }
 
 async function updateDescription(){
-  try{
-    const response = await fetch('http://localhost:3000/api/update-survey-desc', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        id: survey.value.id,
-        newDesc: surveyDescription.value
-      })
-    })
-    if (!response.ok){
-      throw new Error('HTTP error! status: ' + response.status)
-    }
-  } catch (err) {
-    console.log(err)
-  }
+  survey.value.description = surveyDescription.value;
+  console.log(survey.value)
 }
 
 function onKeyDownTitle(e) {
