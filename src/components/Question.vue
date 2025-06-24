@@ -15,14 +15,13 @@ const props = defineProps({
 
 const { survey } = inject('survey')
 const q = survey.value.questions.find((q) => q.id === props.qID)
-
-const name = ref(q.question_text)
+const qText = ref(q.question_text)
 
 const loading = ref(false)
 const error = ref(null)
 
 async function updateQuestion() {
-    q.question_text = name.value;
+    q.question_text = qText.value;
     loading.value = true;
     error.value = null;
     try {
@@ -31,7 +30,7 @@ async function updateQuestion() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 id: q.id,
-                question_text: name.value
+                question_text: qText.value
             })
         });
         if (!response.ok) {
@@ -45,9 +44,12 @@ async function updateQuestion() {
     }
 }
 
+function updateText(){
+    q.question_text = qText.value
+}
+
 function onKeyDown(e) {
     if (e.key === 'Enter') {
-        updateQuestion()
         e.target.blur()
     }
 }
@@ -91,8 +93,8 @@ async function deleteQuestion(){
                     type="text" 
                     name="quesiton-name" 
                     id="question-name"
-                    v-model="name" 
-                    @blur="updateQuestion"
+                    v-model="qText" 
+                    @blur="updateText"
                     @keydown="onKeyDown"/>
                 <button 
                     v-if="!isRespondent"

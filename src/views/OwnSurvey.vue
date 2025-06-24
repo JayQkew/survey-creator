@@ -45,8 +45,9 @@ const surveyDescription = ref("Survey Description")
 // }
 
 function addQuestion(){
+  const now = new Date()
   const baseQuestion = {
-    id: -1,
+    id: now.toString(),
     survey_id: survey.value.id,
     question_text: '',
     public_responses: 0,
