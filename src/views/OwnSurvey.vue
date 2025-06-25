@@ -92,7 +92,7 @@ async function saveSurvey(){
     error.value = err
   } finally{
     loading.value = false
-    fetchSurveyData()
+    // fetchSurveyData()
   }
 }
 

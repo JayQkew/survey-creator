@@ -136,27 +136,32 @@ app.post('/api/update-survey', (req, res) => {
             if (err) return res.status(500).json({ error: err.message });
             if (!results || results.length === 0) {
                 return res.status(404).json({ error: 'Survey not found' });
-            } 
+            }
 
-            const insertPromises = survey.questions.map(q => {
+            const updatedQuestions = [];
+
+            const insertPromises = survey.questions.map((q, i) => {
                 return new Promise((resolve, reject) => {
-                    if (typeof q.id === 'number'){
+                    if (typeof q.id === 'number') {
                         db.query(
                             'UPDATE questions SET question_text = ?, type = ?, type_detail = ? WHERE id = ?',
                             [q.question_text, q.type, q.type_detail, q.id],
-                            (err, res) => {
-                                if(err) return reject(err);
-                                resolve(res)
+                            (err, res2) => {
+                                if (err) return reject(err);
+                                updatedQuestions[i] = { ...q, id: q.id };
+                                resolve(res2);
                             }
-                        )
-                    } else{
+                        );
+                    } else {
                         db.query(
                             'INSERT INTO questions (survey_id, type, type_detail, question_text) VALUES (?, ?, ?, ?)',
                             [survey.id, q.type, q.type_detail, q.question_text],
-                            (err, res) => {
+                            (err, res2) => {
                                 if (err) return reject(err);
-                                resolve(res)
-                        })
+                                updatedQuestions[i] = { ...q, id: res2.insertId };
+                                resolve(res2);
+                            }
+                        );
                     }
                 });
             });
@@ -166,36 +171,42 @@ app.post('/api/update-survey', (req, res) => {
                     db.query('SELECT * FROM questions WHERE survey_id = ?', [survey.id], (err, questions) => {
                         if (err) return res.status(500).json({ error: err.message });
 
-                        const filter = questions.filter(q => !survey.questions.some(sq => q.id === sq.id));
+                        const currentIds = updatedQuestions.map(q => q.id);
+                        const filter = questions.filter(q => !currentIds.includes(q.id));
                         const deleteQuestions = filter.map(q => {
                             return new Promise((resolve, reject) => {
                                 db.query(
                                     'DELETE FROM questions WHERE id = ?',
                                     [q.id],
-                                    (err, res) => {
+                                    (err, res3) => {
                                         if (err) return reject(err);
-                                        resolve(res)
+                                        resolve(res3);
                                     }
-                                )
-                            })
-                        })
-                        
+                                );
+                            });
+                        });
+
                         Promise.all(deleteQuestions)
                             .then(() => {
-                                console.log('Quesitons Deleted')
+                                db.query('SELECT * FROM questions WHERE survey_id = ?', [survey.id], (err, finalQuestions) => {
+                                    if (err) return res.status(500).json({ error: err.message });
+                                    res.status(201).json({
+                                        ...survey,
+                                        questions: finalQuestions
+                                    });
+                                });
                             })
-                            .catch(err => [
-                                console.log('Delete error: '+ err)
-                            ])
+                            .catch(err => {
+                                res.status(500).json({ error: err.message });
+                            });
                     });
-                    res.status(201).json({ message: "All responses submitted successfully" });
                 })
                 .catch(err => {
                     res.status(500).json({ error: err.message });
                 });
         }
-    )
-})
+    );
+});
 
 app.post('/api/delete-survey', (req, res) => {
     const { id } = req.body
