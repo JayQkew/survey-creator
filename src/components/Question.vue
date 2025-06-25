@@ -10,7 +10,7 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 const isRespondent = computed(() => route.path.includes('res'))
 const props = defineProps({
-    qID: String
+    qID: Number
 })
 
 const { survey } = inject('survey')

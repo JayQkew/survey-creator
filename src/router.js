@@ -40,19 +40,17 @@ const routes = [
                     {
                         path: 'about',
                         name: 'surveyor-about',
-                        component: About
+                        component: About,
                     },
                     {
                         path: 'survey/:surveyId',
                         name: 'survey-edit',
                         component: SurveyEdit,
-                        props: true
                     },
                     {
                         path: 'survey/:surveyId/data',
                         name: 'survey-data',
                         component: SurveyData,
-                        props: true
                     },
                     {
                         path: '',

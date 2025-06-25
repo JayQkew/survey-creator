@@ -29,9 +29,9 @@ const route = useRoute()
         >
           Responses
         </router-link>
-        <router-link >Share</router-link>
-        <router-link >Save</router-link>
-        <router-link >Delete</router-link>
+        <a href="">Share</a>
+        <a href="">Save</a>
+        <a href="">Delete</a>
     </nav>
 </template>
 
