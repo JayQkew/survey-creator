@@ -210,7 +210,7 @@ app.post('/api/update-survey', (req, res) => {
 
 app.post('/api/delete-survey', (req, res) => {
     const { id } = req.body
-    
+
     if (!id) {
         return res.status(400).json({ error: 'Survey ID is required' })
     }
@@ -304,6 +304,20 @@ app.post('/api/submit-response', (req, res) => {
             res.status(500).json({ error: err.message });
         });
 });
+
+app.post('/api/get-responses', (req, res) => {
+    //survey id
+    const { id } = req.body
+
+    //look for all questions that are involved
+    db.query(
+        'SELECT * FROM questions WHERE survey_id = ?', 
+        [id], 
+        (err, questions) => {
+            if (err) return res.status(500).json({ error: err.message });
+            console.log(questions);
+    });
+})
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`)
