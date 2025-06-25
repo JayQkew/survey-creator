@@ -3,6 +3,7 @@ import { onMounted, provide, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import Question from '../components/Question.vue'
 import editSvg from '../assets/pen-solid.svg?raw'
+import SurveyNav from '../components/SurveyNav.vue'
 
 const route = useRoute();
 const router = useRouter();
@@ -92,7 +93,6 @@ async function saveSurvey(){
     error.value = err
   } finally{
     loading.value = false
-    // fetchSurveyData()
   }
 }
 
@@ -140,12 +140,7 @@ provide('survey', {
 
 <template>
   <header class="flex-ctr-c">
-    <nav class="flex-ctr-r">
-        <router-link >Edit</router-link>
-        <router-link >Responses</router-link>
-        <router-link >Share</router-link>
-        <router-link >Delete</router-link>
-    </nav>
+    <SurveyNav />
     <div class="survey-title flex-ctr-r">
       <div v-if="survey" class="title-container flex-ctr-r">
         <input 
@@ -186,7 +181,7 @@ provide('survey', {
         :qID="question.id"/>
     </ul>
     <div class="btn-container flex-ctr-r">
-      <button type="button" class="style-btn add-btn" @click="addQuestion">+</button>
+      <button type="button" class="accent-btn sa-btn tc-btn .lp-btn lfs-btn add-btn" @click="addQuestion">+</button>
     </div>
   </main>
 </template>
@@ -204,19 +199,13 @@ ul{
   padding: 0;
 }
 
-.add-btn{
-  font-family: 'Ubuntu Bold';
-  font-size: x-large;
-  margin-top: 0.5rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 100%;
-  padding: 0;
-  text-align: center;
+.btn-container{
+  margin-top: 1rem;
+  gap: 1rem;
 }
 
-.btn-container{
-  gap: 0.5rem;
+.add-btn{
+  width: 100%;
 }
 
 .detail-container{
@@ -289,28 +278,5 @@ textarea{
 .svg svg{
   fill: currentColor;
   stroke: currentColor;
-}
-
-nav{
-  gap: 0.5rem;
-  background-color: var(--text-colour);
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  margin-block: 1rem
-}
-
-nav a{
-  background-color: var(--text-colour);
-  font-weight: bold;
-  color: var(--background-colour);
-  padding: 0.25rem 0.5rem;
-  border: 1px solid var(--text-colour);
-  border-radius: 0.25rem;  
-  transition: var(--transition);
-}
-
-nav a:hover{
-  background-color: var(--background-colour);
-  color: var(--text-colour);
 }
 </style>
