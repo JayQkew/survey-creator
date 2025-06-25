@@ -67,7 +67,7 @@ async function deleteSurvey(){
       throw new Error('HTTP error! status: ' + response.status)
     }
 
-    router.push('/surveyor/123/home')
+    router.push('/surveyor/1/home')
   } catch (err){
     error.value = err
     title.value = `Error: ${err}`

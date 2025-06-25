@@ -211,13 +211,36 @@ app.post('/api/update-survey', (req, res) => {
 app.post('/api/delete-survey', (req, res) => {
     const { id } = req.body
     
+    if (!id) {
+        return res.status(400).json({ error: 'Survey ID is required' })
+    }
+
     db.query(
-        'DELETE FROM surveys WHERE id = ?',
+        'DELETE FROM questions WHERE survey_id = ?',
         [id],
-        (err, result) => {
-            if (err) return res.status(500).json({ error: err.message })
-            res.status(200).json({ message: 'Survey Deleted'})
-        }        
+        (err, questionsResult) => {
+            if (err) {
+                console.error('Error deleting questions:', err)
+                return res.status(500).json({ error: err.message })
+            }
+
+            db.query(
+                'DELETE FROM surveys WHERE id = ?',
+                [id],
+                (err, surveyResult) => { 
+                    if (err) {
+                        console.error('Error deleting survey:', err)
+                        return res.status(500).json({ error: err.message })
+                    }
+                    
+                    res.status(200).json({ 
+                        message: 'Survey deleted successfully',
+                        deletedQuestions: questionsResult.affectedRows,
+                        deletedSurveys: surveyResult.affectedRows
+                    })
+                }        
+            )
+        }
     )
 })
 
