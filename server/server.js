@@ -166,7 +166,27 @@ app.post('/api/update-survey', (req, res) => {
                     db.query('SELECT * FROM questions WHERE survey_id = ?', [survey.id], (err, questions) => {
                         if (err) return res.status(500).json({ error: err.message });
 
-                        const filtered = questions.filter(q => !survey.questions.some(sq => q.id === sq.id));
+                        const filter = questions.filter(q => !survey.questions.some(sq => q.id === sq.id));
+                        const deleteQuestions = filter.map(q => {
+                            return new Promise((resolve, reject) => {
+                                db.query(
+                                    'DELETE FROM questions WHERE id = ?',
+                                    [q.id],
+                                    (err, res) => {
+                                        if (err) return reject(err);
+                                        resolve(res)
+                                    }
+                                )
+                            })
+                        })
+                        
+                        Promise.all(deleteQuestions)
+                            .then(() => {
+                                console.log('Quesitons Deleted')
+                            })
+                            .catch(err => [
+                                console.log('Delete error: '+ err)
+                            ])
                     });
                     res.status(201).json({ message: "All responses submitted successfully" });
                 })
