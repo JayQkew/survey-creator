@@ -128,7 +128,6 @@ app.post('/api/get-survey', (req, res) => {
 
 app.post('/api/update-survey', (req, res) => {
     const { survey } = req.body;
-    console.log(survey)
 
     db.query(
         'UPDATE surveys SET title = ?, description = ? WHERE id = ?',
@@ -167,7 +166,7 @@ app.post('/api/update-survey', (req, res) => {
                     db.query('SELECT * FROM questions WHERE survey_id = ?', [survey.id], (err, questions) => {
                         if (err) return res.status(500).json({ error: err.message });
 
-                        const filtered = questions.filter(q => !.includes(q.id));
+                        const filtered = questions.filter(q => !survey.questions.some(sq => q.id === sq.id));
                     });
                     res.status(201).json({ message: "All responses submitted successfully" });
                 })
