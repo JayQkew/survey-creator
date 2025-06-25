@@ -2,8 +2,8 @@ import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
 
 import Home from './views/Home.vue'
 import About from './views/About.vue'
-import OwnSurvey from './views/OwnSurvey.vue'
-import Data from './views/Data.vue'
+import SurveyEdit from './views/SurveyEdit.vue'
+import SurveyData from './views/SurveyData.vue'
 import ResSurvey from './views/ResSurvey.vue'
 import Error from './views/Error.vue'
 import Landing from './views/Landing.vue'
@@ -44,16 +44,29 @@ const routes = [
                     },
                     {
                         path: 'survey/:surveyId',
-                        name: 'survey-details',
-                        component: OwnSurvey,
+                        name: 'survey',
+                        component: SurveyEdit, // or a parent component that handles routing
                         props: true,
                         children: [
                             {
+                                path: '',
+                                name: 'survey-details',
+                                component: SurveyEdit,
+                                props: true
+                            },
+                            {
                                 path: 'data',
                                 name: 'survey-data',
-                                component: Data,
+                                component: SurveyData,
+                                props: true
                             }
                         ]
+                    },
+                    {
+                        path: 'survey/:surveyId/data',
+                        name: 'survey-data',
+                        component: SurveyData,
+                        props: true
                     },
                     {
                         path: '',
