@@ -1,10 +1,11 @@
 <script setup>
 import SurveyCard from '../components/SurveyCard.vue'
 import {inject, onMounted, ref} from 'vue'
-import { useRouter } from 'vue-router';
-const router = useRouter()
 
 const user = inject('user')
+const props = defineProps({
+  id: String
+})
 
 const surveys = ref(null)
 const loading = ref(true)
