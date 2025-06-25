@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, provide, ref } from 'vue'
+import { inject, onMounted, provide, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import Question from '../components/Question.vue'
 import editSvg from '../assets/pen-solid.svg?raw'
@@ -7,6 +7,7 @@ import SurveyNav from '../components/SurveyNav.vue'
 
 const route = useRoute();
 const router = useRouter();
+const user = inject('user')
 
 const survey = ref(null)
 const loading = ref(true)
@@ -140,7 +141,7 @@ provide('survey', {
 
 <template>
   <header class="flex-ctr-c">
-    <SurveyNav />
+    <SurveyNav :surveyId="route.params.surveyId" :id="user.id"/>
     <div class="survey-title flex-ctr-r">
       <div v-if="survey" class="title-container flex-ctr-r">
         <input 

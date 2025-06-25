@@ -1,10 +1,34 @@
 <script setup>
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 </script>
 
 <template>
     <nav class="flex-ctr-r">
-        <router-link >Edit</router-link>
-        <router-link >Responses</router-link>
+        <router-link 
+          :to="{
+            name: 'survey-edit', 
+            params: { 
+              id: route.params.id, 
+              surveyId: route.params.surveyId 
+            }
+          }"
+        >
+          Edit
+        </router-link>
+        
+        <router-link 
+          :to="{
+            name: 'survey-data', 
+            params: { 
+              id: route.params.id, 
+              surveyId: route.params.surveyId 
+            }
+          }"
+        >
+          Responses
+        </router-link>
         <router-link >Share</router-link>
         <router-link >Save</router-link>
         <router-link >Delete</router-link>

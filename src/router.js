@@ -44,23 +44,9 @@ const routes = [
                     },
                     {
                         path: 'survey/:surveyId',
-                        name: 'survey',
-                        component: SurveyEdit, // or a parent component that handles routing
-                        props: true,
-                        children: [
-                            {
-                                path: '',
-                                name: 'survey-details',
-                                component: SurveyEdit,
-                                props: true
-                            },
-                            {
-                                path: 'data',
-                                name: 'survey-data',
-                                component: SurveyData,
-                                props: true
-                            }
-                        ]
+                        name: 'survey-edit',
+                        component: SurveyEdit,
+                        props: true
                     },
                     {
                         path: 'survey/:surveyId/data',

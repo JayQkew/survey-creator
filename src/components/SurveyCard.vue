@@ -13,7 +13,7 @@ function copyLink(){
 
 function goToSurvey(){
     router.push({
-        name:"survey-details", 
+        name:"survey-edit", 
         params: {
             surveyId: props.survey.id
         }
