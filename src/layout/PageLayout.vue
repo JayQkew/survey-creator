@@ -41,5 +41,6 @@ main{
 
 .main-container{
     min-height: 84vh;
+    z-index: -100;
 }
 </style>

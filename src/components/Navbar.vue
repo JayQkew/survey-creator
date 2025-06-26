@@ -70,13 +70,17 @@ function lightMode(){
 }
 
 nav{
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     height: 4rem;
-    border-bottom: var(--border);
+    border: var(--border);
+    border-radius: 0.5rem;
+    margin: 1rem;
+    position: relative;
+    z-index: 2;
 }
 
 section{

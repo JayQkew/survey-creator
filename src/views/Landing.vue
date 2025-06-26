@@ -9,6 +9,12 @@ function handleGetStarted(){
 </script>
 
 <template>
+    <!-- <div class="img-container">
+        <img 
+            class="background"
+            src="../assets/logo/mojo-v3-2-color-text-light-logo-only copy.png" 
+            alt="logo background">
+    </div> -->
     <header class="flex-ctr-c">
         <div>
             <h1>Surveys at your<br>Convenience</h1>
@@ -37,9 +43,15 @@ function handleGetStarted(){
 </template>
 
 <style scoped>
+body{
+    background-image: '../assets/logo/mojo-v3-2-color-text-light-logo-only copy.png';
+}
+
 header{
     height: 80vh;
     width: 100%;
+    position: relative;
+    z-index: 2;
 }
 
 h1{
