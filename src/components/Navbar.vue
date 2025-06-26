@@ -2,6 +2,7 @@
 import { inject, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import modeSvg from '../assets/circle-half-stroke-solid.svg?raw'
+// ../assets/logo/mojo-v3-2-color-text-dark-logo-only copy.png
 
 const user = inject('user')
 
@@ -22,6 +23,9 @@ function lightMode(){
 <template>
     <nav>
         <section v-if="page === 'user'">
+            <div class="logo-container flex-ctr">
+                <img class="logo" src="../assets/logo/mojo-v3-2-color-text-dark-logo-only copy.png"/>
+            </div>
             <div>
                 <router-link class="flex-ctr" :to="{name: 'surveyor-home', params: {id: user.id}}">Home</router-link>
             </div>
@@ -29,7 +33,10 @@ function lightMode(){
                 <router-link class="flex-ctr" :to="{name: 'surveyor-about', params: {id: user.id}}">About</router-link>
             </div>
         </section>
-        <div  v-if="page === 'landing'">
+        <div  v-if="page === 'landing'" class="flex-ctr-r">
+            <div class="logo-container flex-ctr">
+                <img class="logo" src="../assets/logo/mojo-v3-2-color-text-dark-logo-only copy.png"/>
+            </div>
             <router-link class="flex-ctr" :to="{name: 'landing-page'}">Home</router-link>
         </div>
         <div  v-if="page === 'landing'" class="other">
@@ -39,6 +46,9 @@ function lightMode(){
             <router-link class="flex-ctr" :to="{name: 'sign-in-page'}">Sign In</router-link>
         </div>
         <section v-if="page === 'res'">
+            <div class="logo-container flex-ctr">
+                <img class="logo" src="../assets/logo/mojo-v3-2-color-text-dark-logo-only copy.png"/>
+            </div>
             <router-link class="flex-ctr" :to="{name: 'landing-page'}">Mojo Surveys</router-link>
         </section>
         <button class="flex-ctr" v-if="page === 'user' || page === 'res'" @click="lightMode">
@@ -48,6 +58,17 @@ function lightMode(){
 </template>
 
 <style scoped>
+.logo-container{
+    box-sizing: border-box;
+    width: 7.5rem;
+    height: 100%;
+    padding: 0.5rem;
+}
+
+.logo{
+    width: 100%;
+}
+
 nav{
     display: flex;
     flex-direction: row;
