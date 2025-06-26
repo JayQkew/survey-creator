@@ -8,13 +8,8 @@ function handleGetStarted(){
 }
 </script>
 
-<template>
-    <!-- <div class="img-container">
-        <img 
-            class="background"
-            src="../assets/logo/mojo-v3-2-color-text-light-logo-only copy.png" 
-            alt="logo background">
-    </div> -->
+<template class="background">
+    <img class="logo" src="../assets/logo/mojo-v3-2-color-text-dark-logo-only copy.png"/>
     <header class="flex-ctr-c">
         <div>
             <h1>Surveys at your<br>Convenience</h1>
@@ -43,8 +38,8 @@ function handleGetStarted(){
 </template>
 
 <style scoped>
-body{
-    background-image: '../assets/logo/mojo-v3-2-color-text-light-logo-only copy.png';
+.logo {
+    object-fit: cover;
 }
 
 header{

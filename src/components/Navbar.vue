@@ -79,8 +79,10 @@ nav{
     border: var(--border);
     border-radius: 0.5rem;
     margin: 1rem;
-    position: relative;
+    position: sticky;
+    top: 1rem;
     z-index: 2;
+    overflow: hidden;
 }
 
 section{
