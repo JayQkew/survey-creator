@@ -40,7 +40,7 @@ main{
 }
 
 .main-container{
-    min-height: 84vh;
+    min-height: 100vh;
     z-index: -100;
 }
 </style>

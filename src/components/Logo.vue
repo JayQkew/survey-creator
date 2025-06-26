@@ -10,12 +10,12 @@
 <style scoped>
 .logo-container{
     box-sizing: border-box;
-    width: 7.5rem;
-    height: 100%;
+    width: fit-content;
+    height: 3rem;
     padding: 0.5rem;
 }
 
 .logo{
-    width: 100%;
+    height: 100%;
 }
 </style>

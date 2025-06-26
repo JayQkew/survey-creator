@@ -27,9 +27,11 @@ function lightMode(){
             <router-link class="flex-ctr" :to="{name: 'surveyor-home', params: {id: user.id}}">Home</router-link>
             <router-link class="flex-ctr" :to="{name: 'surveyor-about', params: {id: user.id}}">About</router-link>
         </section>
-        <button class="flex-ctr" @click="lightMode">
-            <div class="svg" v-html="modeSvg"></div>
-        </button>
+        <section class="flex-ctr">
+            <button class="flex-ctr" @click="lightMode">
+                <div class="svg" v-html="modeSvg"></div>
+            </button>
+        </section>
     </nav>
     <nav v-else-if="page === 'landing'">
         <section class="flex-ctr-r">
@@ -48,9 +50,11 @@ function lightMode(){
             <Logo/>
             <router-link class="flex-ctr" :to="{name: 'landing-page'}">Mojo Surveys</router-link>
         </section>
-        <button class="flex-ctr" @click="lightMode">
-            <div class="svg" v-html="modeSvg"></div>
-        </button>
+        <section class="flex-ctr">
+            <button class="flex-ctr" @click="lightMode">
+                <div class="svg" v-html="modeSvg"></div>
+            </button>
+        </section>
     </nav>
 </template>
 
@@ -61,12 +65,14 @@ nav{
     justify-content: space-between;
     align-items: center;
     height: 4rem;
-    border-radius: 0.5rem;
     margin: 1rem;
+    border: var(--border);
+    border-radius: 0.5rem;
     position: sticky;
     top: 1rem;
     z-index: 3;
-    overflow: hidden;
+    background-color: var(--background-colour);
+    color: var(--text-colour);
 }
 
 section{
@@ -74,8 +80,6 @@ section{
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
-    padding: 0px;
-    margin: 0px;
     height: 100%;
 }
 
@@ -91,42 +95,29 @@ section{
 
 button{
     font-family: var(--regular-font);
-    background-color: transparent;
+    background-color: var(--background-colour);
     color: var(--text-colour);
-    border-radius: 0;
+    border-radius: 0.25rem;
     border: none;
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
     padding: 0px;
-    margin: 0px;
+    margin: 0.5rem;
     transition: var(--transition);
 }
-
 button:hover{
     background-color: var(--text-colour);
     color: var(--background-colour);
 }
 
 a{
+    font-weight: bold;
     color: var(--text-colour);
-    border-right: var(--border);
-    width: 7.5rem;
-    height: 4rem;
-    padding: 0px;
-    margin: 0px;
+    height: 3rem;
+    padding-inline: 1rem;
+    margin: 0.5rem;
+    border-radius: 0.25rem;
     transition: var(--transition);
-}
-
-nav div:last-child a{
-    border-right: none;
-    border-left: var(--border-width);
-    border-color: var(--background-colour);
-}
-
-nav section div:last-child a{
-    border-right: var(--border-width);
-    border-color: var(--background-colour);
-    border-left: none;
 }
 
 a:hover{
