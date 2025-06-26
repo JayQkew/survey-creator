@@ -2,12 +2,12 @@
 import { inject, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import modeSvg from '../assets/circle-half-stroke-solid.svg?raw'
-// ../assets/logo/mojo-v3-2-color-text-dark-logo-only copy.png
+import Logo from './Logo.vue';
 
 const user = inject('user')
 
 const route = useRoute()
-const page = ref('landing')
+const page = ref('')
 
 if(route.fullPath === '/') page.value = 'landing'
 else if(route.name === 'respondent') page.value = 'res'
@@ -21,68 +21,52 @@ function lightMode(){
 </script>
 
 <template>
-    <nav>
-        <section v-if="page === 'user'">
-            <div class="logo-container flex-ctr">
-                <img class="logo" src="../assets/logo/mojo-v3-2-color-text-dark-logo-only copy.png"/>
-            </div>
-            <div>
-                <router-link class="flex-ctr" :to="{name: 'surveyor-home', params: {id: user.id}}">Home</router-link>
-            </div>
-            <div>
-                <router-link class="flex-ctr" :to="{name: 'surveyor-about', params: {id: user.id}}">About</router-link>
-            </div>
+    <nav v-if="page === 'user'">
+        <section>
+            <Logo/>
+            <router-link class="flex-ctr" :to="{name: 'surveyor-home', params: {id: user.id}}">Home</router-link>
+            <router-link class="flex-ctr" :to="{name: 'surveyor-about', params: {id: user.id}}">About</router-link>
         </section>
-        <div  v-if="page === 'landing'" class="flex-ctr-r">
-            <div class="logo-container flex-ctr">
-                <img class="logo" src="../assets/logo/mojo-v3-2-color-text-dark-logo-only copy.png"/>
-            </div>
+        <button class="flex-ctr" @click="lightMode">
+            <div class="svg" v-html="modeSvg"></div>
+        </button>
+    </nav>
+    <nav v-else-if="page === 'landing'">
+        <section class="flex-ctr-r">
+            <Logo/>
             <router-link class="flex-ctr" :to="{name: 'landing-page'}">Home</router-link>
-        </div>
-        <div  v-if="page === 'landing'" class="other">
+        </section>
+        <section class="flex-ctr-r">
             <button class="flex-ctr" @click="lightMode">
                 <div class="svg" v-html="modeSvg"></div>
             </button>
             <router-link class="flex-ctr" :to="{name: 'sign-in-page'}">Sign In</router-link>
-        </div>
+        </section>
+    </nav>
+    <nav v-else-if="page === 'res'">
         <section v-if="page === 'res'">
-            <div class="logo-container flex-ctr">
-                <img class="logo" src="../assets/logo/mojo-v3-2-color-text-dark-logo-only copy.png"/>
-            </div>
+            <Logo/>
             <router-link class="flex-ctr" :to="{name: 'landing-page'}">Mojo Surveys</router-link>
         </section>
-        <button class="flex-ctr" v-if="page === 'user' || page === 'res'" @click="lightMode">
+        <button class="flex-ctr" @click="lightMode">
             <div class="svg" v-html="modeSvg"></div>
         </button>
     </nav>
 </template>
 
 <style scoped>
-.logo-container{
-    box-sizing: border-box;
-    width: 7.5rem;
-    height: 100%;
-    padding: 0.5rem;
-}
-
-.logo{
-    width: 100%;
-}
-
 nav{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: 4rem;
-    /* border: var(--border); */
     border-radius: 0.5rem;
     margin: 1rem;
     position: sticky;
     top: 1rem;
     z-index: 3;
     overflow: hidden;
-    backdrop-filter: blur(1rem);
 }
 
 section{
