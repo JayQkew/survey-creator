@@ -8,8 +8,10 @@ function handleGetStarted(){
 }
 </script>
 
-<template class="background">
-    <img class="logo" src="../assets/logo/mojo-v3-2-color-text-dark-logo-only copy.png"/>
+<template>
+    <div class="background">
+        <img src="../assets/logo/mojo-v3-2-color-text-dark-logo-only copy.png"/>
+    </div>
     <header class="flex-ctr-c">
         <div>
             <h1>Surveys at your<br>Convenience</h1>
@@ -38,8 +40,20 @@ function handleGetStarted(){
 </template>
 
 <style scoped>
-.logo {
+.background{
+    box-sizing: border-box;
+    position: absolute;
     object-fit: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+img{
+    position:relative;
+    object-fit: cover;
+    transform: translate(-5rem, -32.5rem)
 }
 
 header{
@@ -91,5 +105,7 @@ main{
     flex-direction: row;
     gap: 1rem;
     height: 10rem;
+    position: relative;
+    z-index: 2;
 }
 </style>
