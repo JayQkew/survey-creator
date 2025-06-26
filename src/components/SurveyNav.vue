@@ -27,7 +27,7 @@ const route = useRoute()
             }
           }"
         >
-          Responses
+          Report
         </router-link>
         <a href="">Share</a>
         <a href="">Save</a>

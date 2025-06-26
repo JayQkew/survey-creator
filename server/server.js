@@ -315,7 +315,11 @@ app.post('/api/get-responses', (req, res) => {
         [id], 
         (err, questions) => {
             if (err) return res.status(500).json({ error: err.message });
-            console.log(questions);
+            const questionIds = questions.map(q => {
+                return q.id
+            })
+
+            const responses = 
     });
 })
 
