@@ -70,19 +70,19 @@ function lightMode(){
 }
 
 nav{
-    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: 4rem;
-    border: var(--border);
+    /* border: var(--border); */
     border-radius: 0.5rem;
     margin: 1rem;
     position: sticky;
     top: 1rem;
-    z-index: 2;
+    z-index: 3;
     overflow: hidden;
+    backdrop-filter: blur(1rem);
 }
 
 section{
@@ -107,7 +107,7 @@ section{
 
 button{
     font-family: var(--regular-font);
-    background-color: var(--background-colour);
+    background-color: transparent;
     color: var(--text-colour);
     border-radius: 0;
     border: none;
@@ -135,11 +135,13 @@ a{
 
 nav div:last-child a{
     border-right: none;
-    border-left: var(--border);
+    border-left: var(--border-width);
+    border-color: var(--background-colour);
 }
 
 nav section div:last-child a{
-    border-right: var(--border);
+    border-right: var(--border-width);
+    border-color: var(--background-colour);
     border-left: none;
 }
 
