@@ -54,7 +54,13 @@ const updateSurvey = async (req, res) => {
         // Update questions if they exist
         let finalQuestions = []
         if (survey.questions && survey.questions.length > 0) {
-            finalQuestions = await Question.updateBatch(survey.id, survey.questions)
+            survey.questions.map(q => {
+                Question.update(q, (err, question) => {
+                    if(err) res.status(400).json({error: err.message})
+                    finalQuestions.push(question)
+                })
+            })
+            // finalQuestions = await Question.updateBatch(survey.id, survey.questions)
         }
 
         // Return updated survey with questions
@@ -92,9 +98,7 @@ const deleteSurvey = (req, res) => {
             }
             
             res.status(200).json({ 
-                message: 'Survey deleted successfully',
-                deletedQuestions: questionsResult.affectedRows,
-                deletedSurveys: surveyResult.affectedRows
+                message: 'Survey deleted successfully'
             })
         })        
     })
@@ -107,12 +111,12 @@ const createSurvey = (req, res) => {
         return res.status(400).json({ error: 'Surveyor Id and date is required'})
     }
 
-    Survey.create({ surveyorId, date }, (err, survey) => {
+    Survey.create({ surveyorId, date }, (err, results) => {
         if (err) return res.status(500).json({ error: err.message })
-        Survey.findById(survey.insertId, (err, results) => {
+        Survey.findById(results.insertId, (err, results) => {
             if (err) return res.status(500).json({ error: err.message })
             
-            const survey = surveys[0]
+            const survey = results[0]
             survey.questions = []
 
             res.status(201).json({

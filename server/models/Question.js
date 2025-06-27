@@ -10,8 +10,8 @@ class Question{
         )
     }
 
-    static update(questionId ,questionData, callback){
-        const { questionText, type, typeDetail } = questionData
+    static update(questionData, callback){
+        const {questionId, questionText, type, typeDetail } = questionData
         db.query(
             'UPDATE questions SET question_text = ?, type = ?, type_detail = ? WHERE id = ?',
             [questionText, type, typeDetail, questionId],
