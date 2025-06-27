@@ -42,7 +42,7 @@ async function fetchData(){
   loading.value = true
   error.value = null
   try{
-    const response = await fetch(`http://localhost:3000/api/user-surverys`, {
+    const response = await fetch(`http://localhost:3000/api/user-surveys`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ user: user.value })

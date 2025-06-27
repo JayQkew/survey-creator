@@ -4,12 +4,11 @@ const Question = require('../models/Question')
 const getUserSurveys = async (req, res) => {
     const user = req.body.user
 
-    try {
-        const surveys = await Survey.findWithQuestions(user.id)
+    Survey.findByUserId(user.id, async (err, surveys) => {
+        if (err) return res.status(500).json({ error: err.message });
         res.json(surveys)
-    } catch {
-        res.status(500).json({ error: error.message })
-    }
+    })
+
 }
 
 const getSurvey = (req, res) => {
