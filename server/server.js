@@ -4,20 +4,7 @@ const mysql = require('mysql')
 
 const app = express()
 const PORT = 3000
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'mojo_surveys'
-})
-
-db.connect((err) => {
-    if (err) {
-        console.error('Error connecting to the database:', err)
-        return
-    }
-    console.log('Connected to the database: ' + db.config.database)
-})
+const db = require('./config/database')
 
 app.use(cors())
 app.use(express.json())
