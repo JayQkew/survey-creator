@@ -30,6 +30,7 @@ app.post('/api/log-in', (req, res) => {
     )
 })
 
+//depricated
 app.post('/api/sign-up', (req, res) => {
     const { username, email, password} = req.body;
 
@@ -63,6 +64,7 @@ app.post('/api/sign-up', (req, res) => {
     )
 })
 
+//depricated
 app.post('/api/user-surverys', (req, res) => {
     const user = req.body.user;
     db.query(
@@ -95,6 +97,7 @@ app.post('/api/user-surverys', (req, res) => {
     );
 });
 
+//depricated
 app.post('/api/get-survey', (req, res) => {
     const surveyId = req.body.id;
     db.query('SELECT * FROM surveys WHERE id = ?', [surveyId], (err, results) => {
@@ -113,6 +116,7 @@ app.post('/api/get-survey', (req, res) => {
     });
 })
 
+//depricated
 app.post('/api/update-survey', (req, res) => {
     const { survey } = req.body;
 
@@ -195,6 +199,7 @@ app.post('/api/update-survey', (req, res) => {
     );
 });
 
+//depricated
 app.post('/api/delete-survey', (req, res) => {
     const { id } = req.body
 
@@ -231,6 +236,7 @@ app.post('/api/delete-survey', (req, res) => {
     )
 })
 
+//depricated
 app.post('/api/add-survey', (req, res) => {
     const { surveyorId, date } = req.body
 

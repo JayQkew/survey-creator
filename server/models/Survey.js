@@ -2,16 +2,16 @@ const db = require('../config/database')
 
 class Survey{
     static create(surveyData, callback){
-        const { surveyorId, date, description = ""} = surveyData
+        const { surveyorId, date } = surveyData
         db.query(
             'INSERT INTO surveys (surveyor_id, date, description) VALUES (?, ?, ?)',
-            [surveyorId, date, description],
+            [surveyorId, date, ""],
             callback
         )
     }
 
-    static update(surveyId, surveyData, callback){
-        const { title, description } = surveyData
+    static update(surveyData, callback){
+        const { surveyId, title, description } = surveyData
         db.query(
             'UPDATE surveys SET title = ?, description = ? WHERE id = ?',
             [title, description, surveyId],
@@ -43,34 +43,72 @@ class Survey{
         )
     }
 
-    static async findWithQuestions(userId) {
-        return new Promise((resolve, reject) => {
-            this.findByUserId(userId, async (err, surveys) => {
-                if (err) return reject(err)
+    static async updateBatch(surveyId, questions) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const updatedQuestions = []
 
-                try {
-                    const surveysWithQuestions = await Promise.all(
-                        surveys.map(survey => this.attachQuestions(survey))
-                    )
-                    resolve(surveysWithQuestions)
-                } catch (error) {
-                    reject(error)
-                }
-            })
-        })
-    }
+                // Process each question (update existing or create new)
+                const processPromises = questions.map((q, i) => {
+                    return new Promise((resolve, reject) => {
+                        if (typeof q.id === 'number') {
+                            // Update existing question
+                            this.update(q.id, {
+                                questionText: q.question_text,
+                                type: q.type,
+                                typeDetail: q.type_detail
+                            }, (err, result) => {
+                                if (err) return reject(err)
+                                updatedQuestions[i] = { ...q, id: q.id }
+                                resolve(result)
+                            })
+                        } else {
+                            // Create new question
+                            this.create({
+                                surveyId: surveyId,
+                                type: q.type,
+                                typeDetail: q.type_detail,
+                                questionText: q.question_text
+                            }, (err, result) => {
+                                if (err) return reject(err)
+                                updatedQuestions[i] = { ...q, id: result.insertId }
+                                resolve(result)
+                            })
+                        }
+                    })
+                })
 
-    static attachQuestions(survey) {
-        return new Promise((resolve, reject) => {
-            db.query(
-                'SELECT * FROM questions WHERE survey_id = ?',
-                [survey.id],
-                (err, questions) => {
+                await Promise.all(processPromises)
+
+                // Get all current questions to find ones to delete
+                this.findBySurveyId(surveyId, async (err, allQuestions) => {
                     if (err) return reject(err)
-                    survey.questions = questions
-                    resolve(survey)
-                }
-            )
+
+                    const currentIds = updatedQuestions.map(q => q.id)
+                    const questionsToDelete = allQuestions.filter(q => !currentIds.includes(q.id))
+
+                    // Delete removed questions
+                    const deletePromises = questionsToDelete.map(q => {
+                        return new Promise((resolve, reject) => {
+                            this.delete(q.id, (err, result) => {
+                                if (err) return reject(err)
+                                resolve(result)
+                            })
+                        })
+                    })
+
+                    await Promise.all(deletePromises)
+
+                    // Return final questions
+                    this.findBySurveyId(surveyId, (err, finalQuestions) => {
+                        if (err) return reject(err)
+                        resolve(finalQuestions)
+                    })
+                })
+
+            } catch (error) {
+                reject(error)
+            }
         })
     }
 }
