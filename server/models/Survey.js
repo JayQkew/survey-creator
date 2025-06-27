@@ -10,8 +10,8 @@ class Survey{
         )
     }
 
-    static update(surveyData, callback){
-        const { surveyId, title, description } = surveyData
+    static update(surveyId, surveyData, callback){
+        const { title, description } = surveyData
         db.query(
             'UPDATE surveys SET title = ?, description = ? WHERE id = ?',
             [title, description, surveyId],
@@ -74,3 +74,5 @@ class Survey{
         })
     }
 }
+
+module.exports = Survey
