@@ -9,9 +9,9 @@ function handleGetStarted(){
 </script>
 
 <template>
-    <div class="background">
+    <!-- <div class="background">
         <img src="../assets/logo/mojo-v3-2-color-text-dark-logo-only copy.png"/>
-    </div>
+    </div> -->
     <header class="flex-ctr-c">
         <div>
             <h1>Surveys at your<br>Convenience</h1>
