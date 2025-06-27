@@ -36,7 +36,7 @@ class Question{
     }
 
     static findBySurveyId(surveyId, callback){
-        db.questy(
+        db.query(
             'SELECT * FROM questions WHERE survey_id = ?',
             [surveyId],
             callback
