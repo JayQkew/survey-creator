@@ -79,6 +79,7 @@ async function deleteSurvey(){
 async function saveSurvey(){
   loading.value = true
   error.value = null
+  console.log(survey.value)
 
   try{
     const response = await fetch('http://localhost:3000/api/update-survey', {

@@ -33,16 +33,13 @@ const getSurvey = (req, res) => {
 const updateSurvey = async (req, res) => {
     const { survey } = req.body
 
-    if (!survey || !survey.id) {
-        return res.status(400).json({ error: 'Survey data and ID are required' })
+    if (!survey) {
+        return res.status(400).json({ error: 'Survey data is are required' })
     }
 
     try {
         await new Promise((resolve, reject) => {
-            Survey.update(survey.id, {
-                title: survey.title,
-                description: survey.description
-            }, (err, results) => {
+            Survey.update(survey, (err, results) => {
                 if (err) return reject(err)
                 if (!results || results.affectedRows === 0) {
                     return reject(new Error('Survey not found'))

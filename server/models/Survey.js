@@ -11,10 +11,10 @@ class Survey{
     }
 
     static update(surveyData, callback){
-        const { surveyId, title, description } = surveyData
+        const { id, title, description } = surveyData
         db.query(
             'UPDATE surveys SET title = ?, description = ? WHERE id = ?',
-            [title, description, surveyId],
+            [title, description, id],
             callback
         )
     }
