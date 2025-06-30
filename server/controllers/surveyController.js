@@ -157,22 +157,20 @@ const deleteSurvey = (req, res) => {
         return res.status(400).json({ error: 'Survey Id is required'})
     }
 
-    Question.deleteBySurveyId(id, (err, question) => {
-        if (err) {
-            console.error('Error deleting questions:', err)
-            return res.status(500).json({ error: err.message })
-        }
+    Admin.deleteWithSurvey(id, (err, admin) => {
+        if (err) return res.status(500).json({ error: err.message })
     
-        Survey.delete(id, (err, survey) => {
-            if (err) {
-                console.error('Error deleting survey:', err)
-                return res.status(500).json({ error: err.message })
-            }
-            
-            res.status(200).json({ 
-                message: 'Survey deleted successfully'
-            })
-        })        
+        Question.deleteBySurveyId(id, (err, question) => {
+            if (err) return res.status(500).json({ error: err.message })
+        
+            Survey.delete(id, (err, survey) => {
+                if (err) return res.status(500).json({ error: err.message })
+                
+                res.status(200).json({ 
+                    message: 'Survey deleted successfully'
+                })
+            })        
+        })
     })
 }
 
@@ -186,23 +184,15 @@ const createSurvey = (req, res) => {
     Survey.create((err, results) => {
         if (err) return res.status(500).json({ error: err.message })
         
-const surveyId = results.insertId
-        
-        // Fixed: Corrected callback parameters and error handling
+        const surveyId = results.insertId
+            
         Admin.create({ userId: surveyorId, surveyId: surveyId, roleId: 1}, (err, adminResults) => {
             if (err) {
-                console.error('Error creating admin record:', err)
-                // Clean up the survey if admin creation fails
-                Survey.delete(surveyId, () => {})
                 return res.status(500).json({ error: err.message })
             }
             
-            // Fetch the created survey
             Survey.findById(surveyId, (err, surveyResults) => {
-                if (err) {
-                    console.error('Error fetching created survey:', err)
-                    return res.status(500).json({ error: err.message })
-                }
+                if (err) return res.status(500).json({ error: err.message })
                 
                 if (!surveyResults || surveyResults.length === 0) {
                     return res.status(404).json({ error: 'Created survey not found' })
