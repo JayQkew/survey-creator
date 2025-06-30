@@ -1,14 +1,41 @@
 const Survey = require('../models/Survey')
 const Question = require('../models/Question')
+const Admin = require('../models/Admin')
 
 const getUserSurveys = async (req, res) => {
     const user = req.body.user
 
-    Survey.findByUserId(user.id, async (err, surveys) => {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json(surveys)
-    })
+    try {
+        // First, get the survey IDs for the user
+        const userSurveys = await new Promise((resolve, reject) => {
+            Admin.getSurveys(user.id, (err, result) => {
+                if (err) return reject(err)
+                resolve(result)
+            })
+        })
 
+        // Then, fetch each survey by ID
+        const surveyPromises = userSurveys.map(s => {
+            return new Promise((resolve, reject) => {
+                Survey.findById(s.survey_id, (err, results) => {
+                    if (err) return reject(err)
+                    // Assuming findById returns an array, get the first result
+                    resolve(results && results.length > 0 ? results[0] : null)
+                })
+            })
+        })
+
+        // Wait for all surveys to be fetched
+        const surveys = await Promise.all(surveyPromises)
+        
+        // Filter out any null results (surveys that weren't found)
+        const validSurveys = surveys.filter(survey => survey !== null)
+
+        res.json(validSurveys)
+    } catch (error) {
+        console.error('Error fetching user surveys:', error)
+        res.status(500).json({ error: error.message })
+    }
 }
 
 const getSurvey = (req, res) => {
