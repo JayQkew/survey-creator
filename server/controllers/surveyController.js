@@ -19,9 +19,8 @@ const getUserSurveys = async (req, res) => {
             return new Promise((resolve, reject) => {
                 Survey.findById(s.survey_id, (err, results) => {
                     if (err) return reject(err)
-                    // Assuming findById returns an array, get the first result
-                    resolve(results && results.length > 0 ? results[0] : null)
-                })
+                    const survey = results && results.length > 0 ? results[0] : null
+                    resolve(survey)                })
             })
         })
 
@@ -35,6 +34,22 @@ const getUserSurveys = async (req, res) => {
     } catch (error) {
         console.error('Error fetching user surveys:', error)
         res.status(500).json({ error: error.message })
+    }
+}
+
+const formatDateTime = (sqlDateTime) => {
+    if (!sqlDateTime) return null
+    
+    if (sqlDateTime instanceof Date) {
+        return sqlDateTime.toISOString()
+    }
+    
+    try {
+        const date = new Date(sqlDateTime)
+        return date.toISOString()
+    } catch (error) {
+        console.error('Error formatting datetime:', error)
+        return sqlDateTime
     }
 }
 
