@@ -4,7 +4,7 @@ class Survey{
     static create(surveyData, callback){
         const { surveyorId, date } = surveyData
         db.query(
-            'INSERT INTO surveys (surveyor_id, date, description) VALUES (?, ?, ?)',
+            'INSERT INTO survey (surveyor_id, date, description) VALUES (?, ?, ?)',
             [surveyorId, date, ""],
             callback
         )
@@ -13,7 +13,7 @@ class Survey{
     static update(surveyData, callback){
         const { id, title, description } = surveyData
         db.query(
-            'UPDATE surveys SET title = ?, description = ? WHERE id = ?',
+            'UPDATE survey SET title = ?, description = ? WHERE id = ?',
             [title, description, id],
             callback
         )
@@ -21,7 +21,7 @@ class Survey{
 
     static delete(surveyId, callback){
         db.query(
-            'DELETE FROM surveys WHERE id = ?',
+            'DELETE FROM survey WHERE id = ?',
             [surveyId],
             callback
         )
@@ -29,7 +29,7 @@ class Survey{
 
     static findByUserId(userId, callback){
         db.query(
-            'SELECT * FROM surveys WHERE surveyor_id = ?',
+            'SELECT * FROM survey WHERE surveyor_id = ?',
             [userId],
             callback
         )
@@ -37,7 +37,7 @@ class Survey{
 
     static findById(surveyId, callback){
         db.query(
-            'SELECT * FROM surveys WHERE id = ?',
+            'SELECT * FROM survey WHERE id = ?',
             [surveyId],
             callback
         )
