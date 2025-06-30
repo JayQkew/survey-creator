@@ -28,7 +28,7 @@ class User {
 
     static findByEmail(email, callback){
         db.query(
-            'SELECT * FROM users WHERE email = ?',
+            'SELECT * FROM user WHERE email = ?',
             [email],
             callback
         )

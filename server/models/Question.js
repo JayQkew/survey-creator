@@ -4,7 +4,7 @@ class Question{
     static create(questionData, callback){
         const { surveyId, type, typeDetail, questionText } = questionData
         db.query(
-            'INSERT INTO questions (survey_id, type, type_detail, question_text) VALUES (?, ?, ?, ?)',
+            'INSERT INTO question (survey_id, type, type_detail, question_text) VALUES (?, ?, ?, ?)',
             [surveyId, type, typeDetail, questionText],
             callback
         )
@@ -13,7 +13,7 @@ class Question{
     static update(questionData, callback){
         const {id, question_text, type, type_detail } = questionData
         db.query(
-            'UPDATE questions SET question_text = ?, type = ?, type_detail = ? WHERE id = ?',
+            'UPDATE question SET question_text = ?, type = ?, type_detail = ? WHERE id = ?',
             [question_text, type, type_detail, id],
             callback
         )
@@ -21,7 +21,7 @@ class Question{
 
     static delete(questionId, callback){
         db.query(
-            'DELETE FROM questions WHERE id = ?',
+            'DELETE FROM question WHERE id = ?',
             [questionId],
             callback
         )
@@ -29,7 +29,7 @@ class Question{
     
     static deleteBySurveyId(surveyId, callback){
         db.query(
-            'DELETE FROM questions WHERE survey_id = ?',
+            'DELETE FROM question WHERE survey_id = ?',
             [surveyId],
             callback
         )
@@ -37,7 +37,7 @@ class Question{
 
     static findBySurveyId(surveyId, callback){
         db.query(
-            'SELECT * FROM questions WHERE survey_id = ?',
+            'SELECT * FROM question WHERE survey_id = ?',
             [surveyId],
             callback
         )
