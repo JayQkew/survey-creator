@@ -4,7 +4,7 @@ class Question{
     static create(questionData, callback){
         const { surveyId, type, typeDetail, questionText } = questionData
         db.query(
-            'INSERT INTO question (survey_id, type, type_detail, question_text) VALUES (?, ?, ?, ?)',
+            'INSERT INTO question (survey_id, type, type_detail, text) VALUES (?, ?, ?, ?)',
             [surveyId, type, typeDetail, questionText],
             callback
         )
@@ -13,7 +13,7 @@ class Question{
     static update(questionData, callback){
         const {id, question_text, type, type_detail } = questionData
         db.query(
-            'UPDATE question SET question_text = ?, type = ?, type_detail = ? WHERE id = ?',
+            'UPDATE question SET text = ?, type = ?, type_detail = ? WHERE id = ?',
             [question_text, type, type_detail, id],
             callback
         )
