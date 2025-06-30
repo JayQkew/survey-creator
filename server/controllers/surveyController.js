@@ -34,10 +34,11 @@ const updateSurvey = async (req, res) => {
     const { survey } = req.body
 
     if (!survey) {
-        return res.status(400).json({ error: 'Survey data is are required' })
+        return res.status(400).json({ error: 'Survey data is required' })
     }
 
     try {
+        // Update survey basic info (title, description)
         await new Promise((resolve, reject) => {
             Survey.update(survey, (err, results) => {
                 if (err) return reject(err)
@@ -48,16 +49,68 @@ const updateSurvey = async (req, res) => {
             })
         })
 
-        // Update questions if they exist
+        // Handle questions if they exist
         let finalQuestions = []
         if (survey.questions && survey.questions.length > 0) {
-            survey.questions.map(q => {
-                Question.update(q, (err, question) => {
-                    if(err) res.status(400).json({error: err.message})
-                    finalQuestions.push(question)
+            // Get existing questions
+            const existingQuestions = await new Promise((resolve, reject) => {
+                Question.findBySurveyId(survey.id, (err, questions) => {
+                    if (err) return reject(err)
+                    resolve(questions || [])
                 })
             })
-            // finalQuestions = await Question.updateBatch(survey.id, survey.questions)
+
+            // Process each question in the survey
+            for (const question of survey.questions) {
+                if (isNumericId(question.id)) {
+                    // Existing question - update it
+                    await new Promise((resolve, reject) => {
+                        Question.update(question, (err, result) => {
+                            if (err) return reject(err)
+                            resolve(result)
+                        })
+                    })
+                    finalQuestions.push(question)
+                } else {
+                    // New question - create it
+                    const newQuestion = await new Promise((resolve, reject) => {
+                        Question.create({
+                            surveyId: survey.id,
+                            type: question.type,
+                            typeDetail: question.type_detail,
+                            quesitonText: question.question_text // Note: using the typo from Question.js
+                        }, (err, result) => {
+                            if (err) return reject(err)
+                            resolve({
+                                ...question,
+                                id: result.insertId
+                            })
+                        })
+                    })
+                    finalQuestions.push(newQuestion)
+                }
+            }
+
+            // Delete questions that are no longer in the survey
+            const currentQuestionIds = finalQuestions.map(q => q.id).filter(id => isNumericId(id))
+            const questionsToDelete = existingQuestions.filter(q => !currentQuestionIds.includes(q.id))
+            
+            for (const questionToDelete of questionsToDelete) {
+                await new Promise((resolve, reject) => {
+                    Question.delete(questionToDelete.id, (err, result) => {
+                        if (err) return reject(err)
+                        resolve(result)
+                    })
+                })
+            }
+        } else {
+            // No questions in survey - delete all existing questions
+            await new Promise((resolve, reject) => {
+                Question.deleteBySurveyId(survey.id, (err, result) => {
+                    if (err) return reject(err)
+                    resolve(result)
+                })
+            })
         }
 
         // Return updated survey with questions
@@ -65,7 +118,6 @@ const updateSurvey = async (req, res) => {
             ...survey,
             questions: finalQuestions
         })
-
     } catch (error) {
         console.error('Error updating survey:', error)
         if (error.message === 'Survey not found') {
@@ -73,6 +125,11 @@ const updateSurvey = async (req, res) => {
         }
         res.status(500).json({ error: error.message })
     }
+}
+
+// Helper function to check if ID is numeric (existing question) vs string (new question)
+const isNumericId = (id) => {
+    return typeof id === 'number' || (typeof id === 'string' && !isNaN(id) && !isNaN(parseInt(id)))
 }
 
 const deleteSurvey = (req, res) => {
