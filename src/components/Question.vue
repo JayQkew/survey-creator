@@ -15,10 +15,10 @@ const props = defineProps({
 
 const { survey } = inject('survey')
 const q = survey.value.questions.find((q) => q.id === props.qID)
-const qText = ref(q.question_text)
+const qText = ref(q.text)
 
 function updateText(){
-    q.question_text = qText.value
+    q.text = qText.value
 }
 
 function onKeyDown(e) {
@@ -37,7 +37,7 @@ function deleteQuestion(){
     <li class="flex-ctr">
         <section class="question pop-out flex-ctr-c">
             <div class="question-header">
-                <h2 v-if="isRespondent">{{ q.question_text }}</h2>
+                <h2 v-if="isRespondent">{{ q.text }}</h2>
                 <input 
                     v-else 
                     class="text-input tc-i mp-i lfs-i"

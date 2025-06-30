@@ -97,10 +97,10 @@ const updateSurvey = async (req, res) => {
                 } else {
                     const newQuestion = await new Promise((resolve, reject) => {
                         Question.create({
-                            surveyId: survey.id,
+                            survey_id: survey.id,
                             type: question.type,
-                            typeDetail: question.type_detail,
-                            quesitonText: question.question_text // Note: using the typo from Question.js
+                            type_detail: question.type_detail,
+                            text: question.text // Note: using the typo from Question.js
                         }, (err, result) => {
                             if (err) return reject(err)
                             resolve({

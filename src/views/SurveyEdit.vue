@@ -107,7 +107,7 @@ function addQuestion(){
   const baseQuestion = {
     id: now.toString(),
     survey_id: survey.value.id,
-    question_text: '',
+    text: '',
     public_responses: 0,
     type: 'single',
     type_detail: JSON.stringify({
