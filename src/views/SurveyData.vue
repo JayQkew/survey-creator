@@ -30,7 +30,7 @@ async function fetchResponses(){
 }
 
 onMounted(() => {
-    fetchResponses()
+    //fetchResponses()
 })
 </script>
 

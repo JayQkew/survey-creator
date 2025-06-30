@@ -4,7 +4,7 @@ class User {
     static create(userData, callback){
         const { username, email, password } = userData
         db.query(
-            'INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)',
+            'INSERT INTO user (username, email, password_hash) VALUES (?, ?, ?)',
             [username, email, password],
             callback
         )
@@ -12,7 +12,7 @@ class User {
 
     static delete(userId, callback){
         db.query(
-            'DELETE FROM users WHERE id = ?',
+            'DELETE FROM user WHERE id = ?',
             [userId],
             callback
         )
@@ -20,7 +20,7 @@ class User {
 
     static findByCredentials(username, password, callback){
         db.query(
-            'SELECT * FROM users WHERE username = ? AND password_hash = ?',
+            'SELECT * FROM user WHERE username = ? AND password_hash = ?',
             [username, password],
             callback
         )
