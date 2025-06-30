@@ -12,7 +12,6 @@ const loading = ref(true)
 const error = ref(null)
 
 async function addNewSurvey(){
-    // router.push({ name: 'create-survey' })
     loading.value = true
     error.value = null
 

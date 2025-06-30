@@ -4,7 +4,7 @@ class Admin{
     static create(adminData, callback){
         const { userId, surveyId, roleId } = adminData
         db.query(
-            'INSERT INTO admin (user_id, survey_id, role_id) VALUESV(?, ?, ?)',
+            'INSERT INTO admin (user_id, survey_id, role_id) VALUES (?, ?, ?)',
             [userId, surveyId, roleId],
             callback
         )

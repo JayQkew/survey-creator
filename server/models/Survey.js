@@ -1,11 +1,9 @@
 const db = require('../config/database')
 
 class Survey{
-    static create(surveyData, callback){
-        const { surveyorId, date } = surveyData
+    static create(callback){
         db.query(
-            'INSERT INTO survey (surveyor_id, date, description) VALUES (?, ?, ?)',
-            [surveyorId, date, ""],
+            'INSERT INTO survey VALUES ()',
             callback
         )
     }

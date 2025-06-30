@@ -20,7 +20,8 @@ const getUserSurveys = async (req, res) => {
                 Survey.findById(s.survey_id, (err, results) => {
                     if (err) return reject(err)
                     const survey = results && results.length > 0 ? results[0] : null
-                    resolve(survey)                })
+                    resolve(survey)
+                })
             })
         })
 
@@ -34,22 +35,6 @@ const getUserSurveys = async (req, res) => {
     } catch (error) {
         console.error('Error fetching user surveys:', error)
         res.status(500).json({ error: error.message })
-    }
-}
-
-const formatDateTime = (sqlDateTime) => {
-    if (!sqlDateTime) return null
-    
-    if (sqlDateTime instanceof Date) {
-        return sqlDateTime.toISOString()
-    }
-    
-    try {
-        const date = new Date(sqlDateTime)
-        return date.toISOString()
-    } catch (error) {
-        console.error('Error formatting datetime:', error)
-        return sqlDateTime
     }
 }
 
@@ -198,18 +183,38 @@ const createSurvey = (req, res) => {
         return res.status(400).json({ error: 'Surveyor Id and date is required'})
     }
 
-    Survey.create({ surveyorId, date }, (err, results) => {
+    Survey.create((err, results) => {
         if (err) return res.status(500).json({ error: err.message })
-        Survey.findById(results.insertId, (err, results) => {
-            if (err) return res.status(500).json({ error: err.message })
+        
+const surveyId = results.insertId
+        
+        // Fixed: Corrected callback parameters and error handling
+        Admin.create({ userId: surveyorId, surveyId: surveyId, roleId: 1}, (err, adminResults) => {
+            if (err) {
+                console.error('Error creating admin record:', err)
+                // Clean up the survey if admin creation fails
+                Survey.delete(surveyId, () => {})
+                return res.status(500).json({ error: err.message })
+            }
             
-            const survey = results[0]
-            survey.questions = []
-
-            res.status(201).json({
-                message: 'Survey added successfully',
-                surveyId: surveyId,
-                survey: survey
+            // Fetch the created survey
+            Survey.findById(surveyId, (err, surveyResults) => {
+                if (err) {
+                    console.error('Error fetching created survey:', err)
+                    return res.status(500).json({ error: err.message })
+                }
+                
+                if (!surveyResults || surveyResults.length === 0) {
+                    return res.status(404).json({ error: 'Created survey not found' })
+                }
+                
+                const survey = surveyResults[0]
+                survey.questions = []
+        
+                res.status(201).json({
+                    message: 'Survey added successfully',
+                    survey: survey
+                })
             })
         })
     })
