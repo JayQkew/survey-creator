@@ -48,12 +48,12 @@ const getSurvey = (req, res) => {
         }
 
         const survey = results[0]
-
-        Question.findBySurveyId(surveyId, (err, questions) => {
-            if (err) return res.status(500).json({ error: err.message })
-            survey.questions = questions
-            res.json(survey)
-        })
+        res.status(200).json(survey)
+        
+        // Question.findBySurveyId(surveyId, (err, questions) => {
+        //     if (err) return res.status(500).json({ error: err.message })
+        //     survey.questions = questions
+        // })
     })
 }
 

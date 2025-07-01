@@ -70,10 +70,21 @@ const updateQuestions = async (req, res) => {
     res.status(200).json(finalQuestions)
 }
 
+const getQuestions = (req, res) => {
+    const { survey_id } = req.body.id
+    if (!survey_id) res.status(400).json({ error: 'no updated questions'})
+
+    Question.findBySurveyId(survey_id, (err, questions) => {
+        if (err) return res.status(500).json({ error: err.message })
+        res.status(200).json(questions)
+    })
+}
+
 const isNumericId = (id) => {
     return typeof id === 'number' || (typeof id === 'string' && !isNaN(id) && !isNaN(parseInt(id)))
 }
 
 module.exports = {
-    updateQuestions
+    updateQuestions,
+    getQuestions
 }
