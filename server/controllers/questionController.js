@@ -71,7 +71,7 @@ const updateQuestions = async (req, res) => {
 }
 
 const getQuestions = (req, res) => {
-    const { survey_id } = req.body.id
+    const { survey_id } = req.body
     if (!survey_id) res.status(400).json({ error: 'no updated questions'})
 
     Question.findBySurveyId(survey_id, (err, questions) => {

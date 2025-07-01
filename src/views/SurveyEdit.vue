@@ -21,7 +21,7 @@ const props = defineProps({
   surveyId: String
 })
 
-async function fetchSurveyData(){
+async function fetchSurvey(){
   const data = route.params.surveyId;
 
   loading.value = true
@@ -48,6 +48,42 @@ async function fetchSurveyData(){
   } finally{
     loading.value = false
   }
+}
+
+async function fetchQuestions(){
+  const data = route.params.surveyId;
+
+  loading.value = true
+  error.value = null
+  title.value = 'Loading...'
+
+  try{
+    const response = await fetch('http://localhost:3000/api/get-questions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({survey_id: data})
+    })
+    if(!response.ok){
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const questions = await response.json()
+    survey.value = {
+      ...survey.value,
+      questions: questions
+    }
+  } catch (e){
+    error.value = e
+  } finally{
+    loading.value = false
+  } 
+}
+
+async function fetchData(){
+  fetchSurvey()
+  fetchQuestions()
 }
 
 async function deleteSurvey(){
@@ -170,9 +206,7 @@ function onKeyDownTitle(e) {
     }
 }
 
-onMounted(() => {
-  fetchSurveyData()
-})
+onMounted(fetchData)
 
 provide('survey', {
   survey
