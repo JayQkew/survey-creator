@@ -76,7 +76,7 @@ async function deleteSurvey(){
   }
 }
 
-async function saveSurvey(){
+async function updateSurvey(){
   loading.value = true
   error.value = null
   console.log(survey.value)
@@ -127,6 +127,11 @@ async function updateQuestions(){
   } finally {
     loading.value = false
   }
+}
+
+async function saveBtn(){
+  updateSurvey()
+  updateQuestions()
 }
 
 function addQuestion(){
@@ -200,7 +205,7 @@ provide('survey', {
         </button>
         <button
           class="accent-btn gc-btn sp-btn mfs-btn"
-          @click="saveSurvey updateQuestions">
+          @click="saveBtn">
           Save
         </button>
       </div>
