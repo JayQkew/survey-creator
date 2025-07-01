@@ -10,19 +10,26 @@ class Answer{
         )
     }
 
-    static update(answerData, callback){
-        const { user_id, value, updated_by } = answerData
-        db.query(
-            'UPDATE answer SET value = ?, updated_by = ? WHERE id = ?',
-            [value, updated_by, user_id],
-            callback
-        )
-    }
-
     static delete(answer_id, callback){
         db.query(
             'DELETE FROM answer WHERE id = ?',
             [answer_id],
+            callback
+        )
+    }
+    
+    static findByQuestion(question_id, callback){
+        db.query(
+            'SELECT * FROM answer WHERE question_id = ?',
+            [question_id],
+            callback
+        )
+    }
+
+    static findBySurvey(survey_id, callback){
+        db.query(
+            'SELECT * FROM answer WHERE survey_id = ?',
+            [survey_id],
             callback
         )
     }
