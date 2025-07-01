@@ -5,8 +5,8 @@ const updateQuestions = async (req, res) => {
 
     if(!updatedQuestions) return res.status(400).json({ error: 'no updated questions'})
     
+    let finalQuestions = []
     try {
-        let finalQuestions = []
         if (updatedQuestions.length > 0){
             const existing = await new Promise((resolve, reject) => {
                 Question.findBySurveyId(survey_id, (err, questions) => {

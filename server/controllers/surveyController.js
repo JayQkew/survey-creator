@@ -75,64 +75,6 @@ const updateSurvey = async (req, res) => {
             })
         })
 
-        // Handle questions if they exist
-        // let finalQuestions = []
-        // if (survey.questions && survey.questions.length > 0) {
-        //     const existingQuestions = await new Promise((resolve, reject) => {
-        //         Question.findBySurveyId(survey.id, (err, questions) => {
-        //             if (err) return reject(err)
-        //             resolve(questions || [])
-        //         })
-        //     })
-
-        //     for (const question of survey.questions) {
-        //         if (isNumericId(question.id)) {
-        //             await new Promise((resolve, reject) => {
-        //                 Question.update(question, (err, result) => {
-        //                     if (err) return reject(err)
-        //                     resolve(result)
-        //                 })
-        //             })
-        //             finalQuestions.push(question)
-        //         } else {
-        //             const newQuestion = await new Promise((resolve, reject) => {
-        //                 Question.create({
-        //                     survey_id: survey.id,
-        //                     type: question.type,
-        //                     type_detail: question.type_detail,
-        //                     text: question.text // Note: using the typo from Question.js
-        //                 }, (err, result) => {
-        //                     if (err) return reject(err)
-        //                     resolve({
-        //                         ...question,
-        //                         id: result.insertId
-        //                     })
-        //                 })
-        //             })
-        //             finalQuestions.push(newQuestion)
-        //         }
-        //     }
-
-        //     const currentQuestionIds = finalQuestions.map(q => q.id).filter(id => isNumericId(id))
-        //     const questionsToDelete = existingQuestions.filter(q => !currentQuestionIds.includes(q.id))
-            
-        //     for (const questionToDelete of questionsToDelete) {
-        //         await new Promise((resolve, reject) => {
-        //             Question.delete(questionToDelete.id, (err, result) => {
-        //                 if (err) return reject(err)
-        //                 resolve(result)
-        //             })
-        //         })
-        //     }
-        // } else {
-        //     await new Promise((resolve, reject) => {
-        //         Question.deleteBySurveyId(survey.id, (err, result) => {
-        //             if (err) return reject(err)
-        //             resolve(result)
-        //         })
-        //     })
-        // }
-
         res.status(200).json({...survey})
     } catch (error) {
         console.error('Error updating survey:', error)
@@ -141,10 +83,6 @@ const updateSurvey = async (req, res) => {
         }
         res.status(500).json({ error: error.message })
     }
-}
-
-const isNumericId = (id) => {
-    return typeof id === 'number' || (typeof id === 'string' && !isNaN(id) && !isNaN(parseInt(id)))
 }
 
 const deleteSurvey = (req, res) => {

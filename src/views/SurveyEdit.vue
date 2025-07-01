@@ -105,7 +105,6 @@ async function updateSurvey(){
 async function updateQuestions(){
   loading.value = true
   error.value = null
-  console.log(survey.value)
 
   try{
     const response = await fetch('http://localhost:3000/api/update-questions', {
@@ -121,7 +120,11 @@ async function updateQuestions(){
       throw new Error(`HTTP error! status: ${response.status}`)
     }
 
-    survey.value.questions = response.json()
+    const questions = await response.json()
+    survey.value = {
+      ...survey.value,
+      questions: questions
+    }
   } catch (err) {
     error.value = err
   } finally {
