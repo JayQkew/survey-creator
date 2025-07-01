@@ -1,8 +1,9 @@
 const express = require('express')
 const cors = require('cors')
 
-const authRoutes = require('./views/auth')
-const surveyRoutes = require('./views/surveys')
+const authRoutes = require('./routes/auth')
+const surveyRoutes = require('./routes/surveys')
+const questionRoutes = require('./routes/question')
 
 const app = express()
 const PORT = 3000
@@ -12,6 +13,7 @@ app.use(express.json())
 
 app.use('/api', authRoutes)
 app.use('/api', surveyRoutes)
+app.use('/api', questionRoutes)
 
 // //depricated
 // app.post('/api/log-in', (req, res) => {
