@@ -34,7 +34,7 @@ async function fetchSurvey(){
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({id: data})
+      body: JSON.stringify({survey_id: data})
     })
     if(!response.ok){
       throw new Error(`HTTP error! status: ${response.status}`)

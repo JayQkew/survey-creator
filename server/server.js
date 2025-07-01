@@ -306,7 +306,6 @@ app.post('/api/submit-response', (req, res) => {
 });
 
 app.post('/api/get-responses', (req, res) => {
-    //survey id
     const { id } = req.body
 
     //look for all questions that are involved

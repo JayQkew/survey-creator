@@ -39,9 +39,9 @@ const getUserSurveys = async (req, res) => {
 }
 
 const getSurvey = (req, res) => {
-    const surveyId = req.body.id
+    const {survey_id} = req.body
 
-    Survey.findById(surveyId, (err, results) => {
+    Survey.findById(survey_id, (err, results) => {
         if(err) return res.status(500).json({ error: err.message })
         if (!results || results.length === 0 ) {
             return res.status(404).json({error: 'Survey not found'})
@@ -49,11 +49,6 @@ const getSurvey = (req, res) => {
 
         const survey = results[0]
         res.status(200).json(survey)
-        
-        // Question.findBySurveyId(surveyId, (err, questions) => {
-        //     if (err) return res.status(500).json({ error: err.message })
-        //     survey.questions = questions
-        // })
     })
 }
 
