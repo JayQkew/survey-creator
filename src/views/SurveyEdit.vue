@@ -102,6 +102,33 @@ async function saveSurvey(){
   }
 }
 
+async function updateQuestions(){
+  loading.value = true
+  error.value = null
+  console.log(survey.value)
+
+  try{
+    const response = await fetch('http://localhost:3000/api/update-questions', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        updatedQuestions: survey.value.questions,
+        survey_id: survey.value.id
+      })
+    })
+
+    if(!response.ok){
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    survey.value.questions = response.json()
+  } catch (err) {
+    error.value = err
+  } finally {
+    loading.value = false
+  }
+}
+
 function addQuestion(){
   const now = new Date()
   const baseQuestion = {
@@ -173,7 +200,7 @@ provide('survey', {
         </button>
         <button
           class="accent-btn gc-btn sp-btn mfs-btn"
-          @click="saveSurvey">
+          @click="saveSurvey updateQuestions">
           Save
         </button>
       </div>
