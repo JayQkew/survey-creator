@@ -2,10 +2,10 @@ const db = require('../config/database')
 
 class Response{
     static create(responseData , callback){
-        const { user_id, question_id, survey_id } = responseData
+        const { user_id, question_id, survey_id, answer_id } = responseData
         db.query(
-            'INSERT INTO response (question_id, user_id, survey_id) VALUES (?, ?, ?)',
-            [question_id, user_id, survey_id],
+            'INSERT INTO response (question_id, user_id, survey_id, answer_id) VALUES (?, ?, ?, ?)',
+            [question_id, user_id, survey_id, answer_id],
             callback
         )
     }
@@ -30,6 +30,14 @@ class Response{
         db.query(
             'SELECT * FROM response WHERE survey_id = ?',
             [survey_id],
+            callback
+        )
+    }
+
+    static findByAnswer(answer_id, callback){
+        db.query(
+            'SELECT * FROM response WHERE answer_id = ?',
+            [answer_id],
             callback
         )
     }
