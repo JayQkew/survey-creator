@@ -4,6 +4,7 @@ const cors = require('cors')
 const authRoutes = require('./routes/auth')
 const surveyRoutes = require('./routes/surveys')
 const questionRoutes = require('./routes/question')
+const answerRoutes = require('./routes/answer')
 
 const app = express()
 const PORT = 3000
@@ -14,6 +15,7 @@ app.use(express.json())
 app.use('/api', authRoutes)
 app.use('/api', surveyRoutes)
 app.use('/api', questionRoutes)
+app.use('/api', answerRoutes)
 
 app.post('/api/submit-response', (req, res) => {
     const responses = req.body;

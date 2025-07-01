@@ -7,5 +7,10 @@ const getAnswers = async (req, res) => {
     Answer.findByQuestion(question_id, (err, answers) => {
         if(err) return res.status(400).json({ error: err.message })
         console.log(answers)
+        res.status(200).json(answers)
     })
+}
+
+module.exports = {
+    getAnswers
 }

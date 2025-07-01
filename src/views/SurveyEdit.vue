@@ -81,12 +81,37 @@ async function fetchQuestions(){
   } 
 }
 
+async function fetchAnswers(){
+  loading.value = true
+  error.value = null
+  title.value = 'Loading...'
+
+  try{
+    const response = await fetch('http://localhost:3000/api/get-answers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({question_id: 1})
+    })
+    if(!response.ok){
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+  } catch (e){
+    error.value = e
+  } finally{
+    loading.value = false
+  } 
+}
+
 async function fetchData(){
   fetchSurvey()
   fetchQuestions()
+  fetchAnswers()
 }
 
 async function deleteSurvey(){
+
   if(!confirm('Confirm you want to delete this survey?')) return
 
   loading.value = true
