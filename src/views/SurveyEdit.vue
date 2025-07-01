@@ -193,6 +193,31 @@ async function updateQuestions(){
   }
 }
 
+async function updateAnswers(){
+  loading.value = true
+  error.value = null
+  try{
+    const response = await fetch('http://localhost:3000/api/update-answers', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        user_id: 1,
+        survey_id: survey.value.id,
+        question_id: 1,
+        new_answers: []
+      })
+    })
+
+    if(!response.ok){
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+  } catch (err) {
+    error.value = err
+  } finally {
+    loading.value = false
+  }
+}
+
 async function saveBtn(){
   updateSurvey()
   updateQuestions()
