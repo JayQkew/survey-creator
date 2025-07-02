@@ -214,16 +214,12 @@ async function updateAnswers(qId){
 
     const answers = await response.json()
     survey.value.questions[qIndex].answers = answers
+    console.log(answers)
   } catch (err) {
     error.value = err
   } finally {
     loading.value = false
   }
-}
-
-async function saveBtn(){
-  updateSurvey()
-  updateQuestions()
 }
 
 function addQuestion(){

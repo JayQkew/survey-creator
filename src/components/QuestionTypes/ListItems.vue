@@ -24,7 +24,8 @@ function remove(item){
 }
 
 function add(){
-    const newId = 'opt_' + Date.now()
+    const date = new Date()
+    const newId = date.toString()
     if(newItemName.value != '') {
         items.value.push({
             id: newId,

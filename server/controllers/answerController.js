@@ -37,8 +37,11 @@ const updateAnswers = async (req, res) => {
                     })
                 })
                 finalAnswers.push(newAnswer)
+                // console.log(newAnswer)
+
             } else {
                 finalAnswers.push(a)
+                console.log(a)
             }
         }
     

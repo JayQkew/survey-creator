@@ -29,7 +29,6 @@ const updateQuestions = async (req, res) => {
                         Question.create({
                             survey_id: survey_id,
                             type: q.type,
-                            type_detail: q.type_detail,
                             text: q.text
                         }, (err, result) => {
                             if (err) return reject(err)

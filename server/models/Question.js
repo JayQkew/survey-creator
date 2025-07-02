@@ -2,19 +2,19 @@ const db = require('../config/database')
 
 class Question{
     static create(questionData, callback){
-        const { survey_id, type, type_detail, text } = questionData
+        const { survey_id, type, text } = questionData
         db.query(
-            'INSERT INTO question (survey_id, type, type_detail, text) VALUES (?, ?, ?, ?)',
-            [survey_id, type, type_detail, text],
+            'INSERT INTO question (survey_id, type, text) VALUES (?, ?, ?)',
+            [survey_id, type, text],
             callback
         )
     }
 
     static update(questionData, callback){
-        const {id, text, type, type_detail } = questionData
+        const {id, text, type } = questionData
         db.query(
-            'UPDATE question SET text = ?, type = ?, type_detail = ? WHERE id = ?',
-            [text, type, type_detail, id],
+            'UPDATE question SET text = ?, type = ? WHERE id = ?',
+            [text, type, id],
             callback
         )
     }
