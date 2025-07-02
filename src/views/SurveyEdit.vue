@@ -197,6 +197,8 @@ async function updateQuestions(){
 async function updateAnswers(qId, i){
   loading.value = true
   error.value = null
+
+  const newAnswers = survey.value.questions[i].answers
   try{
     const response = await fetch('http://localhost:3000/api/update-answers', {
       method: 'POST',
@@ -205,7 +207,7 @@ async function updateAnswers(qId, i){
         user_id: 1,
         survey_id: survey.value.id,
         question_id: qId,
-        new_answers: survey.value.questions[i].answers
+        new_answers: newAnswers
       })
     })
 

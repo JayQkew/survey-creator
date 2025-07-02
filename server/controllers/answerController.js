@@ -51,7 +51,8 @@ const updateAnswers = async (req, res) => {
     
         const currentAnswerIds = finalAnswers.map(a => a.id).filter(id => isNumericId(id))
         const answersToDelete = existing.filter(q => !currentAnswerIds.includes(q.id))
-    
+        console.log(answersToDelete)
+
         for (const answerToDelete of answersToDelete){
             Answer.delete(answerToDelete.id, (err, result) => {
                 if (err) res.status(400).json({ error: err.message })

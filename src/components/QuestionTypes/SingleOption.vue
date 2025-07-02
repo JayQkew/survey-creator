@@ -10,7 +10,7 @@ const props = defineProps({
     q: Object
 })
 
-const choices = props.q.answers.map(choice => {
+const choices = props.q.answers?.map(choice => {
     return {value: choice, id: props.q.id}
 })
 </script>
