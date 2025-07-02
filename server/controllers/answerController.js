@@ -12,8 +12,12 @@ const getAnswers = async (req, res) => {
 
 const updateAnswers = async (req, res) => {
     const { user_id, survey_id, question_id, new_answers } = req.body
-    if (!question_id) res.status(400).json({ error: 'no question id'})
-    
+    if (!question_id) return res.status(400).json({ error: 'no question id'})
+    if (!question_id) return res.status(400).json({ error: 'no question id'})
+    if (!user_id) return res.status(400).json({ error: 'no user id'})
+    if (!survey_id) return res.status(400).json({ error: 'no survey id'})
+    if (!Array.isArray(new_answers)) return res.status(400).json({ error: 'no new_answers array'})
+
     const existing = await new Promise((resolve, reject) => {
         Answer.findByQuestion(question_id, (err, answers) => {
             if(err) return reject(err)
@@ -21,11 +25,12 @@ const updateAnswers = async (req, res) => {
         })
     })
 
+    console.log(existing)
     let finalAnswers = []
     try{
         for (const a of new_answers){
             if(!isNumericId(a.id)){
-                const newAnswer = await new Promise((resolve, reject) => {
+                await new Promise((resolve, reject) => {
                     Answer.create({
                         survey_id: survey_id,
                         value: a.value,
@@ -33,12 +38,11 @@ const updateAnswers = async (req, res) => {
                         question_id: question_id
                     }, (err, answer) => {
                         if(err) return reject(err)
+                        finalAnswers.push(answer)
+                        console.log(answer)
                         resolve(answer)
                     })
                 })
-                finalAnswers.push(newAnswer)
-                // console.log(newAnswer)
-
             } else {
                 finalAnswers.push(a)
                 console.log(a)
@@ -48,20 +52,17 @@ const updateAnswers = async (req, res) => {
         const currentAnswerIds = finalAnswers.map(a => a.id).filter(id => isNumericId(id))
         const answersToDelete = existing.filter(q => !currentAnswerIds.includes(q.id))
     
-        for (const answerToDelete in answersToDelete){
-            await new Promise((resolve, reject) => {
-                Answer.delete(answerToDelete.id, (err, result) => {
-                    if (err) return reject(err)
-                        resolve(result)
-                })
+        for (const answerToDelete of answersToDelete){
+            Answer.delete(answerToDelete.id, (err, result) => {
+                if (err) res.status(400).json({ error: err.message })
             })
         }
     } catch (err) {
         console.error('Error updating answers: ', err)
-        res.status(500).json({ error: error.message })
+        return res.status(500).json({ error: err.message })
     }
 
-    res.status(200).json(finalAnswers)
+    return res.status(200).json(finalAnswers)
 }
 
 const isNumericId = (id) => {

@@ -11,14 +11,13 @@ const question = computed(() =>
     survey.value.questions.find((q) => q.id === props.q.id)
 )
 const newItemName = ref('')
-console.log(question.answers)
 const items = computed(() => question.value?.answers ?? [])
 
 function remove(item){
     const i = items.value.findIndex(i => i.id === item.id)
     if(i > -1) {
-        items.value.splice(i, 1)
-        question.answers = items.value
+        const updated = items.value.filter(i => i.id !== item.id)
+        question.value.answers = updated
         console.log(survey.value)
     }
 }

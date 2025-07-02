@@ -184,6 +184,7 @@ async function updateQuestions(){
     const questions = await response.json()
     survey.value.questions = questions
     questions.map((q, i) => {
+      console.log(q)
       updateAnswers(q.id, i)
     })
   } catch (err) {
@@ -193,7 +194,7 @@ async function updateQuestions(){
   }
 }
 
-async function updateAnswers(qId){
+async function updateAnswers(qId, i){
   loading.value = true
   error.value = null
   try{
@@ -204,7 +205,7 @@ async function updateAnswers(qId){
         user_id: 1,
         survey_id: survey.value.id,
         question_id: qId,
-        new_answers: survey.value.questions[qIndex].answers
+        new_answers: survey.value.questions[i].answers
       })
     })
 
