@@ -1,5 +1,5 @@
 <script setup>
-import { inject, ref } from 'vue';
+import { inject, ref, computed } from 'vue';
 
 const props = defineProps({
     q: Object
@@ -7,15 +7,18 @@ const props = defineProps({
 
 const { survey } = inject('survey')
 
-const question = survey.value.questions.find((q) => q.id === props.q.id)
+const question = computed(() =>
+    survey.value.questions.find((q) => q.id === props.q.id)
+)
 const newItemName = ref('')
-const items = ref(JSON.parse(question.type_detail).answers)
+console.log(question.answers)
+const items = computed(() => question.value?.answers ?? [])
 
 function remove(item){
     const i = items.value.findIndex(i => i.id === item.id)
     if(i > -1) {
         items.value.splice(i, 1)
-        question.type_detail = JSON.stringify({answers: items.value})
+        question.answers = items.value
         console.log(survey.value)
     }
 }
@@ -28,7 +31,7 @@ function add(){
             value: newItemName.value
         })
 
-        question.type_detail = JSON.stringify({answers: items.value})
+        question.answers = items.value
         newItemName.value = ''
     }
 }
