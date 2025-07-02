@@ -11,7 +11,7 @@ const survey = ref(null)
 const loading = ref(false)
 const error = ref(null)
 
-async function fetchSurveyData(){
+async function fetchSurvey(){
     const data = route.params.surveyId
 
     loading.value = true
@@ -21,7 +21,7 @@ async function fetchSurveyData(){
         const response = await fetch('http://localhost:3000/api/get-survey', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({id: data})
+            body: JSON.stringify({survey_id: data})
         })
 
         if(!response.ok){
@@ -45,6 +45,10 @@ async function fetchSurveyData(){
     } finally {
         loading.value = false
     }
+}
+
+async function fetchQuestions(){
+    
 }
 
 async function submitResponse(){
@@ -72,7 +76,7 @@ async function submitResponse(){
 }
 
 onMounted(() => {
-    fetchSurveyData()
+    fetchSurvey()
 })
 
 provide('survey', {

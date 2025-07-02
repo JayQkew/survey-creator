@@ -4,7 +4,7 @@ import Home from './views/Home.vue'
 import About from './views/About.vue'
 import SurveyEdit from './views/SurveyEdit.vue'
 import SurveyData from './views/SurveyData.vue'
-import ResSurvey from './views/ResSurvey.vue'
+import SurveyResponse from './views/SurveyResponse.vue'
 import Error from './views/Error.vue'
 import Landing from './views/Landing.vue'
 
@@ -61,7 +61,7 @@ const routes = [
             {
                 path: '/res/:surveyId',
                 name: 'respondent',
-                component: ResSurvey,
+                component: SurveyResponse,
                 props: true
             }
         ]

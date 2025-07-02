@@ -1,5 +1,4 @@
 const Survey = require('../models/Survey')
-const Question = require('../models/Question')
 const Admin = require('../models/Admin')
 
 const getUserSurveys = async (req, res) => {
