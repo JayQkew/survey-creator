@@ -86,7 +86,7 @@ async function fetchQuestions(){
   } 
 }
 
-async function fetchAnswers(){
+async function fetchAnswers(qId){
   loading.value = true
   error.value = null
   title.value = 'Loading...'
@@ -97,15 +97,17 @@ async function fetchAnswers(){
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({question_id: survey.value.questions[1].id})
+      body: JSON.stringify({question_id: qId})
     })
     if(!response.ok){
       throw new Error(`HTTP error! status: ${response.status}`)
     }
 
     const answers = await response.json()
-    console.log('ANSWER REQEST' + survey.value)
-    // survey.value.questions[qIndex]
+    survey.value.questions[qIndex] = {
+      ...survey.value.questions[qIndex],
+      answers: answers
+    }
   } catch (e){
     error.value = e
   } finally{
