@@ -5,7 +5,6 @@ import Question from '../components/Question.vue'
 
 const route = useRoute()
 
-const questions = ref(null)
 const responses = ref(null)
 const survey = ref(null)
 const loading = ref(false)
@@ -29,17 +28,16 @@ async function fetchSurvey(){
         }
 
         survey.value = await response.json()
-        questions.value = survey.value.questions
-        console.log(questions.value)
-        responses.value = questions.value.map(q => {
-            const typeDetails = JSON.parse(q.type_detail)
-            const options = typeDetails.options
-            return {
-                qId: q.id,
-                options: options,
-                answer: []
-            }
-        })
+        fetchQuestions()
+        // responses.value = questions.value.map(q => {
+        //     const typeDetails = JSON.parse(q.type_detail)
+        //     const options = typeDetails.options
+        //     return {
+        //         qId: q.id,
+        //         options: options,
+        //         answer: []
+        //     }
+        // })
     } catch (err) {
         error.value = err
     } finally {
@@ -48,7 +46,58 @@ async function fetchSurvey(){
 }
 
 async function fetchQuestions(){
-    
+  const data = route.params.surveyId;
+
+  loading.value = true
+  error.value = null
+
+  try{
+    const response = await fetch('http://localhost:3000/api/get-questions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({survey_id: data})
+    })
+    if(!response.ok){
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const questions = await response.json()
+    survey.value.questions = questions
+    questions.map((q, i) => {
+      fetchAnswers(q.id, i)
+    })
+  } catch (e){
+    error.value = e
+  } finally{
+    loading.value = false
+  } 
+}
+
+async function fetchAnswers(qId, qIndex){
+  loading.value = true
+  error.value = null
+
+  try{
+    const response = await fetch('http://localhost:3000/api/get-answers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({question_id: qId})
+    })
+    if(!response.ok){
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const answers = await response.json()
+    survey.value.questions[qIndex].answers = answers
+  } catch (e){
+    error.value = e
+  } finally{
+    loading.value = false
+  } 
 }
 
 async function submitResponse(){
