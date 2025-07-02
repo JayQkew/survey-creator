@@ -101,7 +101,6 @@ async function fetchAnswers(qId, qIndex){
 
     const answers = await response.json()
     survey.value.questions[qIndex].answers = answers
-    console.log(survey.value)
   } catch (e){
     error.value = e
   } finally{
@@ -155,6 +154,8 @@ async function updateSurvey(){
     survey.value = await response.json()
     surveyTitle.value = survey.value.title
     surveyDescription.value = survey.value.description
+
+    updateQuestions()
   } catch (err) {
     error.value = err
   } finally{
@@ -181,10 +182,10 @@ async function updateQuestions(){
     }
 
     const questions = await response.json()
-    survey.value = {
-      ...survey.value,
-      questions: questions
-    }
+    survey.value.questions = questions
+    questions.map((q, i) => {
+      updateAnswers(q.id, i)
+    })
   } catch (err) {
     error.value = err
   } finally {
@@ -192,7 +193,7 @@ async function updateQuestions(){
   }
 }
 
-async function updateAnswers(){
+async function updateAnswers(qId){
   loading.value = true
   error.value = null
   try{
@@ -202,14 +203,17 @@ async function updateAnswers(){
       body: JSON.stringify({
         user_id: 1,
         survey_id: survey.value.id,
-        question_id: 1,
-        new_answers: []
+        question_id: qId,
+        new_answers: survey.value.questions[qIndex].answers
       })
     })
 
     if(!response.ok){
       throw new Error(`HTTP error! status: ${response.status}`)
     }
+
+    const answers = await response.json()
+    survey.value.questions[qIndex].answers = answers
   } catch (err) {
     error.value = err
   } finally {
@@ -291,7 +295,7 @@ provide('survey', {
         </button>
         <button
           class="accent-btn gc-btn sp-btn mfs-btn"
-          @click="saveBtn">
+          @click="updateSurvey">
           Save
         </button>
       </div>
