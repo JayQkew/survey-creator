@@ -40,9 +40,10 @@ async function fetchSurvey(){
       throw new Error(`HTTP error! status: ${response.status}`)
     }
     survey.value = await response.json()
-    console.log(survey.value)
     surveyTitle.value = survey.value.title
     surveyDescription.value = survey.value.description
+
+    fetchQuestions()
   } catch (e){
     error.value = e
   } finally{
@@ -74,6 +75,10 @@ async function fetchQuestions(){
       ...survey.value,
       questions: questions
     }
+    questions.map(q => {
+      fetchAnswers(q.id)
+    })
+    console.log(survey.value)
   } catch (e){
     error.value = e
   } finally{
@@ -81,7 +86,7 @@ async function fetchQuestions(){
   } 
 }
 
-async function fetchAnswers(qIndex){
+async function fetchAnswers(){
   loading.value = true
   error.value = null
   title.value = 'Loading...'
@@ -92,25 +97,20 @@ async function fetchAnswers(qIndex){
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({question_id: survey.value.questions[qIndex].id})
+      body: JSON.stringify({question_id: survey.value.questions[1].id})
     })
     if(!response.ok){
       throw new Error(`HTTP error! status: ${response.status}`)
     }
 
     const answers = await response.json()
+    console.log('ANSWER REQEST' + survey.value)
     // survey.value.questions[qIndex]
   } catch (e){
     error.value = e
   } finally{
     loading.value = false
   } 
-}
-
-async function fetchData(){
-  fetchSurvey()
-  fetchQuestions()
-  fetchAnswers(1)
 }
 
 async function deleteSurvey(){
@@ -259,7 +259,7 @@ function onKeyDownTitle(e) {
     }
 }
 
-onMounted(fetchData)
+onMounted(fetchSurvey)
 
 provide('survey', {
   survey
