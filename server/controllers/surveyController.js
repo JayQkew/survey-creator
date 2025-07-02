@@ -86,22 +86,14 @@ const deleteSurvey = (req, res) => {
     if (!id) {
         return res.status(400).json({ error: 'Survey Id is required'})
     }
-
-    Admin.deleteWithSurvey(id, (err, admin) => {
-        if (err) return res.status(500).json({ error: err.message })
     
-        Question.deleteBySurveyId(id, (err, question) => {
-            if (err) return res.status(500).json({ error: err.message })
+    Survey.delete(id, (err, survey) => {
+        if (err) return res.status(500).json({ error: err.message })
         
-            Survey.delete(id, (err, survey) => {
-                if (err) return res.status(500).json({ error: err.message })
-                
-                res.status(200).json({ 
-                    message: 'Survey deleted successfully'
-                })
-            })        
+        res.status(200).json({ 
+            message: 'Survey deleted successfully'
         })
-    })
+    })        
 }
 
 const createSurvey = (req, res) => {
