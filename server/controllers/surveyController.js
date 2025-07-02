@@ -48,7 +48,7 @@ const getSurvey = (req, res) => {
         }
 
         const survey = results[0]
-        res.status(200).json(survey)
+        res.status(200).json({...survey, questions:[]})
     })
 }
 

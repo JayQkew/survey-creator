@@ -76,7 +76,10 @@ const getQuestions = (req, res) => {
 
     Question.findBySurveyId(survey_id, (err, questions) => {
         if (err) return res.status(500).json({ error: err.message })
-        res.status(200).json(questions)
+        const questionAnswers = questions.map(q => {
+            return {...q, answers: []}
+        })
+        res.status(200).json(questionAnswers)
     })
 }
 

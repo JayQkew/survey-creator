@@ -71,14 +71,10 @@ async function fetchQuestions(){
     }
 
     const questions = await response.json()
-    survey.value = {
-      ...survey.value,
-      questions: questions
-    }
-    questions.map(q => {
-      fetchAnswers(q.id)
+    survey.value.questions = questions
+    questions.map((q, i) => {
+      fetchAnswers(q.id, i)
     })
-    console.log(survey.value)
   } catch (e){
     error.value = e
   } finally{
@@ -86,7 +82,7 @@ async function fetchQuestions(){
   } 
 }
 
-async function fetchAnswers(qId){
+async function fetchAnswers(qId, qIndex){
   loading.value = true
   error.value = null
   title.value = 'Loading...'
@@ -104,10 +100,8 @@ async function fetchAnswers(qId){
     }
 
     const answers = await response.json()
-    survey.value.questions[qIndex] = {
-      ...survey.value.questions[qIndex],
-      answers: answers
-    }
+    survey.value.questions[qIndex].answers = answers
+    console.log(survey.value)
   } catch (e){
     error.value = e
   } finally{
