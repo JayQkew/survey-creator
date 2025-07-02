@@ -81,7 +81,7 @@ async function fetchQuestions(){
   } 
 }
 
-async function fetchAnswers(){
+async function fetchAnswers(qIndex){
   loading.value = true
   error.value = null
   title.value = 'Loading...'
@@ -92,11 +92,14 @@ async function fetchAnswers(){
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({question_id: 1})
+      body: JSON.stringify({question_id: survey.value.questions[qIndex].id})
     })
     if(!response.ok){
       throw new Error(`HTTP error! status: ${response.status}`)
     }
+
+    const answers = await response.json()
+    // survey.value.questions[qIndex]
   } catch (e){
     error.value = e
   } finally{
@@ -107,7 +110,7 @@ async function fetchAnswers(){
 async function fetchData(){
   fetchSurvey()
   fetchQuestions()
-  fetchAnswers()
+  fetchAnswers(1)
 }
 
 async function deleteSurvey(){
