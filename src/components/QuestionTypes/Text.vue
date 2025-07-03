@@ -1,13 +1,21 @@
 <script setup>
-import { inject, computed } from 'vue'
+import { inject, computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
+
+const route = useRoute()
+const isRespondent = computed(() => route.path.includes('res'))
 
 const props = defineProps({
     q: Object
 })
 
-const route = useRoute()
-const isRespondent = computed(() => route.path.includes('res'))
+const loading = ref(true)
+const answer = ref({
+    survey_id: route.params.surveyId,
+    value: '',
+    created_by: 1,
+    question_id: props.q.id
+})
 
 const d = {
     value: '',
@@ -16,12 +24,12 @@ const d = {
 const { responses } = inject('responses', {})
 
 console.log(responses)
-if(responses != undefined) responses.value.find(r => r.qId === d.id).answer = ['']
+// if(responses != undefined) responses.value.find(r => r.qId === d.id).answer = ['']
 
-function handleInput(e){
-    responses.value.find(r => r.qId === d.id).answer[0] = e.target.value
-    console.log(responses.value)
-}
+// function handleInput(e){
+//     responses.value.find(r => r.qId === d.id).answer[0] = e.target.value
+//     console.log(responses.value)
+// }
 </script>
 
 <template>

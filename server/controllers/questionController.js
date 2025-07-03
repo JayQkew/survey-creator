@@ -47,7 +47,7 @@ const updateQuestions = async (req, res) => {
             const questionsToDelete = existing.filter(q => !currentQuestionIds.includes(q.id))
             
             for (const questionToDelete of questionsToDelete) {
-                await new Promine((resolve, reject) => {
+                await new Promise((resolve, reject) => {
                     Answer.deleteByQuestion(questionToDelete.id, (err, result) => {
                         if (err) return reject(err)
                         resolve(result)
