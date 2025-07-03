@@ -25,7 +25,6 @@ const updateAnswers = async (req, res) => {
         })
     })
 
-    console.log(existing)
     let finalAnswers = []
     try{
         for (const a of new_answers){
@@ -39,7 +38,6 @@ const updateAnswers = async (req, res) => {
                     }, (err, answer) => {
                         if(err) return reject(err)
                         finalAnswers.push(answer)
-                        console.log(answer)
                         resolve(answer)
                     })
                 })
@@ -51,7 +49,6 @@ const updateAnswers = async (req, res) => {
     
         const currentAnswerIds = finalAnswers.map(a => a.id).filter(id => isNumericId(id))
         const answersToDelete = existing.filter(q => !currentAnswerIds.includes(q.id))
-        console.log(answersToDelete)
 
         for (const answerToDelete of answersToDelete){
             Answer.delete(answerToDelete.id, (err, result) => {

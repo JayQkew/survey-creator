@@ -27,7 +27,7 @@ watch(
 </script>
 
 <template>
-    <div v-if="loading">
+    <div v-if="isRespondent && loading">
         Loading...
     </div>
     <div v-else-if="isRespondent && !loading" class="respondent-radio">
