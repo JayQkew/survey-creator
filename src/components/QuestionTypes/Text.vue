@@ -13,7 +13,7 @@ const loading = ref(true)
 const answer = ref({
     survey_id: route.params.surveyId,
     value: '',
-    created_by: 1,
+    created_by: user.value.id,
     question_id: props.q.id
 })
 
@@ -22,6 +22,7 @@ const d = {
     id: props.q.id
 }
 const { responses } = inject('responses', {})
+const { user } = inject('user', {id: 1})
 
 console.log(responses)
 // if(responses != undefined) responses.value.find(r => r.qId === d.id).answer = ['']

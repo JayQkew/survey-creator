@@ -7,12 +7,13 @@ const props= defineProps({
 
 const answer = props.data
 const { responses } = inject('responses', {})
+const { user } = inject('users', {id: 1})
 
 function handleInput(e) {
     const existingIndex = responses.value.findIndex(r => r.question_id === answer.question_id);
 
     const newResponse = {
-        user_id: 1,
+        user_id: user.value.id,
         question_id: answer.question_id,
         survey_id: answer.survey_id,
         answer_id: answer.id

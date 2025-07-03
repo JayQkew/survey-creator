@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, provide, ref } from 'vue'
+import { onMounted, provide, ref, inject } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import Question from '../components/Question.vue'
 import editSvg from '../assets/pen-solid.svg?raw'
@@ -12,6 +12,7 @@ const survey = ref(null)
 const loading = ref(true)
 const error = ref(null)
 const title = ref('')
+const { user } = inject('user')
 
 const surveyTitle = ref("New Survey")
 const surveyDescription = ref("Survey Description")
@@ -184,7 +185,6 @@ async function updateQuestions(){
     const questions = await response.json()
     survey.value.questions = questions
     questions.map((q, i) => {
-      console.log(q)
       updateAnswers(q.id, i)
     })
   } catch (err) {
@@ -204,7 +204,7 @@ async function updateAnswers(qId, i){
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        user_id: 1,
+        user_id: user.value.id,
         survey_id: survey.value.id,
         question_id: qId,
         new_answers: newAnswers

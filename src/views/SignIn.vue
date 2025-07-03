@@ -49,7 +49,7 @@ async function handleSignUp(e){
         const data = await response.json()
         if (data && data.id) {
             if (user) user.value = data;
-            router.push({ name: 'surveyor-home', params: { id: String(data.id) } });
+            router.push({ name: 'surveyor-home', params: { id: data.id } });
         } else {
             throw new Error('No user id returned from server');
         }
