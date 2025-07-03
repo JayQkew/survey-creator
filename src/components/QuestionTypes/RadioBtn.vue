@@ -5,28 +5,27 @@ const props= defineProps({
     data: Object
 })
 
-const d = props.data
+const answer = props.data
 // const { responses } = inject('responses', {})
 
-console.log(d)
+console.log(answer)
 
 // responses.value.find(r => r.qId === d.id).answer = [{}]
 // console.log(responses.value)
 
-function handleInput(e){
-    responses.value.find(r => r.qId === d.id).answer[0] = d.value
-}
+// function handleInput(e){
+//     responses.value.find(r => r.qId === answer.id).answer[0] = answer.value
+// }
 </script>
 
 <template>
     <div class="flex-ctr-c">
         <input 
             type="radio" 
-            :id="d.value.id" 
-            :name="d.id" 
-            :value="d.value"
-            @change="handleInput">
-        <label :for="d.value.id">{{ d.value.value }}</label>
+            :id="answer.id" 
+            :name="answer.question_id" 
+            :value="answer.value">
+        <label :for="answer.id">{{ answer.value }}</label>
     </div>
 </template>
 
