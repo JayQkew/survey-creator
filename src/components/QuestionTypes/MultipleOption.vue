@@ -1,28 +1,37 @@
 <script setup>
 import Checkbox from './Checkbox.vue';
 import ListItems from './ListItems.vue';
+import { computed, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { computed } from 'vue';
 
 const route = useRoute()
 const isRespondent = computed(() => route.path.includes('res'))
+
 const props = defineProps({
-    details: Array,
-    id: String,
     q: Object
 })
 
-const choices = props.q.answers.map(choice => {
-    return {value: choice, id: props.q.id}
-})
+const loading = ref(true)
+const answers = ref([])
+
+watch(
+    () => props.q.answers,
+    (newAnswers) => {
+        if (Array.isArray(newAnswers)) {
+            answers.value = newAnswers
+            loading.value = false
+        }
+    },
+    { immediate: true }
+)
 </script>
 
 <template>
     <div v-if="isRespondent">
         <Checkbox 
-            v-for="choice in choices" 
-            :data="choice"
-            :key="choice.id"/>
+            v-for="a in answers" 
+            :key="a.id"
+            :data="a"/>
     </div>
     <div v-else class="list-options">
         <ListItems :q="props.q"/>

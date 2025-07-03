@@ -6,12 +6,12 @@ const props= defineProps({
 })
 
 const d = props.data
-const { responses } = inject('responses', {})
+// const { responses } = inject('responses', {})
 
 console.log(d)
 
-responses.value.find(r => r.qId === d.id).answer = [{}]
-console.log(responses.value)
+// responses.value.find(r => r.qId === d.id).answer = [{}]
+// console.log(responses.value)
 
 function handleInput(e){
     responses.value.find(r => r.qId === d.id).answer[0] = d.value
