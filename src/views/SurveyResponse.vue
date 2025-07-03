@@ -96,10 +96,10 @@ async function submitResponse(){
     error.value = null
 
     try{
-        const response = await fetch('http://localhost:3000/api/submit-response', {
+        const response = await fetch('http://localhost:3000/api/sumbit-responses', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({data: responses.value})
+            body: JSON.stringify({responses: responses.value})
         })
 
         if(!response.ok){
@@ -107,7 +107,7 @@ async function submitResponse(){
         }
 
         const data = await response.json()
-        console.log(data.message)
+        console.log(data.data)
     } catch (err) {
         error.value = err
     } finally{

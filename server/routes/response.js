@@ -1,7 +1,7 @@
 const express = require('express')
-const { submitResponse } = require('../controllers/responseController')
+const { submitResponses } = require('../controllers/responseController')
 const router = express.Router()
 
-router.post('/sumbit-responses', submitResponse)
+router.post('/sumbit-responses', submitResponses)
 
 module.exports = router

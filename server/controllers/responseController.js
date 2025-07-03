@@ -1,11 +1,11 @@
 const Response = require('../models/Response')
 
-const submitResponse = async (req, res) => {
+const submitResponses = async (req, res) => {
     const { responses } = req.body
-
-    console.log(responses)
+    if(!responses) res.status(400).json({error: 'no responses to process'})
+    res.status(200).json({data: responses})
 }
 
 module.exports = {
-    submitResponse
+    submitResponses
 }
