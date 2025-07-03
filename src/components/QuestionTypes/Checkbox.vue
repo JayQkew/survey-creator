@@ -8,21 +8,20 @@ const props = defineProps({
 const answer = props.data
 const { responses } = inject('responses', {})
 
-// responses.value.find(r => r.qId === d.id).answer = []
+function handleInput(e){
+    const existingIndex = responses.value.findIndex(r => r.answer_id === answer.id)
 
-// function handleInput(e){
-//     const response = responses.value.find(r => r.qId === answer.id);
-//     const existingAnswer = response.answer.find(answer => answer.id === answer.value.id);
-    
-//     if (e.target.checked) {
-//         if (!existingAnswer) {
-//             response.answer.push(answer.value);
-//         }
-//     } else {
-//         response.answer = response.answer.filter(answer => answer.id !== answer.value.id);
-//     }
-//     console.log(responses.value)
-// }
+    if (existingIndex !== -1){
+        responses.value.splice(existingIndex, 1)
+    } else {
+        responses.value.push({
+            user_id: 1,
+            question_id: answer.question_id,
+            survey_id: answer.survey_id,
+            answer_id: answer.id
+        })
+    }
+}
 </script>
 
 <template>
@@ -31,7 +30,8 @@ const { responses } = inject('responses', {})
             type="checkbox" 
             :id="answer.id" 
             :name="answer.question_id" 
-            :value="answer.value">
+            :value="answer.value"
+            @change="handleInput">
         <label :for="answer.id">{{ answer.value }}</label>
     </div>
 </template>
