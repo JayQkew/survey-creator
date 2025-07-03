@@ -43,7 +43,6 @@ const updateAnswers = async (req, res) => {
                 })
             } else {
                 finalAnswers.push(a)
-                console.log(a)
             }
         }
     
