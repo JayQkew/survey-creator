@@ -5,7 +5,7 @@ import Question from '../components/Question.vue'
 
 const route = useRoute()
 
-const responses = ref(null)
+const responses = ref([])
 const survey = ref(null)
 const loading = ref(false)
 const error = ref(null)
@@ -29,15 +29,6 @@ async function fetchSurvey(){
 
         survey.value = await response.json()
         fetchQuestions()
-        // responses.value = questions.value.map(q => {
-        //     const typeDetails = JSON.parse(q.type_detail)
-        //     const options = typeDetails.options
-        //     return {
-        //         qId: q.id,
-        //         options: options,
-        //         answer: []
-        //     }
-        // })
     } catch (err) {
         error.value = err
     } finally {
