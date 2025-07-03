@@ -86,7 +86,8 @@ async function handleLogin(e){
     const data = await response.json()
     if (data && data.id) {
       if (user) user.value = data;
-      router.push({ name: 'surveyor-home', params: { id: String(data.id) } });
+      console.log(user.value)
+      router.push({ name: 'surveyor-home', params: { id: String(user.value.id) } });
     } else {
       throw new Error('No user id returned from server');
     }

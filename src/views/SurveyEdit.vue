@@ -184,6 +184,8 @@ async function updateQuestions(){
 
     const questions = await response.json()
     survey.value.questions = questions
+    console.log(questions)
+
     questions.map((q, i) => {
       updateAnswers(q.id, i)
     })
@@ -197,14 +199,14 @@ async function updateQuestions(){
 async function updateAnswers(qId, i){
   loading.value = true
   error.value = null
-
+  console.log(props.id)
   const newAnswers = survey.value.questions[i].answers
   try{
     const response = await fetch('http://localhost:3000/api/update-answers', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        user_id: user.value.id,
+        user_id: props.id,
         survey_id: survey.value.id,
         question_id: qId,
         new_answers: newAnswers
