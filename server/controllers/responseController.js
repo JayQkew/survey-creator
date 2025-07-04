@@ -1,4 +1,3 @@
-const { response } = require('express')
 const Response = require('../models/Response')
 
 const submitResponses = async (req, res) => {

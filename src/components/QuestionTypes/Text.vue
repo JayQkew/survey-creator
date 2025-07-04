@@ -11,9 +11,10 @@ const props = defineProps({
 
 const loading = ref(true)
 const answer = ref({
+    user_id: route.params.id,
     survey_id: route.params.surveyId,
     value: '',
-    created_by: user.value.id,
+    created_by: route.params.id,
     question_id: props.q.id
 })
 

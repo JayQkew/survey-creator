@@ -1,22 +1,22 @@
 <script setup>
 import { inject } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 
-const router = useRouter()
+const route = useRoute()
+const userId = route.params.id;
+console.log(userId)
 
 const props= defineProps({
     data: Object
 })
 
 const answer = props.data
-const { responses } = inject('responses', {})
-const { user } = inject('users', {id: 1})
+const { responses } = inject('responses', [])
 
 function handleInput(e) {
     const existingIndex = responses.value.findIndex(r => r.question_id === answer.question_id);
-
     const newResponse = {
-        user_id: router.param.id,
+        user_id: userId,
         question_id: answer.question_id,
         survey_id: answer.survey_id,
         answer_id: answer.id
