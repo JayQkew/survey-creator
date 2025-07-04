@@ -4,7 +4,6 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const userId = route.params.id
-console.log(userId)
 
 const props = defineProps({
     data: Object
@@ -19,7 +18,7 @@ function handleInput(e){
         responses.value.splice(existingIndex, 1)
     } else {
         responses.value.push({
-            user_id: userId,
+            user_id: 1,
             question_id: answer.question_id,
             survey_id: answer.survey_id,
             answer_id: answer.id
