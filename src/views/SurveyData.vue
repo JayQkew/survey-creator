@@ -7,7 +7,6 @@ const route = useRoute()
 
 const responses = ref([])
 const questionResponses = ref([])
-const answerResponses = ref([])
 const loading = ref(false)
 const error = ref(null)
 
@@ -28,10 +27,8 @@ async function fetchResponses(){
         responses.value = await response.json()
 
         splitToQuestions()
-        splitToAnswers()
         console.log(responses.value)
         console.log(questionResponses.value)
-        console.log(answerResponses.value)
     } catch (err) {
         error.value = err
     } finally {
@@ -44,37 +41,30 @@ function splitToQuestions(){
     
     responses.value.forEach(response => {
         const questionId = response.question_id
+        const answerId = response.answer_id
         
         if (!questionMap.has(questionId)) {
             questionMap.set(questionId, {
                 question_id: questionId,
-                responses: []
+                answers: []
             })
         }
         
-        questionMap.get(questionId).responses.push(response)
-    })
-    
-    questionResponses.value = Array.from(questionMap.values())
-}
-
-function splitToAnswers(){
-    const answerMap = new Map()
-    
-    responses.value.forEach(response => {
-        const answerId = response.answer_id
+        const question = questionMap.get(questionId)
+        let answer = question.answers.find(a => a.answer_id === answerId)
         
-        if (!answerMap.has(answerId)) {
-            answerMap.set(answerId, {
+        if (!answer) {
+            answer = {
                 answer_id: answerId,
                 responses: []
-            })
+            }
+            question.answers.push(answer)
         }
         
-        answerMap.get(answerId).responses.push(response)
+        answer.responses.push(response)
     })
     
-    answerResponses.value = Array.from(answerMap.values())
+    questions.value = Array.from(questionMap.values())
 }
 
 onMounted(() => {
