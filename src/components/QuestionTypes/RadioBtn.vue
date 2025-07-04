@@ -1,5 +1,8 @@
 <script setup>
 import { inject } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const props= defineProps({
     data: Object
@@ -13,7 +16,7 @@ function handleInput(e) {
     const existingIndex = responses.value.findIndex(r => r.question_id === answer.question_id);
 
     const newResponse = {
-        user_id: user.value.id,
+        user_id: router.param.id,
         question_id: answer.question_id,
         survey_id: answer.survey_id,
         answer_id: answer.id

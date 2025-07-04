@@ -1,5 +1,8 @@
 <script setup>
 import { inject } from 'vue';
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const props = defineProps({
     data: Object
@@ -16,7 +19,7 @@ function handleInput(e){
         responses.value.splice(existingIndex, 1)
     } else {
         responses.value.push({
-            user_id: user.value.id,
+            user_id: router.param.id,
             question_id: answer.question_id,
             survey_id: answer.survey_id,
             answer_id: answer.id
