@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, provide, ref } from 'vue';
 import SurveyNav from '../components/SurveyNav.vue';
 import { useRoute } from 'vue-router'
 
@@ -28,7 +28,7 @@ async function fetchResponses(){
 
         splitToQuestions()
         console.log(responses.value)
-        console.log(questionResponses.value)
+        // console.log(questionResponses.value)
     } catch (err) {
         error.value = err
     } finally {
@@ -64,12 +64,14 @@ function splitToQuestions(){
         answer.responses.push(response)
     })
     
-    questions.value = Array.from(questionMap.values())
+    questionResponses.value = Array.from(questionMap.values())
 }
 
 onMounted(() => {
     fetchResponses()
 })
+
+provide('responses', questionResponses)
 </script>
 
 <template>
