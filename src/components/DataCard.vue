@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-
+import ProgressBar from './ProgressBar.vue'
 
 const props = defineProps({
     question: {
@@ -8,6 +8,8 @@ const props = defineProps({
         required: true
     }
 })
+
+console.log(props.question)
 
 const question = ref(null)
 const loading = ref(false)
@@ -28,8 +30,8 @@ async function fetchQuestion() {
             throw new Error('HTTP error! status: ' + response.status)
         }
 
-        question.value = await response.json()
-        console.log(question.value)
+        const q = await response.json()
+        question.value = JSON.parse(q)[0] // Ensure it's parsed if it's a string
     } catch (err) {
         error.value = err
     } finally {
@@ -53,4 +55,22 @@ onMounted(fetchQuestion)
 </template>
 
 <style scoped>
+.pop-out{
+    transition: all 0.2s;
+}
+
+.pop-out:hover{
+    transform: translateY(-0.25rem);
+    box-shadow: 0 0.25rem 0 var(--text-colour);
+}
+
+.card{
+    box-sizing: border-box;
+    border: var(--border);
+    border-radius: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    background-color: var(--background-colour);
+}
 </style>

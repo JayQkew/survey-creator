@@ -81,12 +81,20 @@ provide('responses', questionResponses)
         <h1>Survey Data View</h1>
     </header>
     <main>
-        <DataCard 
-            v-for="question in questionResponses" 
-            :key="question.question_id" 
-            :question="question"/>
+        <ul class="flex-ctr-c">
+            <DataCard 
+                v-for="question in questionResponses" 
+                :key="question.question_id" 
+                :question="question"/>
+        </ul>
     </main>
 </template>
 
-<style>
+<style scoped>
+ul{
+  list-style: none;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
 </style>
