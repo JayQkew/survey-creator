@@ -13,7 +13,7 @@ const props = defineProps({
 })
 
 const percentage = computed(() => {
-    return denominator > 0 ? Math.round((numerator / denominator) * 100) : 0;
+    return props.denominator > 0 ? Math.round((props.numerator / props.denominator) * 100) : 0;
 });
 
 const barStyle = computed(() => {
@@ -41,17 +41,19 @@ onMounted(() => {
 <style scoped>
 .progress-bar-container {
     width: 100%;
-    background-color: #e0e0e0;
-    border-radius: 5px;
+    background-color: var(--background-colour);
+    border: var(--border-width);
+    border-color: var(--green);
+    border-radius: 0.25rem;
     overflow: hidden;
 }
 
 .progress-bar {
-    height: 20px;
-    background-color: #76c7c0;
+    height: 1.25rem;
+    background-color: var(--green);
     text-align: center;
     line-height: 20px;
-    color: white;
+    color: var(--text-colour);
     transition: width 0.3s ease-in-out;
 }
 </style>

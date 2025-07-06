@@ -92,9 +92,10 @@ provide('responses', questionResponses)
 
 <style scoped>
 ul{
-  list-style: none;
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
+    width: 100%;
+    list-style: none;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
 }
 </style>
