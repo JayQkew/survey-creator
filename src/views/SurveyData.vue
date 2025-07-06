@@ -2,6 +2,7 @@
 import { onMounted, provide, ref } from 'vue';
 import SurveyNav from '../components/SurveyNav.vue';
 import { useRoute } from 'vue-router'
+import DataCard from '../components/DataCard.vue';
 
 const route = useRoute()
 
@@ -27,7 +28,7 @@ async function fetchResponses(){
         responses.value = await response.json()
 
         splitToQuestions()
-        console.log(responses.value)
+        console.log(questionResponses.value)
         // console.log(questionResponses.value)
     } catch (err) {
         error.value = err
@@ -79,6 +80,12 @@ provide('responses', questionResponses)
         <SurveyNav/>
         <h1>Survey Data View</h1>
     </header>
+    <main>
+        <DataCard 
+            v-for="question in questionResponses" 
+            :key="question.question_id" 
+            :question="question"/>
+    </main>
 </template>
 
 <style>

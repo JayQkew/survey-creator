@@ -42,6 +42,14 @@ class Question{
             callback
         )
     }
+
+    static findById(questionId, callback){
+        db.query(
+            'SELECT * FROM question WHERE id = ?',
+            [questionId],
+            callback
+        )
+    }
 }
 
 module.exports = Question

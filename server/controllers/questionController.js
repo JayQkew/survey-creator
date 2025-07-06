@@ -1,5 +1,6 @@
 const Question = require('../models/Question')
 const Answer = require('../models/Answer')
+const { get } = require('../routes/response')
 
 const updateQuestions = async (req, res) => {
     const { updatedQuestions, survey_id } = req.body
@@ -93,7 +94,18 @@ const isNumericId = (id) => {
     return typeof id === 'number' || (typeof id === 'string' && !isNaN(id) && !isNaN(parseInt(id)))
 }
 
+const getQuestion = (req, res) => {
+    const { question_id } = req.body
+    if (!question_id) return res.status(400).json({ error: 'no question id' })
+    Question.findById(question_id, (err, question) => {
+        if (err) return res.status(500).json({ error: err.message })
+        if (!question) return res.status(404).json({ error: 'question not found' })
+        res.status(200).json(JSON.stringify(question))
+    })
+}
+
 module.exports = {
     updateQuestions,
-    getQuestions
+    getQuestions,
+    getQuestion
 }
