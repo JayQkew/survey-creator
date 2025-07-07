@@ -27,8 +27,9 @@ async function fetchResponses(){
 
         responses.value = await response.json()
 
+        fetchQuestions()
+
         splitToQuestions()
-        console.log(questionResponses.value)
     } catch (err) {
         error.value = err
     } finally {
@@ -36,6 +37,58 @@ async function fetchResponses(){
     }
 }
 
+async function fetchQuestions(){
+    loading.value = true
+    error.value = null
+
+    try {
+        const response = await fetch('http://localhost:3000/api/get-questions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({survey_id: route.params.surveyId})
+        })
+        if(!response.ok){
+            throw new Error(`HTTP error! status: ${response.status}`)
+        }
+
+        const questions = await response.json()
+        console.log(questions)
+        // questions.map((q, i) => {
+        //     fetchAnswers(q.id, i)
+        // })
+    } catch (err) {
+        error.value = err
+    } finally {
+        loading.value = false
+    }
+}
+
+async function fetchAnswers(qId, qIndex){
+    loading.value = true
+    error.value = null
+
+    try{
+        const response = await fetch('http://localhost:3000/api/get-answers', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({question_id: qId})
+        })
+        if(!response.ok){
+        throw new Error(`HTTP error! status: ${response.status}`)
+        }
+
+        const answers = await response.json()
+        // survey.value.questions[qIndex].answers = answers
+    } catch (e){
+        error.value = e
+    } finally{
+        loading.value = false
+    } 
+}
 
 function splitToQuestions(){
     const questionMap = new Map()
