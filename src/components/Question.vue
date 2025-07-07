@@ -57,20 +57,17 @@ function deleteQuestion(){
             <section v-if="!isRespondent" class="question-body">
                 <div class="question-main flex-ctr-r">
                     <template v-if="!q.type"/>
-                    <Text v-if="q.type === 'text'" :q="q"/>
-                    <SingleOption v-else-if="q.type === 'single'" :q="q">Single Option</SingleOption>
+                    <SingleOption v-if="q.type === 'single'" :q="q">Single Option</SingleOption>
                     <MultipleOption v-else-if="q.type === 'multiple'" :q="q">Multiple Option</MultipleOption>
                 </div>
                 <div class="question-aside">
                     <QuestionDetail :q="q"/>
-                    <p v-if="q.type === 'text'">Let the user type thier response</p>
-                    <p v-else-if="q.type === 'single'">Let the user choose one of the options</p>
+                    <p v-if="q.type === 'single'">Let the user choose one of the options</p>
                     <p v-else-if="q.type === 'multiple'">Let the user choose multiple options</p>
                 </div>
             </section>
             <section v-else class="respondent-body">
-                    <Text v-if="q.type === 'text'" :q="q"/>
-                    <SingleOption v-else-if="q.type === 'single'" :q="q">Single Option</SingleOption>
+                    <SingleOption v-if="q.type === 'single'" :q="q">Single Option</SingleOption>
                     <MultipleOption v-else-if="q.type === 'multiple'" :q="q">Multiple Option</MultipleOption>
             </section>
         </section>

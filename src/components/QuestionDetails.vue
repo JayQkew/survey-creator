@@ -22,7 +22,6 @@ watch(typeValue, () =>{
         <select name="question-type" id="question-type" v-model="typeValue">
             <option value="single">Single Option</option>
             <option value="multiple">Multiple Options</option>
-            <option value="text">Text</option>
         </select>
     </div>
 </template>

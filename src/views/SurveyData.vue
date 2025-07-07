@@ -29,13 +29,13 @@ async function fetchResponses(){
 
         splitToQuestions()
         console.log(questionResponses.value)
-        // console.log(questionResponses.value)
     } catch (err) {
         error.value = err
     } finally {
         loading.value = false
     }
 }
+
 
 function splitToQuestions(){
     const questionMap = new Map()

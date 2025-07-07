@@ -1,6 +1,5 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-import ProgressBar from './ProgressBar.vue'
 import AnswerData from './AnswerData.vue'
 
 const props = defineProps({
