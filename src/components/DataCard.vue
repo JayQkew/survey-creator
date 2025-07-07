@@ -92,6 +92,7 @@ onMounted(() => {
         <section class="card pop-out flex-ctr-c">
             <div class="card-header">
                 <h2 v-if="question">{{ question.text }}</h2>
+                <p>Total Responses: {{ totalResponses }}</p>
             </div>
             <div class="card-body" >
                 <ProgressBar 
