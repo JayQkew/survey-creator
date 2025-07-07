@@ -32,7 +32,7 @@ onMounted(() => {
 <template>
 <div class="progress-bar-container">
     <div class="progress-bar" :style="barStyle">
-        {{ percentage }}%
+        {{ percentage }}% ({{ props.numerator }})
     </div>
 
 </div>

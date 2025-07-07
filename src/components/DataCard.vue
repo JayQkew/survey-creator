@@ -57,7 +57,19 @@ async function fetchAnswers() {
             throw new Error('HTTP error! status: ' + response.status)
         }
 
-        const answers = await response.json()
+        const fetchedAnswers = await response.json()
+        console.log(fetchedAnswers)
+        answers.value = fetchedAnswers.map(a => {
+            // find in reponses
+            // const responses = question.value.answers.find(qa => qa.answer_id === a.id)
+            const answer = props.question.answers.find(qa => qa.answer_id === a.id)
+            const numResponses = answer != undefined ? answer.responses.length : 0
+            return {
+                ...a,
+                responses: numResponses
+            }
+        })
+        console.log(answers.value)
     } catch (err) {
         error.value = err
     } finally {
@@ -69,7 +81,10 @@ function getTotalResponses() {
     totalResponses.value = props.question.answers.reduce((total, answer) => total + answer.responses.length, 0)
 }
 
-onMounted(fetchQuestion)
+onMounted(() => {
+    fetchQuestion()
+    fetchAnswers()
+})
 </script>
 
 <template>
@@ -80,9 +95,10 @@ onMounted(fetchQuestion)
             </div>
             <div class="card-body" >
                 <ProgressBar 
-                    v-for="(answer) in props.question.answers"
+                    v-if="answers"
+                    v-for="(answer) in answers"
                     :denominator="totalResponses"
-                    :numerator="answer.responses.length"/>
+                    :numerator="answer.responses"/>
             </div>
         </section>
     </li>
