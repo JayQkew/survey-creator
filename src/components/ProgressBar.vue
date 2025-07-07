@@ -32,9 +32,10 @@ onMounted(() => {
 <template>
 <div class="progress-bar-container">
     <div class="progress-bar" :style="barStyle">
-        {{ percentage }}% ({{ props.numerator }})
+        <p>
+            {{ percentage }}% ({{ props.numerator }})
+        </p>
     </div>
-
 </div>
 </template>
 
@@ -52,8 +53,17 @@ onMounted(() => {
     height: 1.25rem;
     background-color: var(--green);
     text-align: center;
-    line-height: 20px;
+    line-height: 1.25rem;
     color: var(--text-colour);
+    height: 100%;   
     transition: width 0.3s ease-in-out;
 }
+
+p{
+    margin: 0;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+
 </style>

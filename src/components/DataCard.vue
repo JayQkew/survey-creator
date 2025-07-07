@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import ProgressBar from './ProgressBar.vue'
+import AnswerData from './AnswerData.vue'
 
 const props = defineProps({
     question: {
@@ -95,11 +96,13 @@ onMounted(() => {
                 <p>Total Responses: {{ totalResponses }}</p>
             </div>
             <div class="card-body" >
-                <ProgressBar 
-                    v-if="answers"
-                    v-for="(answer) in answers"
-                    :denominator="totalResponses"
-                    :numerator="answer.responses"/>
+                <AnswerData 
+                    v-if="answers"    
+                    v-for="(answer, index) in answers" 
+                    :key="index"
+                    :answer="answer"
+                    :total-responses="totalResponses"
+                />
             </div>
         </section>
     </li>

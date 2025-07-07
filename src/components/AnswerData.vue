@@ -32,5 +32,7 @@ li{
 p{
     width: 30%;
     overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 </style>
