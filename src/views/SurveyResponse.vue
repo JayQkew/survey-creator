@@ -107,7 +107,6 @@ async function submitResponse(){
         }
 
         const data = await response.json()
-        console.log(data.message)
     } catch (err) {
         error.value = err
     } finally{

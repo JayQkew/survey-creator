@@ -1,16 +1,16 @@
-import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from './views/Home.vue'
-import About from './views/About.vue'
+import AboutUs from './views/About.vue'
 import SurveyEdit from './views/SurveyEdit.vue'
 import SurveyData from './views/SurveyData.vue'
 import SurveyResponse from './views/SurveyResponse.vue'
 import Error from './views/Error.vue'
 import Landing from './views/Landing.vue'
+import SignIn from './views/SignIn.vue'
 
 import EmptyLayout from './layout/EmptyLayout.vue'
 import PageLayout from './layout/PageLayout.vue'
-import SignIn from './views/SignIn.vue'
 
 const routes = [
     {
@@ -28,41 +28,41 @@ const routes = [
                 component: SignIn
             },
             {
-                path: 'surveyor/:id',
-                component: EmptyLayout,
-                props: true,
-                children : [
-                    {
-                        path: 'home',
-                        name: 'surveyor-home',
-                        component: Home
-                    },
-                    {
-                        path: 'about',
-                        name: 'surveyor-about',
-                        component: About,
-                    },
-                    {
-                        path: 'survey/:surveyId',
-                        name: 'survey-edit',
-                        component: SurveyEdit,
-                    },
-                    {
-                        path: 'survey/:surveyId/data',
-                        name: 'survey-data',
-                        component: SurveyData,
-                    },
-                    {
-                        path: '',
-                        redirect: { name: 'surveyor-home'}
-                    }
-                ]
+                path: 'about',
+                name: 'surveyor-about',
+                component: AboutUs,
             },
             {
                 path: '/res/:surveyId',
                 name: 'respondent',
                 component: SurveyResponse,
                 props: true
+            }
+        ]
+    },
+    {
+        path: 'surveyor/:id',
+        component: EmptyLayout,
+        props: true,
+        children : [
+            {
+                path: 'home',
+                name: 'surveyor-home',
+                component: Home
+            },
+            {
+                path: 'survey/:surveyId',
+                name: 'survey-edit',
+                component: SurveyEdit,
+            },
+            {
+                path: 'survey/:surveyId/data',
+                name: 'survey-data',
+                component: SurveyData,
+            },
+            {
+                path: '',
+                redirect: { name: 'surveyor-home'}
             }
         ]
     },
