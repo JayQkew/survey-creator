@@ -14,7 +14,7 @@ import PageLayout from './layout/PageLayout.vue'
 
 const routes = [
     {
-        path: '',
+        path: '/',
         component: PageLayout,
         children: [
             {
@@ -33,7 +33,7 @@ const routes = [
                 component: AboutUs,
             },
             {
-                path: '/res/:surveyId',
+                path: 'res/:surveyId',
                 name: 'respondent',
                 component: SurveyResponse,
                 props: true
@@ -41,7 +41,7 @@ const routes = [
         ]
     },
     {
-        path: 'surveyor/:id',
+        path: '/surveyor/:id',
         component: EmptyLayout,
         props: true,
         children : [
