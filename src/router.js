@@ -15,6 +15,7 @@ import Error from './views/Error.vue'
 
 import EmptyLayout from './layout/EmptyLayout.vue'
 import PageLayout from './layout/PageLayout.vue'
+import { compile } from 'vue'
 
 const routes = [
     {
@@ -23,17 +24,32 @@ const routes = [
         children: [
             {
                 path: '',
-                name: 'landing-page',
+                name: 'landing',
                 component: Landing
             },
             {
-                path: 'sign-in',
-                name: 'sign-in-page',
+                path: 'signin',
+                name: 'sign-in',
                 component: SignIn
             },
             {
-                path: 'about',
-                name: 'surveyor-about',
+                path: 'browse',
+                name: 'browse',
+                component: Browse
+            },
+            {
+                path: 'leaderboard',
+                name: 'leaderboard',
+                component: Leaderboard
+            },
+            {
+                path: 'contactus',
+                name: 'contact-us',
+                component: ContactUs
+            },
+            {
+                path: 'aboutus',
+                name: 'about-us',
                 component: AboutUs,
             },
             {

@@ -25,7 +25,7 @@ function lightMode(){
         <section>
             <Logo/>
             <router-link class="flex-ctr" :to="{name: 'surveyor-home', params: {id: user.id}}">Home</router-link>
-            <router-link class="flex-ctr" :to="{name: 'surveyor-about', params: {id: user.id}}">About</router-link>
+            <router-link class="flex-ctr" :to="{name: 'about-us', params: {id: user.id}}">About</router-link>
         </section>
         <section class="flex-ctr">
             <button class="flex-ctr" @click="lightMode">
@@ -36,13 +36,13 @@ function lightMode(){
     <nav v-else-if="page === 'landing'">
         <section class="flex-ctr-r">
             <Logo/>
-            <router-link class="flex-ctr" :to="{name: 'landing-page'}">Home</router-link>
+            <router-link class="flex-ctr" :to="{name: 'landing'}">Home</router-link>
         </section>
         <section class="flex-ctr-r">
             <button class="flex-ctr" @click="lightMode">
                 <div class="svg" v-html="modeSvg"></div>
             </button>
-            <router-link class="flex-ctr" :to="{name: 'sign-in-page'}">Sign In</router-link>
+            <router-link class="flex-ctr" :to="{name: 'sign-in'}">Sign In</router-link>
         </section>
     </nav>
     <nav v-else-if="page === 'res'">
