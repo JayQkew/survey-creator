@@ -55,7 +55,8 @@ nav{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 4rem;
+    height: 5rem;
+    padding-inline: 1rem;
     border-bottom: var(--border);
     position: sticky;
     top: 0rem;
@@ -66,6 +67,8 @@ nav{
 
 ul{
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 section{
@@ -106,8 +109,8 @@ button:hover{
 a{
     font-weight: bold;
     color: var(--text-colour);
-    height: 3rem;
-    padding-inline: 1rem;
+    height: 2rem;
+    padding-inline: 0.5rem;
     margin: 0.5rem;
     border-radius: 0.25rem;
     transition: var(--transition);
