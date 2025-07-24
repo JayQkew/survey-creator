@@ -21,40 +21,26 @@ function lightMode(){
 </script>
 
 <template>
-    <nav v-if="page === 'user'">
-        <section>
-            <Logo/>
-            <router-link class="flex-ctr" :to="{name: 'surveyor-home', params: {id: user.id}}">Home</router-link>
-            <router-link class="flex-ctr" :to="{name: 'about-us', params: {id: user.id}}">About</router-link>
-        </section>
-        <section class="flex-ctr">
-            <button class="flex-ctr" @click="lightMode">
-                <div class="svg" v-html="modeSvg"></div>
-            </button>
-        </section>
-    </nav>
-    <nav v-else-if="page === 'landing'">
-        <section class="flex-ctr-r">
-            <Logo/>
-            <router-link class="flex-ctr" :to="{name: 'landing'}">Home</router-link>
-        </section>
-        <section class="flex-ctr-r">
-            <button class="flex-ctr" @click="lightMode">
-                <div class="svg" v-html="modeSvg"></div>
-            </button>
-            <router-link class="flex-ctr" :to="{name: 'sign-in'}">Sign In</router-link>
-        </section>
-    </nav>
-    <nav v-else-if="page === 'res'">
-        <section v-if="page === 'res'">
-            <Logo/>
-            <router-link class="flex-ctr" :to="{name: 'landing-page'}">Mojo Surveys</router-link>
-        </section>
-        <section class="flex-ctr">
-            <button class="flex-ctr" @click="lightMode">
-                <div class="svg" v-html="modeSvg"></div>
-            </button>
-        </section>
+    <nav>
+        <Logo/>
+        <div class="flex-ctr">
+            <ul>
+                <router-link class="flex-ctr" :to="{name: 'landing'}">Home</router-link>
+                <router-link class="flex-ctr" :to="{name: 'browse'}">Browse</router-link>
+                <router-link class="flex-ctr" :to="{name: 'leaderboard'}">Leaderboard</router-link>
+                <router-link class="flex-ctr" :to="{name: 'contact-us'}">Contact Us</router-link>
+                <router-link class="flex-ctr" :to="{name: 'about-us'}">About Us</router-link>
+            </ul>
+            <section class="flex-ctr">
+                <button class="flex-ctr" @click="lightMode">
+                    <div class="svg" v-html="modeSvg"></div>
+                </button>
+            </section>
+            <div>
+                <router-link class="flex-ctr" :to="{name: 'sign-in'}">Sign In</router-link>
+                <router-link class="flex-ctr" :to="{name: 'register'}">Register</router-link>
+            </div>
+        </div>
     </nav>
 </template>
 
@@ -74,6 +60,8 @@ nav{
     background-color: var(--background-colour);
     color: var(--text-colour);
 }
+
+
 
 section{
     display: flex;

@@ -1,5 +1,5 @@
 <script setup>
-import { inject, ref } from 'vue';
+import { inject, ref, defineProps } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
@@ -8,6 +8,14 @@ const user = inject('user')
 const state = ref('login')
 const loading = ref(false)
 const error = ref(null)
+
+const props = defineProps({
+  mode: {
+    type: String,
+    default: 'signin',
+    validator: value => ['signin', 'register'].includes(value)
+  }
+})
 
 function changeState(){
     state.value = state.value === 'login' ? 'signup' : 'login'

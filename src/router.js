@@ -32,7 +32,14 @@ const routes = [
             {
                 path: 'signin',
                 name: 'sign-in',
-                component: SignIn
+                component: SignIn,
+                props: { mode: 'signin'}
+            },
+            {
+                path: 'register',
+                name: 'register',
+                component: SignIn,
+                props: { mode: 'register'}
             },
             {
                 path: 'browse',
@@ -53,12 +60,6 @@ const routes = [
                 path: 'aboutus',
                 name: 'about-us',
                 component: AboutUs,
-            },
-            {
-                path: 'res/:surveyId',
-                name: 'respondent',
-                component: SurveyResponse,
-                props: true
             }
         ]
     },
@@ -88,10 +89,22 @@ const routes = [
                 component: SurveyData
             },
             {
+                path: 'res/:surveyId',
+                name: 'user-survey-response',
+                component: SurveyResponse,
+                props: true
+            },
+            {
                 path: '',
                 redirect: { name: 'dashboard'}
             }
         ]
+    },
+    {
+        path: 'res/:surveyId',
+        name: 'anon-survey-response',
+        component: SurveyResponse,
+        props: true
     },
     {
         path: '/surveyor/:id',
