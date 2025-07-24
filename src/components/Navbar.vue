@@ -4,14 +4,9 @@ import { useRoute } from 'vue-router';
 import modeSvg from '../assets/circle-half-stroke-solid.svg?raw'
 import Logo from './Logo.vue';
 
-const user = inject('user')
+const user = inject('user', null)
 
 const route = useRoute()
-const page = ref('')
-
-if(route.fullPath === '/') page.value = 'landing'
-else if(route.name === 'respondent') page.value = 'res'
-else page.value = 'user'
 
 function lightMode(){
     document.body.className = document.body.className === 'light' ?
@@ -25,11 +20,21 @@ function lightMode(){
         <Logo/>
         <div class="flex-ctr">
             <ul>
-                <router-link class="flex-ctr" :to="{name: 'landing'}">Home</router-link>
-                <router-link class="flex-ctr" :to="{name: 'browse'}">Browse</router-link>
-                <router-link class="flex-ctr" :to="{name: 'leaderboard'}">Leaderboard</router-link>
-                <router-link class="flex-ctr" :to="{name: 'contact-us'}">Contact Us</router-link>
-                <router-link class="flex-ctr" :to="{name: 'about-us'}">About Us</router-link>
+                <li>
+                    <router-link class="flex-ctr" :to="{name: 'landing'}">Home</router-link>
+                </li>
+                <li>
+                    <router-link class="flex-ctr" :to="{name: 'browse'}">Browse</router-link>
+                </li>
+                <li>
+                    <router-link class="flex-ctr" :to="{name: 'leaderboard'}">Leaderboard</router-link>
+                </li>
+                <li>
+                    <router-link class="flex-ctr" :to="{name: 'contact-us'}">Contact Us</router-link>
+                </li>
+                <li>
+                    <router-link class="flex-ctr" :to="{name: 'about-us'}">About Us</router-link>
+                </li>
             </ul>
             <section class="flex-ctr">
                 <button class="flex-ctr" @click="lightMode">
@@ -60,8 +65,6 @@ nav{
     background-color: var(--background-colour);
     color: var(--text-colour);
 }
-
-
 
 section{
     display: flex;

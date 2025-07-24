@@ -101,7 +101,7 @@ const routes = [
         ]
     },
     {
-        path: 'res/:surveyId',
+        path: '/res/:surveyId',
         name: 'anon-survey-response',
         component: SurveyResponse,
         props: true
