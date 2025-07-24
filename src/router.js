@@ -1,13 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Home from './views/Home.vue'
-import AboutUs from './views/About.vue'
-import SurveyEdit from './views/SurveyEdit.vue'
-import SurveyData from './views/SurveyData.vue'
-import SurveyResponse from './views/SurveyResponse.vue'
-import Error from './views/Error.vue'
 import Landing from './views/Landing.vue'
 import SignIn from './views/SignIn.vue'
+import Browse from './views/Browse.vue'
+import Leaderboard from './views/Leaderboard.vue'
+import ContactUs from './views/ContactUs.vue'
+import AboutUs from './views/AboutUs.vue'
+
+import SurveyEdit from './views/SurveyEdit.vue'
+import SurveyData from './views/SurveyData.vue'
+import Home from './views/Home.vue'
+import SurveyResponse from './views/SurveyResponse.vue'
+import Error from './views/Error.vue'
 
 import EmptyLayout from './layout/EmptyLayout.vue'
 import PageLayout from './layout/PageLayout.vue'
@@ -42,7 +46,7 @@ const routes = [
     },
     {
         path: '/surveyor/:id',
-        component: EmptyLayout,
+        component: PageLayout,
         props: true,
         children : [
             {
