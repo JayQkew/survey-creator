@@ -1,4 +1,4 @@
-@import '../assets/webfonts/red-hat-font.css';
+@import '../assets/font/fonts.css';
 
 :root {
   --light: #F2FAFF;
@@ -15,7 +15,7 @@
   --text-colour: var(--dark);
   --background-colour: var(--light);
 
-  --regular-font: 'RedHatDisplay', sans-serif;
+  --regular-font: 'Inter', sans-serif;
 
   --border: 1px solid var(--text-colour);
   --border-width: 1px solid;

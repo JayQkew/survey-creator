@@ -1,35 +1,15 @@
 @font-face {
-    font-family: 'Ubuntu Bold Italic';
-    src: url('UbuntuMono-BoldItalic.woff2') format('woff2'),
-        url('UbuntuMono-BoldItalic.woff') format('woff');
-    font-weight: bold;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Ubuntu Bold';
-    src: url('UbuntuMono-Bold.woff2') format('woff2'),
-        url('UbuntuMono-Bold.woff') format('woff');
-    font-weight: bold;
+    font-family: 'Inter';
+    src: url('Inter-VariableFont_opsz,wght.ttf') format('truetype');
+    font-weight: 100 900;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Ubuntu';
-    src: url('UbuntuMono-Regular.woff2') format('woff2'),
-        url('UbuntuMono-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Ubuntu Italic';
-    src: url('UbuntuMono-Italic.woff2') format('woff2'),
-        url('UbuntuMono-Italic.woff') format('woff');
-    font-weight: normal;
+    font-family: 'Inter Italic';
+    src: url('Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype');
+    font-weight: 100 900;
     font-style: italic;
     font-display: swap;
 }
