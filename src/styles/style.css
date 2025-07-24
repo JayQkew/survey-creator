@@ -94,10 +94,6 @@ a:hover {
   flex-direction: column;
 }
 
-main{
-  margin-inline: 1rem;
-}
-
 #app {
   width: 100vw;
 }

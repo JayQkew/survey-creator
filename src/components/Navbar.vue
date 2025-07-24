@@ -19,7 +19,7 @@ function lightMode(){
     <nav>
         <Logo/>
         <div class="flex-ctr">
-            <ul>
+            <ul class="flex-ctr-r">
                 <li>
                     <router-link class="flex-ctr" :to="{name: 'landing'}">Home</router-link>
                 </li>
@@ -41,7 +41,7 @@ function lightMode(){
                     <div class="svg" v-html="modeSvg"></div>
                 </button>
             </section>
-            <div>
+            <div class="flex-ctr-r">
                 <router-link class="flex-ctr" :to="{name: 'sign-in'}">Sign In</router-link>
                 <router-link class="flex-ctr" :to="{name: 'register'}">Register</router-link>
             </div>
@@ -56,14 +56,16 @@ nav{
     justify-content: space-between;
     align-items: center;
     height: 4rem;
-    margin: 1rem;
-    border: var(--border);
-    border-radius: 0.5rem;
+    border-bottom: var(--border);
     position: sticky;
-    top: 1rem;
+    top: 0rem;
     z-index: 3;
     background-color: var(--background-colour);
     color: var(--text-colour);
+}
+
+ul{
+    list-style: none;
 }
 
 section{
