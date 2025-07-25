@@ -18,7 +18,7 @@ function lightMode(){
 <template>
     <nav>
         <Logo/>
-        <div class="flex-ctr">
+        <div class="flex-ctr btn-container">
             <ul class="flex-ctr-r">
                 <li>
                     <router-link class="flex-ctr" :to="{name: 'landing'}">Home</router-link>
@@ -41,9 +41,9 @@ function lightMode(){
                     <div class="svg" v-html="modeSvg"></div>
                 </button>
             </section>
-            <div class="flex-ctr-r">
-                <router-link class="flex-ctr" :to="{name: 'sign-in'}">Sign In</router-link>
-                <router-link class="flex-ctr" :to="{name: 'register'}">Register</router-link>
+            <div class="flex-ctr-r btn-container">
+                <router-link class="flex-ctr sign-in" :to="{name: 'sign-in'}">Sign In</router-link>
+                <router-link class="flex-ctr register" :to="{name: 'register'}">Register</router-link>
             </div>
         </div>
     </nav>
@@ -55,9 +55,9 @@ nav{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 5rem;
+    height: 6rem;
     padding-inline: 1rem;
-    border-bottom: var(--border);
+    border-bottom: var(--border-width) var(--light-grey);
     position: sticky;
     top: 0rem;
     z-index: 3;
@@ -69,6 +69,7 @@ ul{
     list-style: none;
     padding: 0;
     margin: 0;
+    gap: 0.25rem;
 }
 
 section{
@@ -76,16 +77,6 @@ section{
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
-    height: 100%;
-}
-
-.other{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-direction: row;
-    padding: 0;
-    margin: 0;
     height: 100%;
 }
 
@@ -107,18 +98,36 @@ button:hover{
 }
 
 a{
-    font-weight: bold;
     color: var(--text-colour);
     height: 2rem;
     padding-inline: 0.5rem;
-    margin: 0.5rem;
     border-radius: 0.25rem;
     transition: var(--transition);
 }
-
 a:hover{
     background-color: var(--text-colour);
     color: var(--background-colour);
+}
+
+.sign-in{
+    color: var(--background-colour);
+    background-color: var(--blue-2);
+    border: 2px solid var(--blue-2);
+}
+.sign-in:hover{
+    color: var(--blue-2);
+    background-color: var(--background-colour);
+}
+
+.register{
+    color: var(--background-colour);
+    background-color: var(--orange);
+    border: 2px solid var(--orange);
+
+}
+.register:hover{
+    color: var(--orange);
+    background-color: var(--background-colour);
 }
 
 .svg{
@@ -132,4 +141,9 @@ a:hover{
     fill: currentColor;
     stroke: currentColor;
 }
+
+.btn-container{
+    gap: 0.5rem;
+}
+
 </style>

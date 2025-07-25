@@ -11,7 +11,7 @@
 .logo-container{
     box-sizing: border-box;
     width: fit-content;
-    height: 3rem;
+    height: 2.5rem;
     padding: 0.5rem;
 }
 
